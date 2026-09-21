@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import DefaultTheme from "vitepress/theme";
+import { withBase } from "vitepress";
+
+const home = withBase("/");
 </script>
 
 <template>
@@ -12,7 +15,7 @@ import DefaultTheme from "vitepress/theme";
           never scanned, or it moved without leaving a content hash behind.
         </p>
         <p>
-          <a href="/skillproof/">Back to safety →</a>
+          <a :href="home">Back to safety →</a>
         </p>
       </div>
     </template>
