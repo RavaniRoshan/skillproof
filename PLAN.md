@@ -39,6 +39,7 @@ Progress log format: `YYYY-MM-DD — area — what changed — commit/PR link`.
 | 2026-09-21 | plan | `PLAN.md` v1 written with merged practitioner principles |
 | 2026-09-21 | openapi | `openapi/v1.yaml` generated from Zod; self-ref components fixed; `$ref` sync test added; stale `schemas/src/index.js` removed |
 | 2026-09-21 | cli | Removed stale TS-in-`.js` duplicates; rewrote cli tests as ESM (7/7 green); lint 0 errors; beautified root README |
+| 2026-09-21 | site | VitePress marketing + docs site in `site/`; Pages deploy workflow; `npm run docs:{dev,build,preview}` |
 
 ---
 

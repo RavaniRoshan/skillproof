@@ -2,12 +2,14 @@
   "name": "skillproof",
   "version": "0.1.0",
   "private": true,
-  "workspaces": ["./packages/cli", "./packages/schemas"],
+  "workspaces": ["./packages/cli", "./packages/schemas", "./site"],
   "scripts": {
     "lint": "eslint packages/cli/src packages/cli/test packages/schemas/src/**/*.ts",
     "typecheck": "tsc -b packages/cli packages/schemas",
     "test": "vitest",
-    "generate:openapi": "npm run generate -w skillproof-schemas",
+    "docs:dev": "npm run docs:dev -w skillproof-site",
+    "docs:build": "npm run docs:build -w skillproof-site",
+    "docs:preview": "npm run docs:preview -w skillproof-site",
     "build": "tsc -b packages/*"
   },
   "dependencies": {

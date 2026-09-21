@@ -3,6 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Node.js](https://img.shields.io/badge/Node-%3E%3D20-green.svg)](package.json)
 [![Status](https://img.shields.io/badge/Status-v0.1%20pre--launch-orange.svg)](PLAN.md)
+[![Docs](https://img.shields.io/badge/Docs-GitHub%20Pages-purple.svg)](https://ravaniroshan.github.io/skillproof/)
 
 An open registry of **proof** for agent skills — not another place to host them.
 
@@ -167,6 +168,21 @@ npx vitest run      # test suite (must stay green)
 
 `PLAN.md` is the source of truth for scope, roadmap, kill criteria and
 per-session progress. Update its checkboxes and log in place as you work.
+
+---
+
+## Docs site
+
+Marketing + documentation live in `site/` (VitePress) and deploy to GitHub
+Pages on every `main` push that touches them:
+
+```bash
+npm run docs:dev      # local preview with hot reload
+npm run docs:build    # production build to site/.vitepress/dist
+```
+
+Public URL (after enabling Pages in repo settings):
+`https://ravaniroshan.github.io/skillproof/`
 
 ---
 
