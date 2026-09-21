@@ -1,0 +1,215 @@
+{
+  "type": "object",
+  "properties": {
+    "schema": {
+      "type": "string",
+      "enum": [
+        "skillproof/1"
+      ]
+    },
+    "skill": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "content_hash": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "version",
+        "source",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    "capabilities": {
+      "type": "object",
+      "properties": {
+        "network": {
+          "type": "object",
+          "properties": {
+            "outbound_domains": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "via": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "outbound_domains",
+            "via"
+          ],
+          "additionalProperties": false
+        },
+        "exec": {
+          "type": "object",
+          "properties": {
+            "shell": {
+              "type": "boolean"
+            },
+            "interpreters": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "shell",
+            "interpreters"
+          ],
+          "additionalProperties": false
+        },
+        "filesystem": {
+          "type": "object",
+          "properties": {
+            "reads": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "writes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "reads",
+            "writes"
+          ],
+          "additionalProperties": false
+        },
+        "secrets": {
+          "type": "object",
+          "properties": {
+            "env_vars": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "env_vars"
+          ],
+          "additionalProperties": false
+        },
+        "agents": {
+          "type": "object",
+          "properties": {
+            "spawns_subagents": {
+              "type": "boolean"
+            },
+            "subagent_types": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "spawns_subagents",
+            "subagent_types"
+          ],
+          "additionalProperties": false
+        },
+        "mcp": {
+          "type": "object",
+          "properties": {
+            "servers": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "servers"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "network",
+        "exec",
+        "filesystem",
+        "secrets",
+        "agents",
+        "mcp"
+      ],
+      "additionalProperties": false
+    },
+    "declared": {
+      "type": "object",
+      "properties": {
+        "frontmatter": {
+          "type": "object",
+          "additionalProperties": {}
+        }
+      },
+      "required": [
+        "frontmatter"
+      ],
+      "additionalProperties": false
+    },
+    "scan_version": {
+      "type": "string"
+    },
+    "signer": {
+      "type": "object",
+      "properties": {
+        "iss": {
+          "type": "string"
+        },
+        "sub": {
+          "type": "string"
+        },
+        "workflow": {
+          "type": "string"
+        },
+        "commit": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "iss",
+        "sub",
+        "workflow",
+        "commit"
+      ],
+      "additionalProperties": false
+    },
+    "undeclared_findings": {
+      "type": "array",
+      "items": {}
+    }
+  },
+  "required": [
+    "schema",
+    "skill",
+    "capabilities",
+    "declared",
+    "scan_version",
+    "signer",
+    "undeclared_findings"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,310 @@
+openapi: 3.0.0
+info:
+  title: SkillProof Read API
+  version: 1.0.0
+  description: API for reading attestations and evaluations
+paths:
+  /v1/attest/{sha256}:
+    get:
+      summary: Get attestation by SHA256 hash
+      parameters:
+        - name: sha256
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Attestation found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Manifest"
+        "404":
+          description: Attestation not found
+  /v1/eval/{sha256}:
+    get:
+      summary: Get evaluations by SHA256 hash
+      parameters:
+        - name: sha256
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: model
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Evaluations found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Eval"
+        "404":
+          description: Evaluations not found
+components:
+  schemas:
+    Manifest:
+      type: object
+      properties:
+        schema:
+          type: string
+          enum:
+            - skillproof/1
+        skill:
+          type: object
+          properties:
+            name:
+              type: string
+            version:
+              type: string
+            source:
+              type: string
+            content_hash:
+              type: string
+          required:
+            - name
+            - version
+            - source
+            - content_hash
+          additionalProperties: false
+        capabilities:
+          type: object
+          properties:
+            network:
+              type: object
+              properties:
+                outbound_domains:
+                  type: array
+                  items:
+                    type: string
+                via:
+                  type: array
+                  items:
+                    type: string
+              required:
+                - outbound_domains
+                - via
+              additionalProperties: false
+            exec:
+              type: object
+              properties:
+                shell:
+                  type: boolean
+                interpreters:
+                  type: array
+                  items:
+                    type: string
+              required:
+                - shell
+                - interpreters
+              additionalProperties: false
+            filesystem:
+              type: object
+              properties:
+                reads:
+                  type: array
+                  items:
+                    type: string
+                writes:
+                  type: array
+                  items:
+                    type: string
+              required:
+                - reads
+                - writes
+              additionalProperties: false
+            secrets:
+              type: object
+              properties:
+                env_vars:
+                  type: array
+                  items:
+                    type: string
+              required:
+                - env_vars
+              additionalProperties: false
+            agents:
+              type: object
+              properties:
+                spawns_subagents:
+                  type: boolean
+                subagent_types:
+                  type: array
+                  items:
+                    type: string
+              required:
+                - spawns_subagents
+                - subagent_types
+              additionalProperties: false
+            mcp:
+              type: object
+              properties:
+                servers:
+                  type: array
+                  items:
+                    type: string
+              required:
+                - servers
+              additionalProperties: false
+          required:
+            - network
+            - exec
+            - filesystem
+            - secrets
+            - agents
+            - mcp
+          additionalProperties: false
+        declared:
+          type: object
+          properties:
+            frontmatter:
+              type: object
+              additionalProperties: {}
+          required:
+            - frontmatter
+          additionalProperties: false
+        scan_version:
+          type: string
+        signer:
+          type: object
+          properties:
+            iss:
+              type: string
+            sub:
+              type: string
+            workflow:
+              type: string
+            commit:
+              type: string
+          required:
+            - iss
+            - sub
+            - workflow
+            - commit
+          additionalProperties: false
+        undeclared_findings:
+          type: array
+          items: {}
+      required:
+        - schema
+        - skill
+        - capabilities
+        - declared
+        - scan_version
+        - signer
+        - undeclared_findings
+      additionalProperties: false
+    Eval:
+      type: object
+      properties:
+        schema:
+          type: string
+          enum:
+            - skillproof-eval/1
+        skill_hash:
+          type: string
+        skill_version:
+          type: string
+        matrix:
+          type: array
+          items:
+            type: object
+            properties:
+              model:
+                type: string
+              baseline:
+                type: object
+                properties:
+                  output:
+                    type: string
+                  cost:
+                    type: number
+                  time:
+                    type: number
+                required:
+                  - output
+                  - cost
+                  - time
+                additionalProperties: false
+              with_skill:
+                type: object
+                properties:
+                  output:
+                    type: string
+                  cost:
+                    type: number
+                  time:
+                    type: number
+                required:
+                  - output
+                  - cost
+                  - time
+                additionalProperties: false
+              uplift:
+                type: number
+            required:
+              - model
+              - baseline
+              - with_skill
+              - uplift
+            additionalProperties: false
+        verdict:
+          type: string
+          enum:
+            - OK
+            - SKILL_DEGRADED_ON_NEWER_MODEL
+            - IMPROVED
+            - INCONCLUSIVE
+        cost_usd:
+          type: number
+        runs:
+          type: number
+        tasks:
+          type: number
+        cache_key:
+          type: object
+          properties:
+            hash:
+              type: string
+            task:
+              type: string
+            model:
+              type: string
+            judge:
+              type: string
+            n:
+              type: number
+          required:
+            - hash
+            - task
+            - model
+            - judge
+            - n
+          additionalProperties: false
+        task_provenance:
+          type: string
+          enum:
+            - author
+            - generated
+        judge_agreement_rate:
+          type: number
+        trace_ref:
+          type: string
+      required:
+        - schema
+        - skill_hash
+        - skill_version
+        - matrix
+        - verdict
+        - cost_usd
+        - runs
+        - tasks
+        - cache_key
+        - task_provenance
+        - judge_agreement_rate
+        - trace_ref
+      additionalProperties: false

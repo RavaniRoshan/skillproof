@@ -1,0 +1,152 @@
+{
+  "type": "object",
+  "properties": {
+    "schema": {
+      "type": "string",
+      "enum": [
+        "skillproof-eval/1"
+      ]
+    },
+    "skill_hash": {
+      "type": "string"
+    },
+    "skill_version": {
+      "type": "string"
+    },
+    "matrix": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "model": {
+            "type": "string"
+          },
+          "baseline": {
+            "type": "object",
+            "properties": {
+              "output": {
+                "type": "string"
+              },
+              "cost": {
+                "type": "number"
+              },
+              "time": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "output",
+              "cost",
+              "time"
+            ],
+            "additionalProperties": false
+          },
+          "with_skill": {
+            "type": "object",
+            "properties": {
+              "output": {
+                "type": "string"
+              },
+              "cost": {
+                "type": "number"
+              },
+              "time": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "output",
+              "cost",
+              "time"
+            ],
+            "additionalProperties": false
+          },
+          "uplift": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "model",
+          "baseline",
+          "with_skill",
+          "uplift"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "verdict": {
+      "type": "string",
+      "enum": [
+        "OK",
+        "SKILL_DEGRADED_ON_NEWER_MODEL",
+        "IMPROVED",
+        "INCONCLUSIVE"
+      ]
+    },
+    "cost_usd": {
+      "type": "number"
+    },
+    "runs": {
+      "type": "number"
+    },
+    "tasks": {
+      "type": "number"
+    },
+    "cache_key": {
+      "type": "object",
+      "properties": {
+        "hash": {
+          "type": "string"
+        },
+        "task": {
+          "type": "string"
+        },
+        "model": {
+          "type": "string"
+        },
+        "judge": {
+          "type": "string"
+        },
+        "n": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "hash",
+        "task",
+        "model",
+        "judge",
+        "n"
+      ],
+      "additionalProperties": false
+    },
+    "task_provenance": {
+      "type": "string",
+      "enum": [
+        "author",
+        "generated"
+      ]
+    },
+    "judge_agreement_rate": {
+      "type": "number"
+    },
+    "trace_ref": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema",
+    "skill_hash",
+    "skill_version",
+    "matrix",
+    "verdict",
+    "cost_usd",
+    "runs",
+    "tasks",
+    "cache_key",
+    "task_provenance",
+    "judge_agreement_rate",
+    "trace_ref"
+  ],
+  "additionalProperties": false
+}

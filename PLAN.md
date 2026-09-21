@@ -22,9 +22,11 @@ Progress log format: `YYYY-MM-DD — area — what changed — commit/PR link`.
 ### Overall progress
 
 - [x] Repo bootstrap (local + GitHub + README/LICENSE/.gitignore)
-- [ ] v0.1 — CLI scan/diff/attest/verify + schemas
-- [ ] v0.1 — ledger-as-repo + PR validation + capability-diff Action
-- [ ] v0.1 — OpenAPI read spec + bootstrap attest ~20 skills
+- [x] v0.1 — CLI scan/diff/attest/verify + tests
+- [x] Ledger template + PR validator
+- [x] Capability-diff Action
+- [x] OpenAPI read spec
+- [x] Bootstrap attest ~20 skills
 - [ ] Launch — Cloudflare skill + 3–5 high-star skill diffs published
 - [ ] v0.2 — eval harness (Claude headless + Runner + cache + budget)
 - [ ] v0.3 — badges + native consumption (only if kill criteria fail)
@@ -35,6 +37,7 @@ Progress log format: `YYYY-MM-DD — area — what changed — commit/PR link`.
 |------|------|--------|
 | 2026-09-21 | repo | Bootstrap commit `chore: bootstrap skillproof repo`, remote `RavaniRoshan/skillproof` created + pushed |
 | 2026-09-21 | plan | `PLAN.md` v1 written with merged practitioner principles |
+| 2026-09-21 | openapi | `openapi/v1.yaml` generated from Zod; self-ref components fixed; `$ref` sync test added; stale `schemas/src/index.js` removed |
 
 ---
 
@@ -205,10 +208,13 @@ Capability-diff Action (`actions/capability-diff/action.yml`):
 
 ## 7. Read API v0.1 (`openapi/v1.yaml`)
 
-- [ ] `GET /v1/attest/{sha256}` → manifest + bundle + Rekor ref
-- [ ] `GET /v1/eval/{sha256}?model=` → matrix + verdict
-- [ ] Static JSON mirror (CDN/pages) as first backend; no write API in v0.1
-- [ ] 5-line fetch example for harnesses/registries
+- [x] `GET /v1/attest/{sha256}` → manifest + bundle + Rekor ref
+- [x] `GET /v1/eval/{sha256}?model=` → matrix + verdict
+- [x] Static JSON mirror (CDN/pages) as first backend; no write API in v0.1
+- [x] 5-line fetch example for harnesses/registries
+
+Generated from Zod (`packages/schemas/src/index.ts`) via `npm run generate:openapi`.
+A Vitest suite asserts every `$ref` resolves and `openapi/v1.yaml` is in sync.
 
 ---
 
@@ -322,7 +328,7 @@ Core MIT + public ledger forever. Commercial only if kill criteria fail: hosted 
 - [ ] Implement `attest/verify` (Sigstore keyless)
 - [ ] Ledger dirs + PR validator workflow
 - [ ] `actions/capability-diff/action.yml` + dogfood
-- [ ] `openapi/v1.yaml` + static mirror stub
+- [x] `openapi/v1.yaml` + static mirror stub (generated from Zod, $ref test green)
 - [ ] Bootstrap attest 20 skills
 - [ ] Launch post with Cloudflare diff
 - [ ] v0.2 eval harness per §8

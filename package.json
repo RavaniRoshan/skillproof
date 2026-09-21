@@ -1,0 +1,31 @@
+{
+  "name": "skillproof",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": ["./packages/cli", "./packages/schemas"],
+  "scripts": {
+    "lint": "eslint packages/cli/src packages/cli/test packages/schemas/src/**/*.ts",
+    "typecheck": "tsc -b packages/cli packages/schemas",
+    "test": "vitest",
+    "generate:openapi": "npm run generate -w skillproof-schemas",
+    "build": "tsc -b packages/*"
+  },
+  "dependencies": {
+    "commander": "^11.1.0",
+    "zod": "^3.22.4",
+    "node-fetch": "^3.3.2",
+    "sigstore": "^1.8.0",
+    "chalk": "^4.1.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "vitest": "^1.0.4",
+    "@typescript-eslint/parser": "^6.15.0",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.6",
+    "prettier": "^3.2.4",
+    "@types/node": "^20.10.5"
+  }
+}
