@@ -2,9 +2,33 @@ import { defineConfig } from "vitepress";
 
 export default defineConfig({
   title: "SkillProof",
-  description: "An open registry of proof for agent skills.",
+  description:
+    "An open registry of proof for agent skills — what a skill does, and whether it still works.",
   // Project Pages URL: https://<user>.github.io/skillproof/
   base: "/skillproof/",
+  head: [
+    ["link", { rel: "icon", type: "image/svg+xml", href: "/skillproof/logo.svg" }],
+    ["meta", { name: "theme-color", content: "#0a0f1e" }],
+    ["meta", { property: "og:title", content: "SkillProof — Proof for agent skills" }],
+    [
+      "meta",
+      {
+        property: "og:description",
+        content:
+          "The open, signed record of what an agent skill does — and whether it still works.",
+      },
+    ],
+    ["meta", { property: "og:type", content: "website" }],
+    ["link", { rel: "preconnect", href: "https://fonts.googleapis.com" }],
+    ["link", { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "" }],
+    [
+      "link",
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap",
+      },
+    ],
+  ],
   themeConfig: {
     logo: "/logo.svg",
     siteTitle: "SkillProof",

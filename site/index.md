@@ -7,7 +7,7 @@ hero:
   tagline: Skills live on GitHub. Proof should live somewhere neutral — the open, signed record of what an agent skill does, and whether it still works.
   image:
     src: /logo.svg
-    alt: SkillProof
+    alt: SkillProof seal
   actions:
     - theme: brand
       text: Get started
@@ -34,49 +34,54 @@ features:
     details: MIT-licensed, public ledger, consumable by any registry, harness or CI. A complement to every platform, owned by none.
 ---
 
-## The three questions every skill installer asks
+## Watch a privilege escalation get caught
 
-| Question | SkillProof's answer |
-| --- | --- |
-| Who signed this skill? | Keyless Sigstore attestation, keyed by content hash |
-| What is it allowed to do? | Capability manifest + diff |
-| Does it still work after a model bump? | Signed eval delta per model version |
+<DiffDemo />
 
-## See it in sixty seconds
+The asymmetry is the whole product: removals are improvements, additions fail
+the check until a human signs off. No scanner promises safety — the diff
+promise is what we keep.
 
-```bash
-npx skillproof scan ./my-skill --out base.json
-npx skillproof diff base.json head.json
-```
+## Everything a skill can touch, in one manifest
 
-```text
-+ network.outbound_domains: ["evil.example.com"]   (NEW)
-+ secrets.env_vars: ["AWS_SECRET_ACCESS_KEY"]       (NEW)
-  exec.shell: true                                   (unchanged)
-```
+<CapGrid />
 
-That asymmetry is the whole product: removals are improvements, additions
-fail the check until a human signs off.
+`skillproof scan` derives all six from `SKILL.md`, scripts, hooks and MCP
+configs — then cross-checks them against what the skill *declares*, so honest
+authors get verification for free.
+
+<div class="sp-band">
+
+### Why this exists
+
+<div class="sp-stats">
+  <div>
+    <div class="sp-stat-num">36.8%</div>
+    <div class="sp-stat-label">of 3,984 scanned skills contained a flaw — <a href="https://snyk.io/blog/snyk-finds-prompt-injection-in-36-1467-malicious-payloads-in-a-toxicskills-study-of-agent-skills-supply-chain-compromise/">Snyk ToxicSkills, Feb 2026</a></div>
+  </div>
+  <div>
+    <div class="sp-stat-num">25,000</div>
+    <div class="sp-stat-label">repos touched by npm's Shai-Hulud wave — the attack skill registries haven't had <em>yet</em></div>
+  </div>
+  <div>
+    <div class="sp-stat-num">0</div>
+    <div class="sp-stat-label">neutral, open bodies answering who signed a skill, what it does, and whether it still works</div>
+  </div>
+</div>
+
+</div>
 
 ## How it works
 
-1. **Scan** — the CLI statically analyses `SKILL.md`, scripts, hooks and MCP
-   configs into a signed-able capability manifest.
-2. **Attest** — CI signs the manifest with Sigstore and appends it to the
-   public, append-only ledger, keyed by content hash.
+1. **Scan** — the CLI statically analyses a skill into a signed-able
+   capability manifest.
+2. **Attest** — CI signs it with Sigstore and appends it to the public,
+   append-only ledger, keyed by content hash.
 3. **Gate** — installs, PRs and harnesses fetch the attestation and the
    capability diff, and block on new privileges or model-bump regressions.
 
 ## Evidence, not guarantees
 
 Attestations prove what was analysed, and by which scanner version. They never
-certify safety — and neither do we. Read [core concepts](/guide/concepts) for
-the threat model and the documented limits of static analysis.
-
-<br>
-
-<div style="display:flex;gap:12px;flex-wrap:wrap">
-  <a href="/guide/getting-started" style="font-weight:600">Get started →</a>
-  <a href="/roadmap">Roadmap →</a>
-  <a href="https://github.com/RavaniRoshan/skillproof">GitHub →</a>
-</div>
+certify safety — and neither do we. Start with [core concepts](/guide/concepts),
+then [scan your first skill](/guide/getting-started).
