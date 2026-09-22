@@ -335,3 +335,561 @@ Core MIT + public ledger forever. Commercial only if kill criteria fail: hosted 
 - [ ] Bootstrap attest 20 skills
 - [ ] Launch post with Cloudflare diff
 - [ ] v0.2 eval harness per §8
+
+---
+
+## 15. skills.sh integration strategy
+
+### Objective
+
+Make SkillProof the evidence and proof layer for the existing skills ecosystem rather than another competing skill marketplace.
+
+Core positioning:
+
+> **skills.sh = discovery and distribution. SkillProof = evidence and verification.**
+
+skills.sh currently exposes documented API endpoints for skill listings, search, curated skills, individual skill details, and partner security audits. The skill detail response includes a stable skill ID, install count, file snapshot, and SHA-256 hash. The audit endpoint exposes normalized partner results.
+
+Use these documented APIs instead of scraping the website.
+
+References:
+- https://www.skills.sh/docs/api
+- https://www.skills.sh/docs
+- https://www.skills.sh/terms
+
+### Integration principles
+
+- [ ] Treat skills.sh as an external source, not a dependency required to run SkillProof.
+- [ ] Use the stable skills.sh skill ID, source/slug, as the external identity.
+- [ ] Keep SkillProof's normalized content_hash as the authoritative proof identity.
+- [ ] Reconcile the skills.sh hash with the SkillProof hash and record both when they differ.
+- [ ] Never represent an automated scan or attestation as a safety guarantee.
+- [ ] Store proof metadata, manifests, hashes, signatures, and references. Do not mirror entire third-party skill repositories into the ledger.
+- [ ] Respect skills.sh API rate limits, caching headers, terms, and authentication requirements.
+- [ ] Build the integration so it still works if skills.sh changes ranking, UI, or distribution behavior.
+
+---
+
+## 16. skills.sh ingestion adapter
+
+Create a first-class adapter at packages/skills-sh/.
+
+Suggested structure:
+
+    packages/skills-sh/
+    ├── src/
+    │   ├── client.ts
+    │   ├── types.ts
+    │   ├── normalize.ts
+    │   ├── reconcile.ts
+    │   ├── discover.ts
+    │   └── index.ts
+    └── test/
+
+### API client
+
+- [ ] Implement GET /api/v1/skills.
+- [ ] Implement GET /api/v1/skills/search.
+- [ ] Implement GET /api/v1/skills/curated.
+- [ ] Implement GET /api/v1/skills/{source}/{skill}.
+- [ ] Implement GET /api/v1/skills/audit/{source}/{skill} when authentication and access are available.
+- [ ] Respect Cache-Control and Retry-After.
+- [ ] Add bounded retries with exponential backoff.
+- [ ] Add local cache to prevent unnecessary repeated fetches.
+- [ ] Add an explicit user-agent such as skillproof/<version>.
+- [ ] Add contract tests from captured API fixtures.
+
+### Normalization
+
+Map a skills.sh skill into a SkillProof source record:
+
+    {
+      "source_registry": "skills.sh",
+      "external_id": "owner/repo/skill",
+      "source_repository": "owner/repo",
+      "slug": "skill",
+      "install_count": 0,
+      "source_hash": "sha256:...",
+      "files": [],
+      "source_url": "https://www.skills.sh/owner/repo/skill"
+    }
+
+- [ ] Define this schema separately from the attestation schema.
+- [ ] Preserve upstream metadata without allowing it to overwrite signed proof fields.
+- [ ] Record first_seen, last_seen, and observed_at.
+- [ ] Track duplicate/fork indicators when provided by skills.sh.
+
+---
+
+## 17. Proof generation pipeline
+
+### Target flow
+
+    skills.sh
+       │
+       ▼
+    Discover skill
+       │
+       ▼
+    Fetch source snapshot + upstream hash
+       │
+       ▼
+    Normalize files
+       │
+       ▼
+    SkillProof scan
+       │
+       ├── capability manifest
+       ├── undeclared findings
+       ├── hygiene findings
+       └── content hash
+       │
+       ▼
+    Compare previous proof
+       │
+       ├── unchanged
+       ├── capability added
+       ├── capability removed
+       └── source changed
+       │
+       ▼
+    Attest
+       │
+       ▼
+    Public proof record
+
+### Required behavior
+
+- [ ] First observation creates a discovered record.
+- [ ] First successful scan creates a scanned record.
+- [ ] CI-backed or trusted-signing workflows create attested records.
+- [ ] A changed hash automatically triggers a re-scan.
+- [ ] Added capabilities create a visible diff.
+- [ ] Removed capabilities are recorded as changes but do not fail verification by default.
+- [ ] A proof page clearly distinguishes scanned, attested, and evaluated.
+- [ ] Never imply that a skills.sh partner audit and a SkillProof attestation are the same evidence type.
+
+### Hash reconciliation
+
+    skills.sh hash
+          │
+          ├── same normalized content ──> linked proof
+          │
+          └── different                 ──> investigate normalization
+                                              and record both hashes
+
+- [ ] Add deterministic normalization tests.
+- [ ] Verify whether the skills.sh hash can be reproduced from its documented file snapshot.
+- [ ] Do not silently substitute one hash for another.
+- [ ] Add a hash_source field to the integration record.
+
+---
+
+## 18. User-facing proof surface
+
+Create a public proof page for every indexed skill:
+
+https://skillproof.dev/skill/<source>/<slug>
+
+Example layout:
+
+    security-audit
+    cloudflare/security-audit-skill
+
+    SkillProof
+    ────────────────────────────
+    Proof status       ATTESTED
+    Source hash        sha256:...
+    Last observed      2026-09-22
+    Last changed       2026-09-21
+
+    Capabilities
+      network          github.com
+      exec             bash
+      filesystem       workspace
+      secrets          GITHUB_TOKEN
+
+    Capability changes
+      + AWS credentials
+      - none
+
+    Evidence
+      ✓ content hash
+      ✓ capability scan
+      ✓ signed attestation
+      ✓ verification
+
+    External signals
+      skills.sh installs
+      skills.sh partner audits
+
+### Work
+
+- [ ] Add skill proof route to the documentation/marketing site.
+- [ ] Add copyable verification command.
+- [ ] Add raw JSON proof endpoint.
+- [ ] Add source repository link.
+- [ ] Add upstream skills.sh link.
+- [ ] Add timestamp and scanner version.
+- [ ] Add a clear limitations section.
+- [ ] Add OG metadata so proof pages work as shareable links.
+- [ ] Add a compact GitHub badge.
+- [ ] Add machine-readable JSON-LD only after the core proof schema is stable.
+
+---
+
+## 19. CLI integration
+
+The CLI should become useful to people who already install skills.
+
+### New commands
+
+- [ ] skillproof skills-sh search <query>
+- [ ] skillproof skills-sh inspect <source>/<skill>
+- [ ] skillproof skills-sh proof <source>/<skill>
+- [ ] skillproof skills-sh sync --view trending
+- [ ] skillproof skills-sh sync --view hot
+- [ ] skillproof verify skills-sh:<source>/<skill>
+- [ ] skillproof proof-url <source>/<skill>
+
+Example:
+
+    skillproof skills-sh proof cloudflare/security-audit-skill/security-audit
+
+Output:
+
+    SkillProof
+    ✓ source found
+    ✓ source hash matches
+    ✓ capability manifest available
+    ✓ attestation verified
+
+    Proof: https://skillproof.dev/skill/...
+
+### Optional installation guard
+
+Do not make this the first integration.
+
+Later:
+
+    skillproof install skills-sh:<source>/<skill>
+
+Behavior:
+1. Resolve the skill.
+2. Fetch current proof.
+3. Compare the current source hash.
+4. Show new capabilities.
+5. Install only when the user's configured policy allows it.
+
+- [ ] Keep this optional and audit-mode first.
+- [ ] Never silently block installs.
+- [ ] Support --warn, --require-attested, and later --require-policy.
+
+---
+
+## 20. GitHub integration and author growth loop
+
+The first distribution mechanism should work without any skills.sh partnership.
+
+### Automatic analysis
+
+- [ ] Build a scheduled GitHub Action that polls skills.sh trending and hot lists.
+- [ ] Select a bounded number of new or changed skills per run.
+- [ ] Scan each source repository.
+- [ ] Generate proof records.
+- [ ] Publish proof pages.
+- [ ] Open an internal queue for manual review of interesting diffs.
+
+### Author outreach
+
+For skills with significant usage or meaningful capability changes:
+
+- [ ] Open a concise issue or PR suggesting a SkillProof badge.
+- [ ] Provide the exact proof URL.
+- [ ] Show the capability diff.
+- [ ] Ask the author to run the Action in their own repository.
+- [ ] Never present the automated scan as a security verdict.
+
+### Repository integration
+
+Create actions/skillproof/action.yml.
+
+Use it for:
+- [ ] Scan on skill changes.
+- [ ] Compare PR base and head.
+- [ ] Publish capability diff.
+- [ ] Verify an existing attestation.
+- [ ] Optionally update a proof badge.
+- [ ] Optionally fail on new capabilities when explicitly configured.
+
+The desired growth loop:
+
+    skills.sh popular skill
+            ↓
+    SkillProof automatically scans it
+            ↓
+    Public proof page
+            ↓
+    Author sees proof
+            ↓
+    Author adds badge / Action
+            ↓
+    Author's users encounter SkillProof
+            ↓
+    More skills adopt proof
+
+---
+
+## 21. Distribution strategy
+
+### Phase A — zero-permission integration
+
+Goal: get users without needing skills.sh to change its product.
+
+- [ ] Index the first 25 skills.
+- [ ] Prioritize trending, hot, curated, and high-install skills.
+- [ ] Publish one proof page per skill.
+- [ ] Add proof links back to source repositories.
+- [ ] Add a reusable badge.
+- [ ] Publish capability-diff examples on GitHub.
+- [ ] Release a skills.sh integration package or CLI.
+- [ ] Publish a launch post demonstrating one real capability change.
+
+### Phase B — author adoption
+
+Goal: turn skill authors into distribution partners.
+
+- [ ] Reach out to the first 20 skill authors.
+- [ ] Offer a one-command GitHub Action.
+- [ ] Provide badge and proof-page snippets.
+- [ ] Ask for feedback on false positives and missing capabilities.
+- [ ] Convert at least 5 repositories to recurring SkillProof checks before expanding scope.
+
+### Phase C — ecosystem partnership
+
+Only after the external integration works:
+
+- [ ] Prepare a one-page integration proposal for skills.sh maintainers.
+- [ ] Demonstrate the API client, proof schema, proof URLs, and adoption data.
+- [ ] Propose an outbound link or proof badge rather than requiring a new security system.
+- [ ] Ask whether skills.sh would expose a first-class external proof field.
+- [ ] Propose a pilot on a bounded set of skills.
+- [ ] Do not depend on partnership approval for the product roadmap.
+
+### Partnership pitch
+
+The pitch should be:
+
+> skills.sh already handles discovery, installs, rankings, and ecosystem security signals. SkillProof adds a portable, content-addressed proof record that skill authors and agent harnesses can verify independently.
+
+Avoid framing the pitch as a critique of existing security providers.
+
+---
+
+## 22. Cross-provider security evidence
+
+skills.sh already exposes partner audit results from multiple providers. SkillProof should consume those results as external evidence, not replace them.
+
+- [ ] Define external_evidence[].
+- [ ] Record provider, status, risk level, audit timestamp, and source URL.
+- [ ] Preserve provider identity.
+- [ ] Never collapse different scanner verdicts into one SkillProof score.
+- [ ] Show disagreements explicitly.
+- [ ] Keep SkillProof's own capability manifest separate from third-party security findings.
+
+Example:
+
+    {
+      "external_evidence": [
+        {
+          "provider": "Snyk",
+          "status": "pass",
+          "risk_level": "LOW",
+          "observed_at": "..."
+        }
+      ]
+    }
+
+This keeps SkillProof useful even when a skill has already been scanned elsewhere: capability provenance, change detection, signed proof, and machine-consumable records remain distinct.
+
+---
+
+## 23. Automation and freshness
+
+### Scheduled source synchronization
+
+- [ ] Run every 6 hours at first.
+- [ ] Use trending and hot views for discovery.
+- [ ] Recheck indexed high-install skills daily.
+- [ ] Recheck low-install skills weekly.
+- [ ] Re-scan immediately when the observed source hash changes.
+- [ ] Respect upstream cache headers and rate limits.
+
+### State
+
+Track:
+
+    external_id
+    source_hash
+    skillproof_hash
+    last_seen
+    last_scanned
+    last_attested
+    last_changed
+    install_count
+    scan_version
+    proof_version
+
+- [ ] Store synchronization state separately from the public ledger.
+- [ ] Do not make API polling itself part of the immutable attestation record.
+- [ ] Record the exact observed source state used to create each proof.
+
+---
+
+## 24. Metrics
+
+Track the funnel in this order:
+
+### Discovery
+- [ ] Skills indexed.
+- [ ] Skills with a proof page.
+- [ ] Skills with changed capability records.
+
+### Adoption
+- [ ] External repositories running the SkillProof Action.
+- [ ] Skill authors adding the badge.
+- [ ] First-time CLI users.
+- [ ] Repeat verification users.
+
+### Evidence quality
+- [ ] Confirmed capability diffs.
+- [ ] False-positive reports.
+- [ ] Hash reconciliation failures.
+- [ ] Percentage of proofs with successful independent verification.
+
+### Distribution
+- [ ] Proof-page visits from skills.sh.
+- [ ] GitHub referral traffic.
+- [ ] Proof URL shares.
+- [ ] Installs of the CLI or integration package.
+
+### Initial 30-day targets
+
+- [ ] 100 indexed skills.
+- [ ] 25 public proof pages with meaningful evidence.
+- [ ] 10 external users running verification.
+- [ ] 5 external repositories running the Action.
+- [ ] 3 skill authors publicly linking to SkillProof.
+- [ ] 1 skills.sh maintainer conversation started using a working demo.
+- [ ] At least 1 capability-diff case that an external developer confirms as useful.
+
+Do not optimize for GitHub stars as the primary product metric. Stars are a distribution signal; adoption of proof is the product signal.
+
+---
+
+## 25. Milestones
+
+### M0 — Integration specification
+- [ ] Freeze skills.sh adapter types.
+- [ ] Freeze external evidence schema.
+- [ ] Freeze hash reconciliation rules.
+- [ ] Add fixtures from real skills.sh API responses.
+- [ ] Document API limits and caching behavior.
+
+### M1 — Read-only integration
+- [ ] Search and fetch skills through skills.sh API.
+- [ ] Import file snapshots.
+- [ ] Generate SkillProof manifest.
+- [ ] Compare upstream hash with SkillProof hash.
+- [ ] Display proof locally.
+
+### M2 — Public proof
+- [ ] Public proof pages.
+- [ ] Raw proof API.
+- [ ] GitHub badges.
+- [ ] Verification command.
+- [ ] First 25 indexed skills.
+
+### M3 — Distribution loop
+- [ ] Scheduled hot and trending ingestion.
+- [ ] Automatic change detection.
+- [ ] Author outreach workflow.
+- [ ] GitHub Action published.
+- [ ] First external repositories onboarded.
+
+### M4 — Partnership attempt
+- [ ] Prepare demo.
+- [ ] Prepare one-page integration proposal.
+- [ ] Contact skills.sh maintainers.
+- [ ] Request feedback before requesting native UI changes.
+
+### M5 — Native integration, only if justified
+- [ ] External proof link or badge field.
+- [ ] Native proof display.
+- [ ] Optional installation-time verification.
+- [ ] Keep SkillProof independently verifiable.
+
+---
+
+## 26. Risks and guardrails for the integration
+
+| Risk | Guardrail |
+|------|-----------|
+| skills.sh changes API | Adapter + fixtures + versioned contract tests |
+| Rate-limit or abuse concerns | Cache, bounded polling, documented API, no scraping |
+| Hash mismatch | Preserve both hashes and investigate normalization |
+| False sense of security | Explicit evidence labels and limitations |
+| Platform dependency | SkillProof remains fully usable without skills.sh |
+| Duplicate security scanners | Treat external audits as evidence, never collapse them |
+| Author distrust | Publish source, scanner version, hash, and reproducible commands |
+| Legal/content concerns | Store metadata and proof rather than republishing third-party skill code |
+| Partnership rejected | Continue with GitHub, CLI, and URL-based distribution |
+| Star-driven vanity metrics | Optimize for verified users and recurring checks |
+
+---
+
+## 27. Kill criteria for the skills.sh strategy
+
+Reassess this distribution path after 30–60 days.
+
+Stop investing heavily in native skills.sh integration if:
+
+- [ ] The API cannot support reliable synchronization within documented limits.
+- [ ] Authors do not adopt badges or GitHub Actions after repeated outreach.
+- [ ] Users view proof pages but do not run verification.
+- [ ] No external repository continues using the Action after the initial trial.
+- [ ] A better-established ecosystem provides the same proof-consumption surface with materially lower friction.
+
+Keep the generic SkillProof protocol even if the skills.sh channel is abandoned.
+
+---
+
+## 28. Immediate next actions
+
+Execute in this order:
+
+- [ ] Create packages/skills-sh adapter.
+- [ ] Add API fixtures for list, search, detail, and audit responses.
+- [ ] Implement skills-sh inspect.
+- [ ] Implement skills-sh proof.
+- [ ] Prove hash reconciliation on 5 real skills.
+- [ ] Build first public proof page.
+- [ ] Index 25 skills from trending, hot, and curated views.
+- [ ] Add SkillProof badge generator.
+- [ ] Add scheduled synchronization.
+- [ ] Publish the first capability-diff case study.
+- [ ] Build the GitHub Action.
+- [ ] Onboard the first 5 external repositories.
+- [ ] Prepare the skills.sh maintainer proposal only after the above evidence exists.
+
+### Definition of done for the integration MVP
+
+A developer can take a skill discovered on skills.sh, run one SkillProof command, receive a deterministic proof record tied to the skill's current content hash, inspect capability changes, and independently verify the proof without trusting SkillProof's website or database.
+
+---
+
+## 29. Current external references
+
+- skills.sh API: https://www.skills.sh/docs/api
+- skills.sh documentation: https://www.skills.sh/docs
+- skills.sh terms: https://www.skills.sh/terms
