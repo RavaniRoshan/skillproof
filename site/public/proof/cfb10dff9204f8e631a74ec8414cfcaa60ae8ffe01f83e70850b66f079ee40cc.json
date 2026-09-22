@@ -1,0 +1,72 @@
+{
+  "schema": "skillproof/1",
+  "skill": {
+    "name": "image-to-video",
+    "version": "0.0.0",
+    "source": "https://www.skills.sh/genmedia-labs/skills/image-to-video",
+    "content_hash": "sha256:cfb10dff9204f8e631a74ec8414cfcaa60ae8ffe01f83e70850b66f079ee40cc"
+  },
+  "capabilities": {
+    "network": {
+      "outbound_domains": [
+        "docs.runcomfy.com",
+        "github.com",
+        "www.runcomfy.com"
+      ],
+      "via": []
+    },
+    "exec": {
+      "shell": true,
+      "interpreters": [
+        "bash"
+      ]
+    },
+    "filesystem": {
+      "reads": [
+        "~/.config/runcomfy/token.json"
+      ],
+      "writes": []
+    },
+    "secrets": {
+      "env_vars": [
+        "RUNCOMFY_TOKEN"
+      ]
+    },
+    "agents": {
+      "spawns_subagents": false,
+      "subagent_types": []
+    },
+    "mcp": {
+      "servers": []
+    },
+    "hygiene": {
+      "unicode_issues": 0,
+      "external_urls": [
+        "https://docs.runcomfy.com/cli/troubleshooting?utm_source=skills.sh&utm_medium=skill&utm_campaign=image-to-video).",
+        "https://github.com/agentspace-so/runcomfy-skills/tree/main/image-to-video)",
+        "https://www.runcomfy.com",
+        "https://www.runcomfy.com/?utm_source=skills.sh&utm_medium=skill&utm_campaign=image-to-video)",
+        "https://www.runcomfy.com/models/bytedance/seedance-v2/pro?utm_source=skills.sh&utm_medium=skill&utm_campaign=image-to-video)",
+        "https://www.runcomfy.com/models/happyhorse/happyhorse-1-0/image-to-video?utm_source=skills.sh&utm_medium=skill&utm_campaign=image-to-video)",
+        "https://www.runcomfy.com/models/wan-ai/wan-2-7/text-to-video?utm_source=skills.sh&utm_medium=skill&utm_campaign=image-to-video)"
+      ]
+    }
+  },
+  "declared": {
+    "frontmatter": {
+      "name": "image-to-video",
+      "displayName": "Image-to-Video — Pro Pack on RunComfy",
+      "description": ">",
+      "homepage": "https://www.runcomfy.com",
+      "license": "MIT"
+    }
+  },
+  "scan_version": "skillproof-scan/0.1.4",
+  "signer": {
+    "iss": "",
+    "sub": "",
+    "workflow": "",
+    "commit": ""
+  },
+  "undeclared_findings": []
+}

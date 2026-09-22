@@ -1,0 +1,109 @@
+{
+  "schema": "skillproof-source/1",
+  "source_registry": "skills.sh",
+  "external_id": "qu-skills/superpowers/twitter-automation",
+  "source_repository": "qu-skills/superpowers",
+  "skill_slug": "twitter-automation",
+  "source_url": "https://www.skills.sh/qu-skills/superpowers/twitter-automation",
+  "source_hash": {
+    "algorithm": "sha256",
+    "value": "sha256:730ab5370b839e0e339d5e7894fd8c414380529be3c42f63983e0fa6f0789061",
+    "source": "skills.sh"
+  },
+  "skillproof_hash": {
+    "algorithm": "sha256",
+    "value": "sha256:730ab5370b839e0e339d5e7894fd8c414380529be3c42f63983e0fa6f0789061",
+    "source": "skillproof"
+  },
+  "hash_match": true,
+  "install_count": 162141,
+  "observed_at": "2026-09-22",
+  "scanner_version": "skillproof-scan/0.1.4",
+  "external_evidence": [
+    {
+      "provider": "Gen Agent Trust Hub",
+      "status": "pass",
+      "riskLevel": "SAFE",
+      "observed_at": "2026-09-02T14:20:05.547Z"
+    },
+    {
+      "provider": "Socket",
+      "status": "warn",
+      "observed_at": "2026-09-02T14:18:48.566Z"
+    },
+    {
+      "provider": "Snyk",
+      "status": "pass",
+      "riskLevel": "LOW",
+      "observed_at": "2026-09-02T14:18:15.650696+00:00"
+    }
+  ],
+  "manifest": {
+    "schema": "skillproof/1",
+    "skill": {
+      "name": "twitter-automation",
+      "version": "0.0.0",
+      "source": "https://www.skills.sh/qu-skills/superpowers/twitter-automation",
+      "content_hash": "sha256:730ab5370b839e0e339d5e7894fd8c414380529be3c42f63983e0fa6f0789061"
+    },
+    "capabilities": {
+      "network": {
+        "outbound_domains": [
+          "cloud.inference.sh",
+          "inference.sh",
+          "inference.sh)",
+          "raw.githubusercontent.com",
+          "your-image-url.jpg"
+        ],
+        "via": []
+      },
+      "exec": {
+        "shell": true,
+        "interpreters": [
+          "bash"
+        ]
+      },
+      "filesystem": {
+        "reads": [],
+        "writes": []
+      },
+      "secrets": {
+        "env_vars": []
+      },
+      "agents": {
+        "spawns_subagents": false,
+        "subagent_types": []
+      },
+      "mcp": {
+        "servers": []
+      },
+      "hygiene": {
+        "unicode_issues": 0,
+        "external_urls": [
+          "https://cloud.inference.sh/app/files/u/4mg21r6ta37mpaz6ktzwtt8krr/01kgad3pxsh3z3hnfpjyjpx4x4.jpeg)",
+          "https://inference.sh)",
+          "https://inference.sh/docs/apps/overview)",
+          "https://inference.sh/docs/examples/x-integration)",
+          "https://inference.sh/docs/integrations/x)",
+          "https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)",
+          "https://your-image-url.jpg"
+        ]
+      }
+    },
+    "declared": {
+      "frontmatter": {
+        "name": "twitter-automation",
+        "description": "Automate Twitter/X with posting, engagement, and user management via inference.sh CLI. Apps: x/post-tweet, x/post-create (with media), x/post-like, x/post-retweet, x/dm-send, x/user-follow. Capabilities: post tweets, schedule content, like posts, retweet, send DMs, follow users, get profiles. Use for: social media automation, content scheduling, engagement bots, audience growth, X API. Triggers: twitter api, x api, tweet automation, post to twitter, twitter bot, social media automation, x automation, tweet scheduler, twitter integration, post tweet, twitter post, x post, send tweet",
+        "allowed-tools": "Bash(belt *)"
+      }
+    },
+    "scan_version": "skillproof-scan/0.1.4",
+    "signer": {
+      "iss": "",
+      "sub": "",
+      "workflow": "",
+      "commit": ""
+    },
+    "undeclared_findings": []
+  }
+}

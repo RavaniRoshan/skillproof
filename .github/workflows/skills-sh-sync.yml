@@ -1,0 +1,67 @@
+name: skills-sh sync
+
+# Bounded upstream check: one leaderboard page per run, at most `limit`
+# snapshots. Needs the SKILLS_SH_TOKEN secret (Vercel OIDC token, see
+# https://www.skills.sh/docs/api). The job skips itself when the secret is
+# absent so forks without it stay green.
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+    inputs:
+      view:
+        description: "Leaderboard view"
+        default: "trending"
+        type: choice
+        options: [all-time, trending, hot]
+      limit:
+        description: "Maximum skills to check"
+        default: "10"
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    if: secrets.SKILLS_SH_TOKEN != ''
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: >-
+          node packages/cli/dist/index.js skills-sh sync
+          --view "${{ inputs.view || 'trending' }}"
+          --limit "${{ inputs.limit || '10' }}"
+          --json > skills-sh-sync.json
+        env:
+          SKILLS_SH_TOKEN: ${{ secrets.SKILLS_SH_TOKEN }}
+      - name: Generate proofs for changed skills
+        env:
+          SKILLS_SH_TOKEN: ${{ secrets.SKILLS_SH_TOKEN }}
+        run: |
+          mkdir -p /tmp/skillproof-records
+          node -e "
+            const fs = require('fs');
+            const entries = JSON.parse(fs.readFileSync('skills-sh-sync.json', 'utf8'));
+            fs.writeFileSync('/tmp/skillproof-changed.txt', entries.filter((e) => e.status === 'mismatch').map((e) => e.id).join('\n'));
+          "
+          while IFS= read -r id; do
+            [ -z "$id" ] && continue
+            safe="$(echo "$id" | tr '/' '-')"
+            node packages/cli/dist/index.js skills-sh proof --record "$id" > "/tmp/skillproof-records/${safe}.json"
+            node site/proof-data/ingest.mjs "/tmp/skillproof-records/${safe}.json"
+          done < /tmp/skillproof-changed.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: skills-sh-sync
+          path: |
+            skills-sh-sync.json
+            site/proof-data/
+            site/skill/
+            site/public/proof/
+          retention-days: 30

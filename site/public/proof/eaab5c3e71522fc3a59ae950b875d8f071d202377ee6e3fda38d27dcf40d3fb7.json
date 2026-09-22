@@ -1,0 +1,113 @@
+{
+  "schema": "skillproof/1",
+  "skill": {
+    "name": "ai-image-generation",
+    "version": "0.0.0",
+    "source": "https://www.skills.sh/genmedia-labs/skills/ai-image-generation",
+    "content_hash": "sha256:eaab5c3e71522fc3a59ae950b875d8f071d202377ee6e3fda38d27dcf40d3fb7"
+  },
+  "capabilities": {
+    "network": {
+      "outbound_domains": [
+        "docs.runcomfy.com",
+        "www.runcomfy.com",
+        "www.skills.sh"
+      ],
+      "via": [
+        "curl"
+      ]
+    },
+    "exec": {
+      "shell": true,
+      "interpreters": [
+        "bash"
+      ]
+    },
+    "filesystem": {
+      "reads": [
+        "~/.config/runcomfy/token.json"
+      ],
+      "writes": []
+    },
+    "secrets": {
+      "env_vars": [
+        "RUNCOMFY_TOKEN"
+      ]
+    },
+    "agents": {
+      "spawns_subagents": false,
+      "subagent_types": []
+    },
+    "mcp": {
+      "servers": []
+    },
+    "hygiene": {
+      "unicode_issues": 0,
+      "external_urls": [
+        "https://docs.runcomfy.com/cli/auth?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://docs.runcomfy.com/cli/commands?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://docs.runcomfy.com/cli/install?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://docs.runcomfy.com/cli/introduction?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://docs.runcomfy.com/cli/quickstart?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://docs.runcomfy.com/cli/troubleshooting?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://docs.runcomfy.com/cli/troubleshooting?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation).",
+        "https://www.runcomfy.com",
+        "https://www.runcomfy.com/?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://www.runcomfy.com/models/blackforestlabs/flux-2-dev/text-to-image?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://www.runcomfy.com/models/blackforestlabs/flux-2-flash?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://www.runcomfy.com/models/blackforestlabs/flux-2-klein/4b/text-to-image?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://www.runcomfy.com/models/blackforestlabs/flux-2-klein/9b/text-to-image?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://www.runcomfy.com/models/blackforestlabs/flux-2-klein/9b/text-to-image?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation).",
+        "https://www.runcomfy.com/models/blackforestlabs/flux-2-turbo?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://www.runcomfy.com/models/bytedance/dreamina-4-0/edit?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://www.runcomfy.com/models/bytedance/dreamina-4-0/text-to-image?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://www.runcomfy.com/models/bytedance/seedream-4-5/edit?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://www.runcomfy.com/models/bytedance/seedream-4-5/text-to-image?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://www.runcomfy.com/models/bytedance/seedream-5/lite/edit?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://www.runcomfy.com/models/bytedance/seedream-5/lite/text-to-image?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://www.runcomfy.com/models/collections/best-image-editing-models?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://www.runcomfy.com/models/collections/best-image-editing-models?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation).",
+        "https://www.runcomfy.com/models/collections/dreamina?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://www.runcomfy.com/models/collections/flux-kontext?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://www.runcomfy.com/models/collections/nano-banana?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://www.runcomfy.com/models/collections/qwen-image?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://www.runcomfy.com/models/collections/recently-added?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://www.runcomfy.com/models/collections/seedream?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://www.runcomfy.com/models/google/nano-banana-2?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://www.runcomfy.com/models/google/nano-banana-pro/edit?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://www.runcomfy.com/models/google/nano-banana-pro/text-to-image?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://www.runcomfy.com/models/openai/gpt-image-2/text-to-image?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://www.runcomfy.com/models/qwen/qwen-image/qwen-image-2512?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://www.runcomfy.com/models/qwen/qwen-image/qwen-image-edit-2511?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://www.runcomfy.com/models/tongyi-mai/z-image/turbo?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://www.runcomfy.com/models/wan-ai/wan-2-7/pro/text-to-image?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://www.runcomfy.com/models/wan-ai/wan-2-7/text-to-image?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://www.runcomfy.com/models/wan-ai/wan-v2.6/image-to-image?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://www.runcomfy.com/models?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-image-generation)",
+        "https://www.skills.sh/agentspace-so/runcomfy-agent-skills/ai-avatar-video)",
+        "https://www.skills.sh/agentspace-so/runcomfy-agent-skills/ai-video-generation)",
+        "https://www.skills.sh/agentspace-so/runcomfy-agent-skills/image-edit)",
+        "https://www.skills.sh/agentspace-so/runcomfy-agent-skills/image-to-video)",
+        "https://www.skills.sh/agentspace-so/runcomfy-agent-skills/runcomfy-cli)"
+      ]
+    }
+  },
+  "declared": {
+    "frontmatter": {
+      "name": "ai-image-generation",
+      "displayName": "AI Image Generation",
+      "allowed-tools": "Bash(runcomfy *)",
+      "description": ">",
+      "homepage": "https://www.runcomfy.com",
+      "license": "MIT"
+    }
+  },
+  "scan_version": "skillproof-scan/0.1.4",
+  "signer": {
+    "iss": "",
+    "sub": "",
+    "workflow": "",
+    "commit": ""
+  },
+  "undeclared_findings": []
+}

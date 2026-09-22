@@ -150,6 +150,19 @@ components:
               required:
                 - servers
               additionalProperties: false
+            hygiene:
+              type: object
+              properties:
+                unicode_issues:
+                  type: number
+                external_urls:
+                  type: array
+                  items:
+                    type: string
+              required:
+                - unicode_issues
+                - external_urls
+              additionalProperties: false
           required:
             - network
             - exec
@@ -157,6 +170,7 @@ components:
             - secrets
             - agents
             - mcp
+            - hygiene
           additionalProperties: false
         declared:
           type: object

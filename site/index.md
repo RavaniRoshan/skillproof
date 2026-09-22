@@ -7,8 +7,16 @@ aside: false
 
 <script setup>
 import { PRODUCT_FAQ } from "./.vitepress/theme/faq";
+import { CHANGELOG } from "./.vitepress/theme/changelog";
 
 const faq = PRODUCT_FAQ;
+const latest = CHANGELOG.slice(0, 3).map((entry) => ({
+  icon: "check",
+  title: entry.title,
+  body: entry.body,
+  to: entry.to,
+  meta: entry.date,
+}));
 </script>
 
 <div class="ts-page">
@@ -84,6 +92,16 @@ authors get verification for free.
 </div>
 
 <HomeIntegrations />
+
+<section class="ts-section" data-reveal>
+
+## Latest changes
+
+<FeatureCards :items="latest" />
+
+<p class="ts-sub"><a href="/changelog">Full changelog →</a></p>
+
+</section>
 
 <HomeCompare />
 

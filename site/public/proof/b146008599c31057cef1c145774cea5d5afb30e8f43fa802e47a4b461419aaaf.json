@@ -1,0 +1,59 @@
+{
+  "schema": "skillproof/1",
+  "skill": {
+    "name": "find-skills",
+    "version": "0.0.0",
+    "source": "https://www.skills.sh/vercel-labs/skills/find-skills",
+    "content_hash": "sha256:b146008599c31057cef1c145774cea5d5afb30e8f43fa802e47a4b461419aaaf"
+  },
+  "capabilities": {
+    "network": {
+      "outbound_domains": [
+        "skills.sh"
+      ],
+      "via": []
+    },
+    "exec": {
+      "shell": true,
+      "interpreters": [
+        "bash"
+      ]
+    },
+    "filesystem": {
+      "reads": [],
+      "writes": []
+    },
+    "secrets": {
+      "env_vars": []
+    },
+    "agents": {
+      "spawns_subagents": false,
+      "subagent_types": []
+    },
+    "mcp": {
+      "servers": []
+    },
+    "hygiene": {
+      "unicode_issues": 0,
+      "external_urls": [
+        "https://skills.sh/",
+        "https://skills.sh/)",
+        "https://skills.sh/vercel-labs/agent-skills/react-best-practices"
+      ]
+    }
+  },
+  "declared": {
+    "frontmatter": {
+      "name": "find-skills",
+      "description": "Helps users discover and install agent skills when they ask questions like \"how do I do X\", \"find a skill for X\", \"is there a skill that can...\", or express interest in extending capabilities. This skill should be used when the user is looking for functionality that might exist as an installable skill."
+    }
+  },
+  "scan_version": "skillproof-scan/0.1.4",
+  "signer": {
+    "iss": "",
+    "sub": "",
+    "workflow": "",
+    "commit": ""
+  },
+  "undeclared_findings": []
+}

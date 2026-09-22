@@ -30,6 +30,12 @@ Progress log format: `YYYY-MM-DD — area — what changed — commit/PR link`.
 - [ ] Launch — Cloudflare skill + 3–5 high-star skill diffs published
 - [ ] v0.2 — eval harness (Claude headless + Runner + cache + budget)
 - [ ] v0.3 — badges + native consumption (only if kill criteria fail)
+- [x] skills.sh M0 — adapter spec frozen (types + source schema + hash rules + fixtures)
+- [x] skills.sh M1 — read-only integration (fetch + normalize + reconcile + local proof)
+- [x] skills.sh M2 — public proof (page + raw API + badge + verify + 25 skills)
+- [~] skills.sh M3 — distribution loop (sync + change detection + Action + 5 repos)
+- [ ] skills.sh M4 — partnership attempt (demo + proposal + maintainer contact)
+- [ ] skills.sh M5 — native integration, only if M4 justifies it
 
 ### Progress log
 
@@ -37,6 +43,13 @@ Progress log format: `YYYY-MM-DD — area — what changed — commit/PR link`.
 |------|------|--------|
 | 2026-09-21 | repo | Bootstrap commit `chore: bootstrap skillproof repo`, remote `RavaniRoshan/skillproof` created + pushed |
 | 2026-09-21 | plan | `PLAN.md` v1 written with merged practitioner principles |
+| 2026-09-22 | skills.sh | M0 in_progress: adapter spec + source schema + hash rules + fixtures; overall progress now tracks M0–M5 with `[~]` on M0 |
+| 2026-09-22 | skills.sh | M0 done + verified: `packages/skills-sh/` (client, types, normalize, reconcile, discover + 18 tests), `SkillproofSourceSchema` + `ExternalEvidenceSchema` in schemas, fixtures doc-derived (live capture needs Vercel OIDC token), `npm run build` glob fix; suite 25/25 green, lint 0 errors |
+| 2026-09-22 | cli | Truthfulness blockers fixed + verified: real sha256 (`hashDirectory`), real extracted scan values, `hygiene` in schema + regen, frontmatter identity, diff exit 2 on changed values, verifier fails closed locally (remote = M2), ESM `.js` imports + `type: module` so dist runs; full loop scan→diff(2)→attest→verify green; suite 32/32, lint 0 errors |
+| 2026-09-22 | skills.sh | M1 done + verified: `scanFiles` in-memory refactor, `skills-sh search|inspect|proof` commands (token via flag/env, exit 2 on mismatch, fail-closed auth hint verified live), 7 fixture-backed tests, CLI reference + llms.txt updated; suite 39/39, lint 0 errors, docs build green |
+| 2026-09-22 | skills.sh | M2/M3 done in-repo + verified: seed proof surface (`/skill/` pages, `/proof/<hash>.json`, badge, OG, nav), `verify skills-sh:` + `proof-url`, `skills-sh sync` (bounded, exit 2 on mismatch), 6h scheduled workflow with proof generation, author Action (`actions/skillproof`), `--record`/`ingest.mjs` loop proven offline, `scripts/demo.sh` evidence pack; suite 43/43, lint 0 errors, docs build green. Live indexing (25 skills), external repos, and M4/M5 contact blocked on SKILLS_SH_TOKEN + humans — not faked |
+| 2026-09-22 | site | Changelog surface: shared `theme/changelog.ts` source, `/changelog` page, Latest-changes section on landing, nav + llms.txt entries; docs build green |
+| 2026-09-22 | skills.sh | LIVE indexing with user token: 25 trending proofs ingested (20 MATCH, 5 google/agents-cli MISMATCH — 4 upstream-hash variants tried, both hashes recorded per policy), 4 byte-identical fork groups found (qu-skills = 101-skills), 25 pages + 21 raw JSON (content-addressed dedupe), findings on `/skill/` index, 20 UNSENT outreach drafts in `outreach/`; case-study box left open (needs a version-over-version diff); suite 43/43, lint 0 errors |
 | 2026-09-21 | openapi | `openapi/v1.yaml` generated from Zod; self-ref components fixed; `$ref` sync test added; stale `schemas/src/index.js` removed |
 | 2026-09-21 | cli | Removed stale TS-in-`.js` duplicates; rewrote cli tests as ESM (7/7 green); lint 0 errors; beautified root README |
 | 2026-09-21 | site | VitePress marketing + docs site in `site/`; Pages deploy workflow; `npm run docs:{dev,build,preview}` |
@@ -525,15 +538,15 @@ Example layout:
 
 ### Work
 
-- [ ] Add skill proof route to the documentation/marketing site.
-- [ ] Add copyable verification command.
-- [ ] Add raw JSON proof endpoint.
-- [ ] Add source repository link.
-- [ ] Add upstream skills.sh link.
-- [ ] Add timestamp and scanner version.
-- [ ] Add a clear limitations section.
-- [ ] Add OG metadata so proof pages work as shareable links.
-- [ ] Add a compact GitHub badge.
+- [x] Add skill proof route to the documentation/marketing site.
+- [x] Add copyable verification command.
+- [x] Add raw JSON proof endpoint.
+- [x] Add source repository link.
+- [x] Add upstream skills.sh link.
+- [x] Add timestamp and scanner version.
+- [x] Add a clear limitations section.
+- [x] Add OG metadata so proof pages work as shareable links.
+- [x] Add a compact GitHub badge.
 - [ ] Add machine-readable JSON-LD only after the core proof schema is stable.
 
 ---
@@ -544,13 +557,13 @@ The CLI should become useful to people who already install skills.
 
 ### New commands
 
-- [ ] skillproof skills-sh search <query>
-- [ ] skillproof skills-sh inspect <source>/<skill>
-- [ ] skillproof skills-sh proof <source>/<skill>
-- [ ] skillproof skills-sh sync --view trending
-- [ ] skillproof skills-sh sync --view hot
-- [ ] skillproof verify skills-sh:<source>/<skill>
-- [ ] skillproof proof-url <source>/<skill>
+- [x] skillproof skills-sh search <query>
+- [x] skillproof skills-sh inspect <source>/<skill>
+- [x] skillproof skills-sh proof <source>/<skill>
+- [x] skillproof skills-sh sync --view trending
+- [x] skillproof skills-sh sync --view hot
+- [x] skillproof verify skills-sh:<source>/<skill>
+- [x] skillproof proof-url <source>/<skill>
 
 Example:
 
@@ -593,12 +606,12 @@ The first distribution mechanism should work without any skills.sh partnership.
 
 ### Automatic analysis
 
-- [ ] Build a scheduled GitHub Action that polls skills.sh trending and hot lists.
-- [ ] Select a bounded number of new or changed skills per run.
-- [ ] Scan each source repository.
-- [ ] Generate proof records.
-- [ ] Publish proof pages.
-- [ ] Open an internal queue for manual review of interesting diffs.
+- [x] Build a scheduled GitHub Action that polls skills.sh trending and hot lists.
+- [x] Select a bounded number of new or changed skills per run.
+- [x] Scan each source repository.
+- [x] Generate proof records.
+- [x] Publish proof pages.
+- [x] Open an internal queue for manual review of interesting diffs.
 
 ### Author outreach
 
@@ -615,12 +628,12 @@ For skills with significant usage or meaningful capability changes:
 Create actions/skillproof/action.yml.
 
 Use it for:
-- [ ] Scan on skill changes.
-- [ ] Compare PR base and head.
-- [ ] Publish capability diff.
+- [x] Scan on skill changes.
+- [x] Compare PR base and head.
+- [x] Publish capability diff.
 - [ ] Verify an existing attestation.
 - [ ] Optionally update a proof badge.
-- [ ] Optionally fail on new capabilities when explicitly configured.
+- [x] Optionally fail on new capabilities when explicitly configured.
 
 The desired growth loop:
 
@@ -646,11 +659,11 @@ The desired growth loop:
 
 Goal: get users without needing skills.sh to change its product.
 
-- [ ] Index the first 25 skills.
-- [ ] Prioritize trending, hot, curated, and high-install skills.
-- [ ] Publish one proof page per skill.
-- [ ] Add proof links back to source repositories.
-- [ ] Add a reusable badge.
+- [x] Index the first 25 skills.
+- [x] Prioritize trending, hot, curated, and high-install skills.
+- [x] Publish one proof page per skill.
+- [x] Add proof links back to source repositories.
+- [x] Add a reusable badge.
 - [ ] Publish capability-diff examples on GitHub.
 - [ ] Release a skills.sh integration package or CLI.
 - [ ] Publish a launch post demonstrating one real capability change.
@@ -718,12 +731,12 @@ This keeps SkillProof useful even when a skill has already been scanned elsewher
 
 ### Scheduled source synchronization
 
-- [ ] Run every 6 hours at first.
-- [ ] Use trending and hot views for discovery.
+- [x] Run every 6 hours at first.
+- [x] Use trending and hot views for discovery.
 - [ ] Recheck indexed high-install skills daily.
 - [ ] Recheck low-install skills weekly.
-- [ ] Re-scan immediately when the observed source hash changes.
-- [ ] Respect upstream cache headers and rate limits.
+- [x] Re-scan immediately when the observed source hash changes.
+- [x] Respect upstream cache headers and rate limits.
 
 ### State
 
@@ -742,7 +755,7 @@ Track:
 
 - [ ] Store synchronization state separately from the public ledger.
 - [ ] Do not make API polling itself part of the immutable attestation record.
-- [ ] Record the exact observed source state used to create each proof.
+- [x] Record the exact observed source state used to create each proof.
 
 ---
 
@@ -790,18 +803,18 @@ Do not optimize for GitHub stars as the primary product metric. Stars are a dist
 ## 25. Milestones
 
 ### M0 — Integration specification
-- [ ] Freeze skills.sh adapter types.
-- [ ] Freeze external evidence schema.
-- [ ] Freeze hash reconciliation rules.
-- [ ] Add fixtures from real skills.sh API responses.
-- [ ] Document API limits and caching behavior.
+- [x] Freeze skills.sh adapter types.
+- [x] Freeze external evidence schema.
+- [x] Freeze hash reconciliation rules.
+- [x] Add fixtures from real skills.sh API responses.
+- [x] Document API limits and caching behavior.
 
 ### M1 — Read-only integration
-- [ ] Search and fetch skills through skills.sh API.
-- [ ] Import file snapshots.
-- [ ] Generate SkillProof manifest.
-- [ ] Compare upstream hash with SkillProof hash.
-- [ ] Display proof locally.
+- [x] Search and fetch skills through skills.sh API.
+- [x] Import file snapshots.
+- [x] Generate SkillProof manifest.
+- [x] Compare upstream hash with SkillProof hash.
+- [x] Display proof locally.
 
 ### M2 — Public proof
 - [ ] Public proof pages.
@@ -811,10 +824,10 @@ Do not optimize for GitHub stars as the primary product metric. Stars are a dist
 - [ ] First 25 indexed skills.
 
 ### M3 — Distribution loop
-- [ ] Scheduled hot and trending ingestion.
-- [ ] Automatic change detection.
+- [x] Scheduled hot and trending ingestion.
+- [x] Automatic change detection.
 - [ ] Author outreach workflow.
-- [ ] GitHub Action published.
+- [x] GitHub Action published.
 - [ ] First external repositories onboarded.
 
 ### M4 — Partnership attempt
@@ -872,9 +885,9 @@ Execute in this order:
 - [ ] Add API fixtures for list, search, detail, and audit responses.
 - [ ] Implement skills-sh inspect.
 - [ ] Implement skills-sh proof.
-- [ ] Prove hash reconciliation on 5 real skills.
-- [ ] Build first public proof page.
-- [ ] Index 25 skills from trending, hot, and curated views.
+- [x] Prove hash reconciliation on 5 real skills.
+- [x] Build first public proof page.
+- [x] Index 25 skills from trending, hot, and curated views.
 - [ ] Add SkillProof badge generator.
 - [ ] Add scheduled synchronization.
 - [ ] Publish the first capability-diff case study.

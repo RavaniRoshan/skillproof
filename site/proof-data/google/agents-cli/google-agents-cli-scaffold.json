@@ -1,0 +1,103 @@
+{
+  "schema": "skillproof-source/1",
+  "source_registry": "skills.sh",
+  "external_id": "google/agents-cli/google-agents-cli-scaffold",
+  "source_repository": "google/agents-cli",
+  "skill_slug": "google-agents-cli-scaffold",
+  "source_url": "https://www.skills.sh/google/agents-cli/google-agents-cli-scaffold",
+  "source_hash": {
+    "algorithm": "sha256",
+    "value": "sha256:62e75f14b49d9b342b7f862d4aea2566180debf274ef06b185c28851a9812d4b",
+    "source": "skills.sh"
+  },
+  "skillproof_hash": {
+    "algorithm": "sha256",
+    "value": "sha256:6f2a442fb2d29fb311fc3eaf8b2345d0efe4ae5a33f22ca31dda086f2b6cf4b4",
+    "source": "skillproof"
+  },
+  "hash_match": false,
+  "install_count": 303777,
+  "observed_at": "2026-09-22",
+  "scanner_version": "skillproof-scan/0.1.4",
+  "external_evidence": [
+    {
+      "provider": "Gen Agent Trust Hub",
+      "status": "pass",
+      "riskLevel": "SAFE",
+      "observed_at": "2026-09-17T07:32:50.687Z"
+    },
+    {
+      "provider": "Socket",
+      "status": "pass",
+      "observed_at": "2026-09-17T07:34:00.775Z"
+    },
+    {
+      "provider": "Snyk",
+      "status": "pass",
+      "riskLevel": "LOW",
+      "observed_at": "2026-09-17T07:32:25.888659+00:00"
+    }
+  ],
+  "manifest": {
+    "schema": "skillproof/1",
+    "skill": {
+      "name": "google-agents-cli-scaffold",
+      "version": "0.0.0",
+      "source": "https://www.skills.sh/google/agents-cli/google-agents-cli-scaffold",
+      "content_hash": "sha256:6f2a442fb2d29fb311fc3eaf8b2345d0efe4ae5a33f22ca31dda086f2b6cf4b4"
+    },
+    "capabilities": {
+      "network": {
+        "outbound_domains": [
+          "docs.astral.sh"
+        ],
+        "via": []
+      },
+      "exec": {
+        "shell": true,
+        "interpreters": [
+          "bash",
+          "python3"
+        ]
+      },
+      "filesystem": {
+        "reads": [
+          ".env"
+        ],
+        "writes": []
+      },
+      "secrets": {
+        "env_vars": [
+          "GEMINI_API_KEY"
+        ]
+      },
+      "agents": {
+        "spawns_subagents": false,
+        "subagent_types": []
+      },
+      "mcp": {
+        "servers": []
+      },
+      "hygiene": {
+        "unicode_issues": 0,
+        "external_urls": [
+          "https://docs.astral.sh/uv/getting-started/installation/index.md)"
+        ]
+      }
+    },
+    "declared": {
+      "frontmatter": {
+        "name": "google-agents-cli-scaffold",
+        "description": ">"
+      }
+    },
+    "scan_version": "skillproof-scan/0.1.4",
+    "signer": {
+      "iss": "",
+      "sub": "",
+      "workflow": "",
+      "commit": ""
+    },
+    "undeclared_findings": []
+  }
+}

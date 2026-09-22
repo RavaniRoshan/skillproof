@@ -1,0 +1,148 @@
+{
+  "schema": "skillproof-source/1",
+  "source_registry": "skills.sh",
+  "external_id": "google/agents-cli/google-agents-cli-deploy",
+  "source_repository": "google/agents-cli",
+  "skill_slug": "google-agents-cli-deploy",
+  "source_url": "https://www.skills.sh/google/agents-cli/google-agents-cli-deploy",
+  "source_hash": {
+    "algorithm": "sha256",
+    "value": "sha256:4ff03ec41c03c8c635e18c823a2c5e3012f525a315401ed1f3bb118ec9e1ba02",
+    "source": "skills.sh"
+  },
+  "skillproof_hash": {
+    "algorithm": "sha256",
+    "value": "sha256:e827e9481e15c1941a5d32e67e628d466dfd615a0a1527c0cad8392123bc9264",
+    "source": "skillproof"
+  },
+  "hash_match": false,
+  "install_count": 303132,
+  "observed_at": "2026-09-22",
+  "scanner_version": "skillproof-scan/0.1.4",
+  "external_evidence": [
+    {
+      "provider": "Gen Agent Trust Hub",
+      "status": "pass",
+      "riskLevel": "SAFE",
+      "observed_at": "2026-09-17T07:33:04.766Z"
+    },
+    {
+      "provider": "Socket",
+      "status": "warn",
+      "observed_at": "2026-09-17T07:33:29.745Z"
+    },
+    {
+      "provider": "Snyk",
+      "status": "pass",
+      "riskLevel": "LOW",
+      "observed_at": "2026-09-17T07:32:26.030406+00:00"
+    }
+  ],
+  "manifest": {
+    "schema": "skillproof/1",
+    "skill": {
+      "name": "google-agents-cli-deploy",
+      "version": "0.0.0",
+      "source": "https://www.skills.sh/google/agents-cli/google-agents-cli-deploy",
+      "content_hash": "sha256:e827e9481e15c1941a5d32e67e628d466dfd615a0a1527c0cad8392123bc9264"
+    },
+    "capabilities": {
+      "network": {
+        "outbound_domains": [
+          "127.0.0.1",
+          "adk.dev",
+          "cloud.google.com",
+          "docs.astral.sh",
+          "docs.cloud.google.com",
+          "github.com",
+          "location-aiplatform.googleapis.com",
+          "my-agent-abc123.run.app",
+          "my-agent.run.app",
+          "registry.terraform.io",
+          "service_name-project_number.region.run.app"
+        ],
+        "via": [
+          "curl"
+        ]
+      },
+      "exec": {
+        "shell": true,
+        "interpreters": [
+          "bash",
+          "node",
+          "python3"
+        ]
+      },
+      "filesystem": {
+        "reads": [],
+        "writes": []
+      },
+      "secrets": {
+        "env_vars": [
+          "API_KEY",
+          "KEY",
+          "MY_SECRET_NAME",
+          "NEW_API_KEY",
+          "SECRET",
+          "SECRET_ID",
+          "SECRET_NAME",
+          "YOUR_API_KEY"
+        ]
+      },
+      "agents": {
+        "spawns_subagents": false,
+        "subagent_types": []
+      },
+      "mcp": {
+        "servers": []
+      },
+      "hygiene": {
+        "unicode_issues": 0,
+        "external_urls": [
+          "http://127.0.0.1:8080",
+          "http://127.0.0.1:8080/",
+          "http://127.0.0.1:8080/apps/app/users/test-user/sessions",
+          "http://127.0.0.1:8080/run_sse",
+          "https://LOCATION-aiplatform.googleapis.com/v1/projects/PROJECT/locations/LOCATION/reasoningEngines/ID",
+          "https://SERVICE_NAME-PROJECT_NUMBER.REGION.run.app",
+          "https://adk.dev/deploy/agent-runtime/index.md",
+          "https://adk.dev/deploy/cloud-run/index.md",
+          "https://adk.dev/deploy/gke/index.md",
+          "https://cloud.google.com/gemini-enterprise-agent-platform/scale/runtime/private-service-connect-interface)",
+          "https://cloud.google.com/run/docs/securing/identity-aware-proxy-cloud-run#manage_user_or_group_access).",
+          "https://cloud.google.com/vpc/docs/create-manage-network-attachments)",
+          "https://docs.astral.sh/uv/getting-started/installation/index.md)",
+          "https://docs.cloud.google.com/gemini-enterprise-agent-platform/govern/gateways/agent-gateway-overview)",
+          "https://docs.cloud.google.com/gemini-enterprise-agent-platform/govern/gateways/agent-gateway-overview).",
+          "https://docs.cloud.google.com/gemini-enterprise-agent-platform/govern/gateways/set-up-agent-gateway)",
+          "https://docs.cloud.google.com/gemini-enterprise-agent-platform/govern/policies/configure-semantic-governance",
+          "https://docs.cloud.google.com/gemini-enterprise-agent-platform/govern/policies/semantic-governance-overview",
+          "https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale/runtime/agent-gateway-runtime-deploy).",
+          "https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale/runtime/agent-identity)",
+          "https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale/runtime/optimize-and-scale#underutilized-workers).",
+          "https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale/runtime/private-service-connect-interface)",
+          "https://github.com/google/adk-go/tree/main/examples/rest)",
+          "https://github.com/google/adk-samples/tree/main/core/python/ambient-expense-agent)",
+          "https://github.com/google/adk-samples/tree/main/core/python/cross-session-memory)",
+          "https://my-agent-abc123.run.app",
+          "https://my-agent.run.app",
+          "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/network_services_agent_gateway)"
+        ]
+      }
+    },
+    "declared": {
+      "frontmatter": {
+        "name": "google-agents-cli-deploy",
+        "description": ">"
+      }
+    },
+    "scan_version": "skillproof-scan/0.1.4",
+    "signer": {
+      "iss": "",
+      "sub": "",
+      "workflow": "",
+      "commit": ""
+    },
+    "undeclared_findings": []
+  }
+}

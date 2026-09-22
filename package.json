@@ -2,15 +2,15 @@
   "name": "skillproof",
   "version": "0.1.0",
   "private": true,
-  "workspaces": ["./packages/cli", "./packages/schemas", "./site"],
+  "workspaces": ["./packages/cli", "./packages/schemas", "./packages/skills-sh", "./site"],
   "scripts": {
-    "lint": "eslint packages/cli/src packages/cli/test packages/schemas/src/**/*.ts",
-    "typecheck": "tsc -b packages/cli packages/schemas",
+    "lint": "eslint packages/cli/src packages/cli/test packages/schemas/src/**/*.ts packages/skills-sh/src packages/skills-sh/test",
+    "typecheck": "tsc -b packages/schemas packages/skills-sh packages/cli",
     "test": "vitest",
     "docs:dev": "npm run docs:dev -w skillproof-site",
     "docs:build": "npm run docs:build -w skillproof-site",
     "docs:preview": "npm run docs:preview -w skillproof-site",
-    "build": "tsc -b packages/*"
+    "build": "tsc -b packages/schemas packages/skills-sh packages/cli"
   },
   "dependencies": {
     "commander": "^11.1.0",

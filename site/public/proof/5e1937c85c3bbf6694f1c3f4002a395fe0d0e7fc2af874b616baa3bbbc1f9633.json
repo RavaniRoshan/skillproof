@@ -1,0 +1,78 @@
+{
+  "schema": "skillproof/1",
+  "skill": {
+    "name": "design-mobile-apps",
+    "version": "0.0.0",
+    "source": "https://www.skills.sh/designed-by-ai/skills/design-mobile-apps",
+    "content_hash": "sha256:5e1937c85c3bbf6694f1c3f4002a395fe0d0e7fc2af874b616baa3bbbc1f9633"
+  },
+  "capabilities": {
+    "network": {
+      "outbound_domains": [
+        "api.iconify.design",
+        "example.com",
+        "iconify.design)",
+        "raw.githubusercontent.com",
+        "sleek.design",
+        "sleek.design)"
+      ],
+      "via": [
+        "curl"
+      ]
+    },
+    "exec": {
+      "shell": false,
+      "interpreters": []
+    },
+    "filesystem": {
+      "reads": [],
+      "writes": []
+    },
+    "secrets": {
+      "env_vars": [
+        "SLEEK_API_KEY"
+      ]
+    },
+    "agents": {
+      "spawns_subagents": false,
+      "subagent_types": []
+    },
+    "mcp": {
+      "servers": []
+    },
+    "hygiene": {
+      "unicode_issues": 0,
+      "external_urls": [
+        "https://api.iconify.design/",
+        "https://api.iconify.design/solar/heart-bold.svg",
+        "https://example.com/ref.png",
+        "https://iconify.design)",
+        "https://raw.githubusercontent.com/sleekdotdesign/agent-skills/main/assets/hero.png)",
+        "https://sleek.design",
+        "https://sleek.design)",
+        "https://sleek.design/agents/setup",
+        "https://sleek.design/api/v1/device/poll",
+        "https://sleek.design/api/v1/device/start",
+        "https://sleek.design/api/v1/docs",
+        "https://sleek.design/api/v1/spec.json",
+        "https://sleek.design/dashboard/api-keys",
+        "https://sleek.design/project/:projectId"
+      ]
+    }
+  },
+  "declared": {
+    "frontmatter": {
+      "name": "design-mobile-apps",
+      "description": "Use when the user wants to design a mobile app or UI screens, when they mention their Sleek (sleek.design) projects, or when implementing Sleek designs in code (HTML, React Native, SwiftUI).",
+      "compatibility": "Requires SLEEK_API_KEY environment variable. Network access limited to https://sleek.design only."
+    }
+  },
+  "scan_version": "skillproof-scan/0.1.4",
+  "signer": {
+    "iss": "",
+    "sub": "",
+    "workflow": "",
+    "commit": ""
+  },
+  "undeclared_findings": []
+}

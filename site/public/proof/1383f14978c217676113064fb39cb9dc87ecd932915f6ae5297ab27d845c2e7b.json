@@ -1,0 +1,70 @@
+{
+  "schema": "skillproof/1",
+  "skill": {
+    "name": "google-agents-cli-eval",
+    "version": "0.0.0",
+    "source": "https://www.skills.sh/google/agents-cli/google-agents-cli-eval",
+    "content_hash": "sha256:1383f14978c217676113064fb39cb9dc87ecd932915f6ae5297ab27d845c2e7b"
+  },
+  "capabilities": {
+    "network": {
+      "outbound_domains": [
+        "cloud.google.com",
+        "docs.astral.sh",
+        "github.com",
+        "my-agent.run.app"
+      ],
+      "via": []
+    },
+    "exec": {
+      "shell": true,
+      "interpreters": [
+        "bash",
+        "python3"
+      ]
+    },
+    "filesystem": {
+      "reads": [
+        ".env"
+      ],
+      "writes": []
+    },
+    "secrets": {
+      "env_vars": [
+        "EXTERNAL_API_KEY",
+        "GEMINI_API_KEY"
+      ]
+    },
+    "agents": {
+      "spawns_subagents": false,
+      "subagent_types": []
+    },
+    "mcp": {
+      "servers": []
+    },
+    "hygiene": {
+      "unicode_issues": 0,
+      "external_urls": [
+        "https://cloud.google.com/gemini-enterprise-agent-platform/optimize/evaluation/manage-metrics)",
+        "https://docs.astral.sh/uv/getting-started/installation/index.md)",
+        "https://github.com/googleapis/python-aiplatform/blob/main/agentplatform/_genai/types/common.py).",
+        "https://github.com/googleapis/python-aiplatform/blob/main/agentplatform/_genai/types/evals.py)",
+        "https://my-agent.run.app"
+      ]
+    }
+  },
+  "declared": {
+    "frontmatter": {
+      "name": "google-agents-cli-eval",
+      "description": ">"
+    }
+  },
+  "scan_version": "skillproof-scan/0.1.4",
+  "signer": {
+    "iss": "",
+    "sub": "",
+    "workflow": "",
+    "commit": ""
+  },
+  "undeclared_findings": []
+}

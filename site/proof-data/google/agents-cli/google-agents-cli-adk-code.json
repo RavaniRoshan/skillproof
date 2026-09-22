@@ -1,0 +1,167 @@
+{
+  "schema": "skillproof-source/1",
+  "source_registry": "skills.sh",
+  "external_id": "google/agents-cli/google-agents-cli-adk-code",
+  "source_repository": "google/agents-cli",
+  "skill_slug": "google-agents-cli-adk-code",
+  "source_url": "https://www.skills.sh/google/agents-cli/google-agents-cli-adk-code",
+  "source_hash": {
+    "algorithm": "sha256",
+    "value": "sha256:d385391b7395e66983914523ea6cbef47d02c4ed3b85d9cc7b47b6a97e4d08cf",
+    "source": "skills.sh"
+  },
+  "skillproof_hash": {
+    "algorithm": "sha256",
+    "value": "sha256:c8164ab8837b7c30570fb20113dfbde3fb341fd4298411dd65d52c9be878948a",
+    "source": "skillproof"
+  },
+  "hash_match": false,
+  "install_count": 302725,
+  "observed_at": "2026-09-22",
+  "scanner_version": "skillproof-scan/0.1.4",
+  "external_evidence": [
+    {
+      "provider": "Gen Agent Trust Hub",
+      "status": "pass",
+      "riskLevel": "SAFE",
+      "observed_at": "2026-09-17T07:32:57.987Z"
+    },
+    {
+      "provider": "Socket",
+      "status": "pass",
+      "observed_at": "2026-09-17T07:33:30.345Z"
+    },
+    {
+      "provider": "Snyk",
+      "status": "warn",
+      "riskLevel": "MEDIUM",
+      "observed_at": "2026-09-17T07:32:26.244586+00:00"
+    }
+  ],
+  "manifest": {
+    "schema": "skillproof/1",
+    "skill": {
+      "name": "google-agents-cli-adk-code",
+      "version": "0.0.0",
+      "source": "https://www.skills.sh/google/agents-cli/google-agents-cli-adk-code",
+      "content_hash": "sha256:c8164ab8837b7c30570fb20113dfbde3fb341fd4298411dd65d52c9be878948a"
+    },
+    "capabilities": {
+      "network": {
+        "outbound_domains": [
+          "adk.dev",
+          "ai.google.dev",
+          "docs.cloud.google.com",
+          "github.com",
+          "my-mcp-server.example.com",
+          "pkg.go.dev",
+          "www.googleapis.com"
+        ],
+        "via": [
+          "curl"
+        ]
+      },
+      "exec": {
+        "shell": true,
+        "interpreters": [
+          "bash",
+          "node",
+          "python3"
+        ]
+      },
+      "filesystem": {
+        "reads": [
+          ".env"
+        ],
+        "writes": []
+      },
+      "secrets": {
+        "env_vars": [
+          "GEMINI_API_KEY",
+          "GOOGLE_API_KEY",
+          "KEY",
+          "OPENAI_API_KEY"
+        ]
+      },
+      "agents": {
+        "spawns_subagents": false,
+        "subagent_types": []
+      },
+      "mcp": {
+        "servers": [
+          "mcp",
+          "mcp-server.example.com",
+          "mcp.",
+          "mcp_server",
+          "mcp_server_url",
+          "mcp_tool",
+          "mcp_tool.mcp_session_manager",
+          "mcpserver",
+          "mcptools",
+          "mcptoolset",
+          "mcptoolset.config",
+          "mcptoolset.new"
+        ]
+      },
+      "hygiene": {
+        "unicode_issues": 0,
+        "external_urls": [
+          "https://adk.dev/agents/models/anthropic/index.md)",
+          "https://adk.dev/agents/models/litellm/index.md)",
+          "https://adk.dev/agents/models/ollama/index.md)",
+          "https://adk.dev/agents/models/vllm/index.md)",
+          "https://adk.dev/apps/index.md)",
+          "https://adk.dev/graphs/data-handling/index.md)",
+          "https://adk.dev/graphs/dynamic/index.md)",
+          "https://adk.dev/graphs/human-input/index.md)",
+          "https://adk.dev/graphs/routes/index.md)",
+          "https://adk.dev/integrations/a2ui/index.md",
+          "https://adk.dev/llms.txt",
+          "https://adk.dev/llms.txt)",
+          "https://adk.dev/plugins/index.md)",
+          "https://adk.dev/runtime/ambient-agents/).",
+          "https://adk.dev/safety/index.md)",
+          "https://adk.dev/tools-custom/authentication/)",
+          "https://adk.dev/tools-custom/openapi-tools/index.md)",
+          "https://adk.dev/workflows/collaboration/index.md)",
+          "https://adk.dev/workflows/index.md)",
+          "https://ai.google.dev/gemini-api/docs/agents)",
+          "https://ai.google.dev/gemini-api/docs/custom-agents).",
+          "https://ai.google.dev/gemini-api/docs/interactions-overview)",
+          "https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/managed-agents)",
+          "https://github.com/google/A2UI)",
+          "https://github.com/google/A2UI/tree/main/docs",
+          "https://github.com/google/A2UI/tree/main/samples/agent/adk",
+          "https://github.com/google/adk-go/tree/main/examples)",
+          "https://github.com/google/adk-go/tree/main/examples).",
+          "https://github.com/google/adk-go/tree/main/examples/workflow)",
+          "https://github.com/google/adk-python/tree/main/contributing/samples/managed_agent/basic)",
+          "https://github.com/google/adk-python/tree/main/contributing/samples/managed_agent/code_execution).",
+          "https://github.com/google/adk-samples",
+          "https://github.com/google/adk-samples)",
+          "https://github.com/google/adk-samples).",
+          "https://github.com/google/adk-samples/tree/main/contrib)",
+          "https://github.com/google/adk-samples/tree/main/core/python/cross-session-memory)",
+          "https://github.com/google/adk-samples/tree/main/core/python/deep-search)",
+          "https://my-mcp-server.example.com/mcp",
+          "https://pkg.go.dev/google.golang.org/adk/v2/workflow)",
+          "https://www.googleapis.com/auth/cloud-platform"
+        ]
+      }
+    },
+    "declared": {
+      "frontmatter": {
+        "name": "google-agents-cli-adk-code",
+        "description": ">"
+      }
+    },
+    "scan_version": "skillproof-scan/0.1.4",
+    "signer": {
+      "iss": "",
+      "sub": "",
+      "workflow": "",
+      "commit": ""
+    },
+    "undeclared_findings": []
+  }
+}

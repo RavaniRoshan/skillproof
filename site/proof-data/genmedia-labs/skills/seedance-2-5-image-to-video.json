@@ -1,0 +1,118 @@
+{
+  "schema": "skillproof-source/1",
+  "source_registry": "skills.sh",
+  "external_id": "genmedia-labs/skills/seedance-2-5-image-to-video",
+  "source_repository": "genmedia-labs/skills",
+  "skill_slug": "seedance-2-5-image-to-video",
+  "source_url": "https://www.skills.sh/genmedia-labs/skills/seedance-2-5-image-to-video",
+  "source_hash": {
+    "algorithm": "sha256",
+    "value": "sha256:7686d1048a4dc678c679d27203314fdd53ad7030c77649c715bf217d4032ab0a",
+    "source": "skills.sh"
+  },
+  "skillproof_hash": {
+    "algorithm": "sha256",
+    "value": "sha256:7686d1048a4dc678c679d27203314fdd53ad7030c77649c715bf217d4032ab0a",
+    "source": "skillproof"
+  },
+  "hash_match": true,
+  "install_count": 274175,
+  "observed_at": "2026-09-22",
+  "scanner_version": "skillproof-scan/0.1.4",
+  "external_evidence": [
+    {
+      "provider": "Gen Agent Trust Hub",
+      "status": "pass",
+      "riskLevel": "SAFE",
+      "observed_at": "2026-09-04T15:31:11.022Z"
+    },
+    {
+      "provider": "Socket",
+      "status": "pass",
+      "observed_at": "2026-09-04T15:31:42.331Z"
+    },
+    {
+      "provider": "Snyk",
+      "status": "pass",
+      "riskLevel": "LOW",
+      "observed_at": "2026-09-04T15:30:09.255260+00:00"
+    }
+  ],
+  "manifest": {
+    "schema": "skillproof/1",
+    "skill": {
+      "name": "seedance-2-5-image-to-video",
+      "version": "0.0.0",
+      "source": "https://www.skills.sh/genmedia-labs/skills/seedance-2-5-image-to-video",
+      "content_hash": "sha256:7686d1048a4dc678c679d27203314fdd53ad7030c77649c715bf217d4032ab0a"
+    },
+    "capabilities": {
+      "network": {
+        "outbound_domains": [
+          "docs.runcomfy.com",
+          "github.com",
+          "model-api.runcomfy.net",
+          "www.runcomfy.com"
+        ],
+        "via": []
+      },
+      "exec": {
+        "shell": true,
+        "interpreters": [
+          "bash"
+        ]
+      },
+      "filesystem": {
+        "reads": [
+          "~/.config/runcomfy/token.json"
+        ],
+        "writes": []
+      },
+      "secrets": {
+        "env_vars": [
+          "RUNCOMFY_TOKEN"
+        ]
+      },
+      "agents": {
+        "spawns_subagents": false,
+        "subagent_types": []
+      },
+      "mcp": {
+        "servers": []
+      },
+      "hygiene": {
+        "unicode_issues": 0,
+        "external_urls": [
+          "https://docs.runcomfy.com/cli/troubleshooting?utm_source=skills.sh&utm_medium=skill&utm_campaign=seedance-2-5-image-to-video&utm_content=cli-docs-troubleshooting).",
+          "https://github.com/genmedia-labs/skills/tree/main/seedance-2-5-image-to-video)",
+          "https://model-api.runcomfy.net/v1/models/bytedance/seedance-2.5/image-to-video/720p",
+          "https://www.runcomfy.com",
+          "https://www.runcomfy.com/?utm_source=skills.sh&utm_medium=skill&utm_campaign=seedance-2-5-image-to-video&utm_content=home)",
+          "https://www.runcomfy.com/models/bytedance/seedance-2.5/first-last-frame?utm_source=skills.sh&utm_medium=skill&utm_campaign=seedance-2-5-image-to-video&utm_content=bytedance-seedance-2.5-first-last-frame)",
+          "https://www.runcomfy.com/models/bytedance/seedance-2.5/image-to-video/480p?utm_source=skills.sh&utm_medium=skill&utm_campaign=seedance-2-5-image-to-video&utm_content=bytedance-seedance-2.5-image-to-video-480p)",
+          "https://www.runcomfy.com/models/bytedance/seedance-2.5/image-to-video?utm_source=skills.sh&utm_medium=skill&utm_campaign=seedance-2-5-image-to-video&utm_content=bytedance-seedance-2.5-image-to-video)",
+          "https://www.runcomfy.com/models/bytedance/seedance-2.5/reference-to-video?utm_source=skills.sh&utm_medium=skill&utm_campaign=seedance-2-5-image-to-video&utm_content=bytedance-seedance-2.5-reference-to-video)",
+          "https://www.runcomfy.com/models/bytedance/seedance-2.5/text-to-video?utm_source=skills.sh&utm_medium=skill&utm_campaign=seedance-2-5-image-to-video&utm_content=bytedance-seedance-2.5-text-to-video)"
+        ]
+      }
+    },
+    "declared": {
+      "frontmatter": {
+        "name": "seedance-2-5-image-to-video",
+        "displayName": "Seedance 2.5 Image to Video",
+        "description": ">",
+        "allowed-tools": "Bash(runcomfy *)",
+        "homepage": "https://www.runcomfy.com",
+        "license": "MIT"
+      }
+    },
+    "scan_version": "skillproof-scan/0.1.4",
+    "signer": {
+      "iss": "",
+      "sub": "",
+      "workflow": "",
+      "commit": ""
+    },
+    "undeclared_findings": []
+  }
+}

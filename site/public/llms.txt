@@ -12,10 +12,11 @@ SkillProof is a pre-launch v0.1 project. This index exists so an agent can find 
 
 Do not describe these as working. They are not:
 
-- `scan` reads markdown only and records placeholder values on a substring match.
+- `scan` reads markdown and common script files and records extracted values (domains, interpreters, paths) from substring and regex signals.
 - `attest` performs no Sigstore signing; it writes a local JSONL record.
-- `verify` returns success without checking a signature.
-- `content_hash` is not a digest yet, so records are not content-addressed.
+- `verify` checks the local ledger and fails closed on unknown hashes; remote fetch and signature checks are not built.
+- `content_hash` is a real sha256 over the normalized skill directory.
+- `skills-sh search|inspect|proof` is a read-only integration that needs a `SKILLS_SH_TOKEN` Vercel OIDC token.
 - `ledger/`, `actions/capability-diff/` and `evals/` are not in the repository.
 - `eval` parses its flags and echoes them; the harness is v0.2 work.
 
@@ -28,6 +29,8 @@ Do not describe these as working. They are not:
 - [Evaluations](https://ravaniroshan.github.io/skillproof/guide/evaluations): the planned model-bump regression harness.
 - [Ledger](https://ravaniroshan.github.io/skillproof/guide/ledger): the append-only, content-addressed log.
 - [Read API](https://ravaniroshan.github.io/skillproof/api/): the two read endpoints.
+- [Skill proofs](https://ravaniroshan.github.io/skillproof/skill/): content-addressed capability proofs, one page per skill, each with a verify command and raw JSON.
+- [Changelog](https://ravaniroshan.github.io/skillproof/changelog): what shipped, newest first.
 - [Manifesto](https://ravaniroshan.github.io/skillproof/manifesto) and [Roadmap](https://ravaniroshan.github.io/skillproof/roadmap): the position, and what would stop the project.
 
 ## Machine-readable contracts

@@ -1,6 +1,7 @@
 // Ledger module for SkillProof CLI
 import fs from "fs";
 import path from "path";
+import { Verifier } from "./verifier.js";
 
 export class Ledger {
   static async attest(manifestPath: string, signerInfo: any): Promise<string> {
@@ -41,19 +42,7 @@ export class Ledger {
   }
 
   static async verify(reference: string): Promise<any> {
-    const referenceParts = reference.split("@");
-    if (referenceParts.length < 2) {
-      throw new Error("Invalid reference format");
-    }
-
-    const source = referenceParts[0];
-    const sha256 = referenceParts[1];
-
-    if (source === "github") {
-      console.log(`Would verify attestation for ${sha256} from GitHub`);
-    }
-
-    return { verified: true, reference: reference };
+    return Verifier.verify(reference);
   }
 }
 

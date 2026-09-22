@@ -1,0 +1,26 @@
+{
+  "_note": "Doc-derived fixture from https://www.skills.sh/docs/api (curated endpoint).",
+  "data": [
+    {
+      "owner": "vercel-labs",
+      "totalInstalls": 89240,
+      "featuredRepo": "skills",
+      "featuredSkill": "find-skills",
+      "skills": [
+        {
+          "id": "vercel-labs/skills/find-skills",
+          "slug": "find-skills",
+          "name": "find-skills",
+          "source": "vercel-labs/skills",
+          "installs": 24531,
+          "sourceType": "github",
+          "installUrl": "https://github.com/vercel-labs/skills",
+          "url": "https://skills.sh/vercel-labs/skills/find-skills"
+        }
+      ]
+    }
+  ],
+  "totalOwners": 87,
+  "totalSkills": 342,
+  "generatedAt": "2026-03-31T08:00:00.000Z"
+}

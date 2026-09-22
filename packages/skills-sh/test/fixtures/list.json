@@ -1,0 +1,21 @@
+{
+  "_note": "Doc-derived fixture from https://www.skills.sh/docs/api (list endpoint). Shapes are contract pins, not live captures.",
+  "data": [
+    {
+      "id": "vercel-labs/skills/find-skills",
+      "slug": "find-skills",
+      "name": "find-skills",
+      "source": "vercel-labs/skills",
+      "installs": 24531,
+      "sourceType": "github",
+      "installUrl": "https://github.com/vercel-labs/skills",
+      "url": "https://skills.sh/vercel-labs/skills/find-skills"
+    }
+  ],
+  "pagination": {
+    "page": 0,
+    "perPage": 10,
+    "total": 8420,
+    "hasMore": true
+  }
+}

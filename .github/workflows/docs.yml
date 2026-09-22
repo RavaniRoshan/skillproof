@@ -30,7 +30,7 @@ jobs:
       - run: npm run docs:build
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: site/.vitepress/dist
+          path: dist
 
   deploy:
     needs: build

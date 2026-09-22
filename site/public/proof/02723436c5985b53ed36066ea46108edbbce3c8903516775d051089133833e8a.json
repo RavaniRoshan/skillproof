@@ -1,0 +1,80 @@
+{
+  "schema": "skillproof/1",
+  "skill": {
+    "name": "wan-3-0-prime-reference-to-video",
+    "version": "0.0.0",
+    "source": "https://www.skills.sh/genmedia-labs/skills/wan-3-0-prime-reference-to-video",
+    "content_hash": "sha256:02723436c5985b53ed36066ea46108edbbce3c8903516775d051089133833e8a"
+  },
+  "capabilities": {
+    "network": {
+      "outbound_domains": [
+        "docs.runcomfy.com",
+        "www.runcomfy.com",
+        "www.skills.sh"
+      ],
+      "via": []
+    },
+    "exec": {
+      "shell": true,
+      "interpreters": [
+        "bash"
+      ]
+    },
+    "filesystem": {
+      "reads": [
+        "~/.config/runcomfy/token.json"
+      ],
+      "writes": []
+    },
+    "secrets": {
+      "env_vars": [
+        "RUNCOMFY_TOKEN"
+      ]
+    },
+    "agents": {
+      "spawns_subagents": false,
+      "subagent_types": []
+    },
+    "mcp": {
+      "servers": []
+    },
+    "hygiene": {
+      "unicode_issues": 0,
+      "external_urls": [
+        "https://docs.runcomfy.com/cli/introduction?utm_source=skills.sh&utm_medium=skill&utm_campaign=wan-3-0-prime-reference-to-video&utm_content=cli-docs-introduction)",
+        "https://docs.runcomfy.com/cli/troubleshooting?utm_source=skills.sh&utm_medium=skill&utm_campaign=wan-3-0-prime-reference-to-video&utm_content=cli-docs-troubleshooting).",
+        "https://www.runcomfy.com",
+        "https://www.runcomfy.com/?utm_source=skills.sh&utm_medium=skill&utm_campaign=wan-3-0-prime-reference-to-video&utm_content=home)",
+        "https://www.runcomfy.com/models/bytedance/seedance-v2/pro?utm_source=skills.sh&utm_medium=skill&utm_campaign=wan-3-0-prime-reference-to-video&utm_content=bytedance-seedance-v2-pro)",
+        "https://www.runcomfy.com/models/minimax/minimax-h3/reference-to-video?utm_source=skills.sh&utm_medium=skill&utm_campaign=wan-3-0-prime-reference-to-video&utm_content=minimax-minimax-h3-reference-to-video)",
+        "https://www.runcomfy.com/models/wan-ai/wan-2-7?utm_source=skills.sh&utm_medium=skill&utm_campaign=wan-3-0-prime-reference-to-video&utm_content=wan-ai-wan-2-7)",
+        "https://www.runcomfy.com/models/wan-ai/wan-3.0-prime/image-to-video?utm_source=skills.sh&utm_medium=skill&utm_campaign=wan-3-0-prime-reference-to-video&utm_content=wan-ai-wan-3.0-prime-image-to-video)",
+        "https://www.runcomfy.com/models/wan-ai/wan-3.0-prime/reference-to-video?utm_source=skills.sh&utm_medium=skill&utm_campaign=wan-3-0-prime-reference-to-video&utm_content=wan-ai-wan-3.0-prime-reference-to-video)",
+        "https://www.runcomfy.com/models/wan-ai/wan-3.0-prime/text-to-video?utm_source=skills.sh&utm_medium=skill&utm_campaign=wan-3-0-prime-reference-to-video&utm_content=wan-ai-wan-3.0-prime-text-to-video)",
+        "https://www.skills.sh/genmedia-labs/skills/ai-video-generation)",
+        "https://www.skills.sh/genmedia-labs/skills/runcomfy-cli)",
+        "https://www.skills.sh/genmedia-labs/skills/seedance-v2)",
+        "https://www.skills.sh/genmedia-labs/skills/wan-2-7)"
+      ]
+    }
+  },
+  "declared": {
+    "frontmatter": {
+      "name": "wan-3-0-prime-reference-to-video",
+      "allowed-tools": "Bash(runcomfy *)",
+      "displayName": "Wan 3.0 Prime Reference to Video",
+      "description": ">",
+      "homepage": "https://www.runcomfy.com",
+      "license": "MIT"
+    }
+  },
+  "scan_version": "skillproof-scan/0.1.4",
+  "signer": {
+    "iss": "",
+    "sub": "",
+    "workflow": "",
+    "commit": ""
+  },
+  "undeclared_findings": []
+}
