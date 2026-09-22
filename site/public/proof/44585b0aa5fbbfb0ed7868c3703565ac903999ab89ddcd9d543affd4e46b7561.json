@@ -1,0 +1,83 @@
+{
+  "schema": "skillproof/1",
+  "skill": {
+    "name": "ai-music",
+    "version": "0.0.0",
+    "source": "https://www.skills.sh/genmedia-labs/skills/ai-music",
+    "content_hash": "sha256:44585b0aa5fbbfb0ed7868c3703565ac903999ab89ddcd9d543affd4e46b7561"
+  },
+  "capabilities": {
+    "network": {
+      "outbound_domains": [
+        "docs.runcomfy.com",
+        "www.runcomfy.com",
+        "www.skills.sh"
+      ],
+      "via": [
+        "curl"
+      ]
+    },
+    "exec": {
+      "shell": true,
+      "interpreters": [
+        "bash"
+      ]
+    },
+    "filesystem": {
+      "reads": [
+        "~/.config/runcomfy/token.json"
+      ],
+      "writes": []
+    },
+    "secrets": {
+      "env_vars": [
+        "RUNCOMFY_TOKEN"
+      ]
+    },
+    "agents": {
+      "spawns_subagents": false,
+      "subagent_types": []
+    },
+    "mcp": {
+      "servers": []
+    },
+    "hygiene": {
+      "unicode_issues": 0,
+      "external_urls": [
+        "https://docs.runcomfy.com/cli/introduction?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-music)",
+        "https://docs.runcomfy.com/cli/troubleshooting?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-music).",
+        "https://www.runcomfy.com",
+        "https://www.runcomfy.com/?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-music)",
+        "https://www.runcomfy.com/models/acestep-ai/ace-step-1.5/text-to-audio?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-music)",
+        "https://www.runcomfy.com/models/acestep-ai/ace-step/audio-inpaint?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-music)",
+        "https://www.runcomfy.com/models/acestep-ai/ace-step/audio-outpaint?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-music)",
+        "https://www.runcomfy.com/models/acestep-ai/ace-step/text-to-audio?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-music)",
+        "https://www.runcomfy.com/models/elevenlabs/elevenlabs/music-generation?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-music)",
+        "https://www.runcomfy.com/models?utm_source=skills.sh&utm_medium=skill&utm_campaign=ai-music)",
+        "https://www.skills.sh/agentspace-so/runcomfy-agent-skills/ace-step)",
+        "https://www.skills.sh/agentspace-so/runcomfy-agent-skills/ai-avatar-video)",
+        "https://www.skills.sh/agentspace-so/runcomfy-agent-skills/ai-video-generation)",
+        "https://www.skills.sh/agentspace-so/runcomfy-agent-skills/elevenlabs-music-generation)",
+        "https://www.skills.sh/agentspace-so/runcomfy-agent-skills/runcomfy-cli)"
+      ]
+    }
+  },
+  "declared": {
+    "frontmatter": {
+      "name": "ai-music",
+      "displayName": "AI Music",
+      "allowed-tools": "Bash(runcomfy *)",
+      "description": ">",
+      "homepage": "https://www.runcomfy.com",
+      "license": "MIT"
+    }
+  },
+  "scan_version": "skillproof-scan/0.1.4",
+  "signer": {
+    "iss": "",
+    "sub": "",
+    "workflow": "",
+    "commit": ""
+  },
+  "undeclared_findings": []
+}

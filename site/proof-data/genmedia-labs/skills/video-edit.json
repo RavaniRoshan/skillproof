@@ -1,0 +1,113 @@
+{
+  "schema": "skillproof-source/1",
+  "source_registry": "skills.sh",
+  "external_id": "genmedia-labs/skills/video-edit",
+  "source_repository": "genmedia-labs/skills",
+  "skill_slug": "video-edit",
+  "source_url": "https://www.skills.sh/genmedia-labs/skills/video-edit",
+  "source_hash": {
+    "algorithm": "sha256",
+    "value": "sha256:5d10803cf6b49f1b1a55e832eeb5181c825bdcd10c9d31ec72031d6b6f0f334c",
+    "source": "skills.sh"
+  },
+  "skillproof_hash": {
+    "algorithm": "sha256",
+    "value": "sha256:5d10803cf6b49f1b1a55e832eeb5181c825bdcd10c9d31ec72031d6b6f0f334c",
+    "source": "skillproof"
+  },
+  "hash_match": true,
+  "install_count": 608583,
+  "observed_at": "2026-09-22",
+  "scanner_version": "skillproof-scan/0.1.4",
+  "external_evidence": [
+    {
+      "provider": "Gen Agent Trust Hub",
+      "status": "pass",
+      "riskLevel": "SAFE",
+      "observed_at": "2026-08-13T02:09:25.930Z"
+    },
+    {
+      "provider": "Socket",
+      "status": "pass",
+      "observed_at": "2026-08-13T02:11:09.849Z"
+    },
+    {
+      "provider": "Snyk",
+      "status": "warn",
+      "riskLevel": "MEDIUM",
+      "observed_at": "2026-08-13T02:09:31.316309+00:00"
+    }
+  ],
+  "manifest": {
+    "schema": "skillproof/1",
+    "skill": {
+      "name": "video-edit",
+      "version": "0.0.0",
+      "source": "https://www.skills.sh/genmedia-labs/skills/video-edit",
+      "content_hash": "sha256:5d10803cf6b49f1b1a55e832eeb5181c825bdcd10c9d31ec72031d6b6f0f334c"
+    },
+    "capabilities": {
+      "network": {
+        "outbound_domains": [
+          "docs.runcomfy.com",
+          "github.com",
+          "www.runcomfy.com"
+        ],
+        "via": []
+      },
+      "exec": {
+        "shell": true,
+        "interpreters": [
+          "bash"
+        ]
+      },
+      "filesystem": {
+        "reads": [
+          "~/.config/runcomfy/token.json"
+        ],
+        "writes": []
+      },
+      "secrets": {
+        "env_vars": [
+          "RUNCOMFY_TOKEN"
+        ]
+      },
+      "agents": {
+        "spawns_subagents": false,
+        "subagent_types": []
+      },
+      "mcp": {
+        "servers": []
+      },
+      "hygiene": {
+        "unicode_issues": 0,
+        "external_urls": [
+          "https://docs.runcomfy.com/cli/troubleshooting?utm_source=skills.sh&utm_medium=skill&utm_campaign=video-edit).",
+          "https://github.com/agentspace-so/runcomfy-skills/tree/main/video-edit)",
+          "https://www.runcomfy.com",
+          "https://www.runcomfy.com/?utm_source=skills.sh&utm_medium=skill&utm_campaign=video-edit)",
+          "https://www.runcomfy.com/models/decart/lucy-edit/restyle?utm_source=skills.sh&utm_medium=skill&utm_campaign=video-edit)",
+          "https://www.runcomfy.com/models/kling/kling-2-6/motion-control-pro?utm_source=skills.sh&utm_medium=skill&utm_campaign=video-edit)",
+          "https://www.runcomfy.com/models/wan-ai/wan-2-7/edit-video?utm_source=skills.sh&utm_medium=skill&utm_campaign=video-edit)"
+        ]
+      }
+    },
+    "declared": {
+      "frontmatter": {
+        "name": "video-edit",
+        "displayName": "Video Edit — Pro Pack on RunComfy",
+        "description": ">",
+        "homepage": "https://www.runcomfy.com",
+        "license": "MIT"
+      }
+    },
+    "scan_version": "skillproof-scan/0.1.4",
+    "signer": {
+      "iss": "",
+      "sub": "",
+      "workflow": "",
+      "commit": ""
+    },
+    "undeclared_findings": []
+  }
+}

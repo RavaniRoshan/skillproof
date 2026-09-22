@@ -1,0 +1,125 @@
+{
+  "schema": "skillproof-source/1",
+  "source_registry": "skills.sh",
+  "external_id": "qu-skills/superpowers/ai-video-generation",
+  "source_repository": "qu-skills/superpowers",
+  "skill_slug": "ai-video-generation",
+  "source_url": "https://www.skills.sh/qu-skills/superpowers/ai-video-generation",
+  "source_hash": {
+    "algorithm": "sha256",
+    "value": "sha256:bfd37efbc89490cdf387f375de741394e94f945b08ffac71450b7d13d9e67e4c",
+    "source": "skills.sh"
+  },
+  "skillproof_hash": {
+    "algorithm": "sha256",
+    "value": "sha256:bfd37efbc89490cdf387f375de741394e94f945b08ffac71450b7d13d9e67e4c",
+    "source": "skillproof"
+  },
+  "hash_match": true,
+  "install_count": 162611,
+  "observed_at": "2026-09-22",
+  "scanner_version": "skillproof-scan/0.1.4",
+  "external_evidence": [
+    {
+      "provider": "Gen Agent Trust Hub",
+      "status": "pass",
+      "riskLevel": "SAFE",
+      "observed_at": "2026-09-02T14:20:15.557Z"
+    },
+    {
+      "provider": "Socket",
+      "status": "warn",
+      "observed_at": "2026-09-02T14:18:49.734Z"
+    },
+    {
+      "provider": "Snyk",
+      "status": "pass",
+      "riskLevel": "LOW",
+      "observed_at": "2026-09-02T14:18:17.229828+00:00"
+    }
+  ],
+  "manifest": {
+    "schema": "skillproof/1",
+    "skill": {
+      "name": "ai-video-generation",
+      "version": "0.0.0",
+      "source": "https://www.skills.sh/qu-skills/superpowers/ai-video-generation",
+      "content_hash": "sha256:bfd37efbc89490cdf387f375de741394e94f945b08ffac71450b7d13d9e67e4c"
+    },
+    "capabilities": {
+      "network": {
+        "outbound_domains": [
+          "audio.mp3",
+          "clip1.mp4",
+          "clip2.mp4",
+          "cloud.inference.sh",
+          "face.jpg",
+          "inference.sh",
+          "inference.sh)",
+          "portrait.jpg",
+          "raw.githubusercontent.com",
+          "silent-video.mp4",
+          "speech.mp3",
+          "your-image.jpg",
+          "your-video.mp4"
+        ],
+        "via": []
+      },
+      "exec": {
+        "shell": true,
+        "interpreters": [
+          "bash"
+        ]
+      },
+      "filesystem": {
+        "reads": [],
+        "writes": []
+      },
+      "secrets": {
+        "env_vars": []
+      },
+      "agents": {
+        "spawns_subagents": false,
+        "subagent_types": []
+      },
+      "mcp": {
+        "servers": []
+      },
+      "hygiene": {
+        "unicode_issues": 0,
+        "external_urls": [
+          "https://audio.mp3",
+          "https://clip1.mp4",
+          "https://clip2.mp4",
+          "https://cloud.inference.sh/app/files/u/4mg21r6ta37mpaz6ktzwtt8krr/01kg2c0egyg243mnyth4y6g51q.jpeg)",
+          "https://face.jpg",
+          "https://inference.sh)",
+          "https://inference.sh/docs/api/sdk/streaming)",
+          "https://inference.sh/docs/apps/running)",
+          "https://inference.sh/docs/examples/content-pipeline)",
+          "https://portrait.jpg",
+          "https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)",
+          "https://silent-video.mp4",
+          "https://speech.mp3",
+          "https://your-image.jpg",
+          "https://your-video.mp4"
+        ]
+      }
+    },
+    "declared": {
+      "frontmatter": {
+        "name": "ai-video-generation",
+        "description": "Generate AI videos with Google Veo, Seedance 2.0, HappyHorse, Wan, Grok and 40+ models via inference.sh CLI. Models: Veo 3.1, Veo 3, Seedance 2.0, HappyHorse 1.0, Wan 2.5, Grok Imagine Video, OmniHuman, Fabric, HunyuanVideo. Capabilities: text-to-video, image-to-video, reference-to-video, video editing, lipsync, avatar animation, video upscaling, foley sound. Use for: social media videos, marketing content, explainer videos, product demos, AI avatars. Triggers: video generation, ai video, text to video, image to video, veo, animate image, video from image, ai animation, video generator, generate video, t2v, i2v, ai video maker, create video with ai, runway alternative, pika alternative, sora alternative, kling alternative, seedance, happyhorse",
+        "allowed-tools": "Bash(belt *)"
+      }
+    },
+    "scan_version": "skillproof-scan/0.1.4",
+    "signer": {
+      "iss": "",
+      "sub": "",
+      "workflow": "",
+      "commit": ""
+    },
+    "undeclared_findings": []
+  }
+}

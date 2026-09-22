@@ -1,0 +1,118 @@
+{
+  "schema": "skillproof-source/1",
+  "source_registry": "skills.sh",
+  "external_id": "google/agents-cli/google-agents-cli-workflow",
+  "source_repository": "google/agents-cli",
+  "skill_slug": "google-agents-cli-workflow",
+  "source_url": "https://www.skills.sh/google/agents-cli/google-agents-cli-workflow",
+  "source_hash": {
+    "algorithm": "sha256",
+    "value": "sha256:4cf591acd1c456fc2075c15c0d452207bfada8a2a9bccc010213d0628dc45e4c",
+    "source": "skills.sh"
+  },
+  "skillproof_hash": {
+    "algorithm": "sha256",
+    "value": "sha256:a4ee7be59bff3ce6755b61b4e2db4ccd6d47ad540bd418b6fdbc5632f0a39ae0",
+    "source": "skillproof"
+  },
+  "hash_match": false,
+  "install_count": 303219,
+  "observed_at": "2026-09-22",
+  "scanner_version": "skillproof-scan/0.1.4",
+  "external_evidence": [
+    {
+      "provider": "Gen Agent Trust Hub",
+      "status": "pass",
+      "riskLevel": "SAFE",
+      "observed_at": "2026-09-17T07:33:28.850Z"
+    },
+    {
+      "provider": "Socket",
+      "status": "warn",
+      "observed_at": "2026-09-17T07:34:00.558Z"
+    },
+    {
+      "provider": "Snyk",
+      "status": "pass",
+      "riskLevel": "LOW",
+      "observed_at": "2026-09-17T07:32:26.086379+00:00"
+    }
+  ],
+  "manifest": {
+    "schema": "skillproof/1",
+    "skill": {
+      "name": "google-agents-cli-workflow",
+      "version": "0.0.0",
+      "source": "https://www.skills.sh/google/agents-cli/google-agents-cli-workflow",
+      "content_hash": "sha256:a4ee7be59bff3ce6755b61b4e2db4ccd6d47ad540bd418b6fdbc5632f0a39ae0"
+    },
+    "capabilities": {
+      "network": {
+        "outbound_domains": [
+          "adk.dev",
+          "cloud.google.com",
+          "docs.astral.sh",
+          "git.example.com",
+          "github.com",
+          "raw.githubusercontent.com"
+        ],
+        "via": [
+          "curl"
+        ]
+      },
+      "exec": {
+        "shell": true,
+        "interpreters": [
+          "bash",
+          "python3"
+        ]
+      },
+      "filesystem": {
+        "reads": [
+          ".env",
+          "~/.config/agents-cli/"
+        ],
+        "writes": []
+      },
+      "secrets": {
+        "env_vars": []
+      },
+      "agents": {
+        "spawns_subagents": false,
+        "subagent_types": []
+      },
+      "mcp": {
+        "servers": []
+      },
+      "hygiene": {
+        "unicode_issues": 0,
+        "external_urls": [
+          "https://adk.dev/)",
+          "https://adk.dev/agents/models/google-gemini/index.md",
+          "https://adk.dev/llms.txt",
+          "https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions).",
+          "https://docs.astral.sh/uv/getting-started/installation/index.md)",
+          "https://docs.astral.sh/uv/getting-started/installation/index.md).",
+          "https://git.example.com/acme/acli-extensions",
+          "https://github.com/google/adk-go/tree/main/examples)",
+          "https://github.com/google/adk-go/tree/main/examples).",
+          "https://raw.githubusercontent.com/google/agents-cli/main/schemas/agents-cli-extension-v1alpha1.schema.json"
+        ]
+      }
+    },
+    "declared": {
+      "frontmatter": {
+        "name": "google-agents-cli-workflow",
+        "description": ">"
+      }
+    },
+    "scan_version": "skillproof-scan/0.1.4",
+    "signer": {
+      "iss": "",
+      "sub": "",
+      "workflow": "",
+      "commit": ""
+    },
+    "undeclared_findings": []
+  }
+}

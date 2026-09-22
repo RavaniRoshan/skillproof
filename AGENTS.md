@@ -65,33 +65,35 @@ workspace (`site/`) and is never type-checked by `tsc -b`.
 
 v0.1 is a **scaffold**, not a finished tool. As of this writing:
 
-- `Scanner.scan` walks `*.md` files only and applies substring heuristics. On a
-  match it pushes **placeholder** values (`http://example.com`, `API_KEY`,
-  `./data.txt`, `mcp-server`, `research`), not the extracted real value.
-  See `packages/cli/src/scanner.ts:56-134`.
-- `Scanner.computeHash` returns the concatenated contents of every file in the
-  directory. It is **not** a sha256 despite the `sha256:` prefix written at
-  `packages/cli/src/index.ts:32`. `content_hash` is therefore not a content
-  address today, and the resulting value is far larger than the "~1 KB record"
-  the ledger design assumes.
-- `scanner.ts` emits a `hygiene` block that has **no counterpart** in
-  `ManifestSchema` (`packages/schemas/src/index.ts:5-46`), so a scan output
-  cannot currently validate against the committed schema.
-- `scan` overwrites `skill.name` / `skill.version` / `skill.source` with
-  hardcoded values (`packages/cli/src/index.ts:28-34`); frontmatter parsing and
-  the declared-vs-derived cross-check are not implemented.
+- `Scanner.scan` (`packages/cli/src/scanner.ts`) extracts real values
+  (domains, interpreters, paths, env names) from `*.md` and script files;
+  the old placeholder values are gone. Heuristics remain substring/regex
+  only — never a safety verdict.
+- `Scanner.computeHash` delegates to `hashDirectory` in
+  `packages/skills-sh/src/reconcile.ts`: real sha256 over sorted relative
+  paths with LF normalization, excluding `.git/` and `node_modules/`.
+- `scanner.ts` emits a `hygiene` block backed by `ManifestSchema`
+  (`packages/schemas/src/index.ts`); scan output validates against the
+  committed schema and `openapi/v1.yaml` + `manifest.schema.json` were
+  regenerated.
+- `scan` reads `skill.name` / `skill.version` from frontmatter
+  (`Scanner.readFrontmatter`, assembled in `packages/cli/src/manifest.ts`);
+  `skill.source` is the scanned path. The declared-vs-derived cross-check
+  reports only capabilities missing from an explicitly declared group set —
+  absent declarations mean unknown, never undeclared.
 - `Ledger.attest` writes a local JSONL file and performs **no Sigstore
   signing** (`packages/cli/src/ledger.ts:6-41`).
-- `Verifier.verify` short-circuits to `{ verified: true }` and verifies
-  nothing (`packages/cli/src/verifier.ts:62-76`).
-- `DiffProcessor` works, but a capability whose *value changed* is pushed into
-  `added` **without** setting `exitCode = 2`
-  (`packages/cli/src/diff-processor.ts:41-45`) — so a modified capability does
-  not fail CI even though a wholly new one does.
+- `Verifier.verify` looks the hash up in the local ledger and fails closed
+  on unknown hashes; remote GitHub fetch + Rekor verification is M2 work
+  (`packages/cli/src/verifier.ts`).
+- `DiffProcessor` sets `exitCode = 2` for added **and** changed capabilities
+  (`packages/cli/src/diff-processor.ts`).
 - `skillproof eval` prints its flags and exits; the harness is v0.2 work
-  (`packages/cli/src/index.ts:175-209`).
+  (`packages/cli/src/index.ts`).
 - The CLI is **unpublished** (`skillproof-cli`, private workspace). Never
   document `npx skillproof`; use `node packages/cli/dist/index.js`.
+  Relative imports carry `.js` extensions and both workspace packages set
+  `"type": "module"` so the built CLI actually runs under Node ESM.
 
 When you fix one of these, update this section in the same change.
 

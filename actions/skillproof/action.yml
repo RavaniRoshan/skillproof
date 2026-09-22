@@ -1,0 +1,57 @@
+name: SkillProof
+description: >-
+  Scan an agent skill for capabilities and fail when new ones appear.
+  Authors reference this from their own repositories:
+  RavaniRoshan/skillproof/actions/skillproof@main
+
+inputs:
+  skill-path:
+    description: "Path to the skill directory, relative to the repository root"
+    default: "."
+  fail-on-new-capability:
+    description: "Exit 2 when the head scan adds or changes capabilities vs base-ref"
+    default: "false"
+  base-ref:
+    description: "Git ref to compare against (e.g. github.base_ref). Empty scans head only"
+    default: ""
+  node-version:
+    description: "Node version for running the SkillProof CLI"
+    default: "20"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+
+    - name: Check out SkillProof
+      uses: actions/checkout@v4
+      with:
+        repository: RavaniRoshan/skillproof
+        ref: ${{ github.action_ref }}
+        path: .skillproof
+
+    - name: Install and build SkillProof
+      shell: bash
+      run: |
+        npm ci --prefix .skillproof
+        npm run build --prefix .skillproof
+
+    - name: Scan skill
+      shell: bash
+      run: node .skillproof/packages/cli/dist/index.js scan "${{ inputs.skill-path }}" /tmp/skillproof-head.json
+
+    - name: Diff against base
+      if: inputs.base-ref != ''
+      shell: bash
+      run: |
+        git fetch origin "${{ inputs.base-ref }}" --depth=1
+        git worktree add /tmp/skillproof-base FETCH_HEAD
+        node .skillproof/packages/cli/dist/index.js scan "/tmp/skillproof-base/${{ inputs.skill-path }}" /tmp/skillproof-base.json
+        if [ "${{ inputs.fail-on-new-capability }}" = "true" ]; then
+          node .skillproof/packages/cli/dist/index.js diff /tmp/skillproof-base.json /tmp/skillproof-head.json
+        else
+          node .skillproof/packages/cli/dist/index.js diff /tmp/skillproof-base.json /tmp/skillproof-head.json || true
+        fi

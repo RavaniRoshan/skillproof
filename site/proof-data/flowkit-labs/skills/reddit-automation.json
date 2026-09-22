@@ -1,0 +1,104 @@
+{
+  "schema": "skillproof-source/1",
+  "source_registry": "skills.sh",
+  "external_id": "flowkit-labs/skills/reddit-automation",
+  "source_repository": "flowkit-labs/skills",
+  "skill_slug": "reddit-automation",
+  "source_url": "https://www.skills.sh/flowkit-labs/skills/reddit-automation",
+  "source_hash": {
+    "algorithm": "sha256",
+    "value": "sha256:278abced163b5721c6fec6996f73d521c8901b905b4b2fca45757d1ff0ebbfc6",
+    "source": "skills.sh"
+  },
+  "skillproof_hash": {
+    "algorithm": "sha256",
+    "value": "sha256:278abced163b5721c6fec6996f73d521c8901b905b4b2fca45757d1ff0ebbfc6",
+    "source": "skillproof"
+  },
+  "hash_match": true,
+  "install_count": 576771,
+  "observed_at": "2026-09-22",
+  "scanner_version": "skillproof-scan/0.1.4",
+  "external_evidence": [
+    {
+      "provider": "Gen Agent Trust Hub",
+      "status": "pass",
+      "riskLevel": "SAFE",
+      "observed_at": "2026-08-12T06:35:51.806Z"
+    },
+    {
+      "provider": "Socket",
+      "status": "pass",
+      "observed_at": "2026-08-13T10:17:49.335Z"
+    },
+    {
+      "provider": "Snyk",
+      "status": "warn",
+      "riskLevel": "MEDIUM",
+      "observed_at": "2026-08-12T06:35:32.113688+00:00"
+    }
+  ],
+  "manifest": {
+    "schema": "skillproof/1",
+    "skill": {
+      "name": "reddit-automation",
+      "version": "0.0.0",
+      "source": "https://www.skills.sh/flowkit-labs/skills/reddit-automation",
+      "content_hash": "sha256:278abced163b5721c6fec6996f73d521c8901b905b4b2fca45757d1ff0ebbfc6"
+    },
+    "capabilities": {
+      "network": {
+        "outbound_domains": [
+          "doany.ai",
+          "github.com"
+        ],
+        "via": []
+      },
+      "exec": {
+        "shell": false,
+        "interpreters": []
+      },
+      "filesystem": {
+        "reads": [],
+        "writes": []
+      },
+      "secrets": {
+        "env_vars": []
+      },
+      "agents": {
+        "spawns_subagents": false,
+        "subagent_types": []
+      },
+      "mcp": {
+        "servers": []
+      },
+      "hygiene": {
+        "unicode_issues": 0,
+        "external_urls": [
+          "https://doany.ai",
+          "https://doany.ai/?utm_source=skills.sh&utm_medium=skill&utm_campaign=reddit-automation)",
+          "https://doany.ai/?utm_source=skills.sh&utm_medium=skill&utm_campaign=reddit-automation).",
+          "https://github.com/doany-skills/skills)"
+        ]
+      }
+    },
+    "declared": {
+      "frontmatter": {
+        "name": "reddit-automation",
+        "displayName": "👽 Reddit Automation — find high-intent threads, reply with honest help",
+        "description": ">",
+        "emoji": "👽",
+        "homepage": "https://doany.ai",
+        "license": "MIT"
+      }
+    },
+    "scan_version": "skillproof-scan/0.1.4",
+    "signer": {
+      "iss": "",
+      "sub": "",
+      "workflow": "",
+      "commit": ""
+    },
+    "undeclared_findings": []
+  }
+}

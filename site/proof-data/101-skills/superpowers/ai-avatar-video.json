@@ -1,0 +1,121 @@
+{
+  "schema": "skillproof-source/1",
+  "source_registry": "skills.sh",
+  "external_id": "101-skills/superpowers/ai-avatar-video",
+  "source_repository": "101-skills/superpowers",
+  "skill_slug": "ai-avatar-video",
+  "source_url": "https://www.skills.sh/101-skills/superpowers/ai-avatar-video",
+  "source_hash": {
+    "algorithm": "sha256",
+    "value": "sha256:a623d475ddb5b055d3ea0f2d0c821cbe2e6c5d75816663241eb68f4c4fa9e777",
+    "source": "skills.sh"
+  },
+  "skillproof_hash": {
+    "algorithm": "sha256",
+    "value": "sha256:a623d475ddb5b055d3ea0f2d0c821cbe2e6c5d75816663241eb68f4c4fa9e777",
+    "source": "skillproof"
+  },
+  "hash_match": true,
+  "install_count": 335785,
+  "observed_at": "2026-09-22",
+  "scanner_version": "skillproof-scan/0.1.4",
+  "external_evidence": [
+    {
+      "provider": "Gen Agent Trust Hub",
+      "status": "pass",
+      "riskLevel": "SAFE",
+      "observed_at": "2026-08-31T23:00:11.934Z"
+    },
+    {
+      "provider": "Socket",
+      "status": "warn",
+      "observed_at": "2026-08-31T22:59:56.709Z"
+    },
+    {
+      "provider": "Snyk",
+      "status": "pass",
+      "riskLevel": "LOW",
+      "observed_at": "2026-08-31T22:59:24.478487+00:00"
+    }
+  ],
+  "manifest": {
+    "schema": "skillproof/1",
+    "skill": {
+      "name": "ai-avatar-video",
+      "version": "0.0.0",
+      "source": "https://www.skills.sh/101-skills/superpowers/ai-avatar-video",
+      "content_hash": "sha256:a623d475ddb5b055d3ea0f2d0c821cbe2e6c5d75816663241eb68f4c4fa9e777"
+    },
+    "capabilities": {
+      "network": {
+        "outbound_domains": [
+          "audio.mp3",
+          "cloud.inference.sh",
+          "face.jpg",
+          "inference.sh",
+          "inference.sh)",
+          "original-video.mp4",
+          "portrait.jpg",
+          "presenter-photo.jpg",
+          "raw.githubusercontent.com",
+          "speech.mp3",
+          "video.mp4"
+        ],
+        "via": []
+      },
+      "exec": {
+        "shell": true,
+        "interpreters": [
+          "bash"
+        ]
+      },
+      "filesystem": {
+        "reads": [],
+        "writes": []
+      },
+      "secrets": {
+        "env_vars": []
+      },
+      "agents": {
+        "spawns_subagents": false,
+        "subagent_types": []
+      },
+      "mcp": {
+        "servers": []
+      },
+      "hygiene": {
+        "unicode_issues": 0,
+        "external_urls": [
+          "https://audio.mp3",
+          "https://cloud.inference.sh/app/files/u/4mg21r6ta37mpaz6ktzwtt8krr/01kg0tszs96s0n8z5gy8y5mbg7.jpeg)",
+          "https://face.jpg",
+          "https://inference.sh)",
+          "https://inference.sh/docs/api/sdk/streaming)",
+          "https://inference.sh/docs/apps/running)",
+          "https://inference.sh/docs/examples/content-pipeline)",
+          "https://original-video.mp4",
+          "https://portrait.jpg",
+          "https://presenter-photo.jpg",
+          "https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)",
+          "https://speech.mp3",
+          "https://video.mp4"
+        ]
+      }
+    },
+    "declared": {
+      "frontmatter": {
+        "name": "ai-avatar-video",
+        "description": "Create AI avatar and talking head videos via inference.sh CLI. Recommended: P-Video-Avatar (fastest, cheapest, built-in TTS). Also: OmniHuman, Fabric, PixVerse. Audio: Inworld TTS-2 (100+ languages, emotion steering for characters), ElevenLabs, Kokoro. Capabilities: audio-driven avatars, text-to-avatar, lipsync videos, talking head generation, virtual presenters, UGC content. Use for: AI presenters, explainer videos, virtual influencers, dubbing, marketing videos, UGC ads, gaming avatars, NPC dialogue. Triggers: ai avatar, talking head, lipsync, avatar video, virtual presenter, ai spokesperson, audio driven video, heygen alternative, synthesia alternative, talking avatar, lip sync, video avatar, ai presenter, digital human, ugc, ugc video, ugc ad, avatar ugc",
+        "allowed-tools": "Bash(belt *)"
+      }
+    },
+    "scan_version": "skillproof-scan/0.1.4",
+    "signer": {
+      "iss": "",
+      "sub": "",
+      "workflow": "",
+      "commit": ""
+    },
+    "undeclared_findings": []
+  }
+}
