@@ -51,7 +51,8 @@
         "https://inference.sh/docs/examples/image-generation)",
         "https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)",
         "https://your-image.jpg"
-      ]
+      ],
+      "prompt_injection": []
     }
   },
   "declared": {
@@ -61,7 +62,7 @@
       "allowed-tools": "Bash(belt *)"
     }
   },
-  "scan_version": "skillproof-scan/0.1.4",
+  "scan_version": "skillproof-scan/0.1.5",
   "signer": {
     "iss": "",
     "sub": "",

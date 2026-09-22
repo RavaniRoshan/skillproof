@@ -3,7 +3,7 @@
 import path from "node:path";
 import { Scanner } from "./scanner.js";
 
-export const SCAN_VERSION = "skillproof-scan/0.1.4";
+export const SCAN_VERSION = "skillproof-scan/0.1.5";
 
 const emptyCapability: Record<string, unknown> = {
   network: { outbound_domains: [], via: [] },

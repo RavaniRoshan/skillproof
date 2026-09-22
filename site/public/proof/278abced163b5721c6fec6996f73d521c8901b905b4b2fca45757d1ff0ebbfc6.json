@@ -39,7 +39,8 @@
         "https://doany.ai/?utm_source=skills.sh&utm_medium=skill&utm_campaign=reddit-automation)",
         "https://doany.ai/?utm_source=skills.sh&utm_medium=skill&utm_campaign=reddit-automation).",
         "https://github.com/doany-skills/skills)"
-      ]
+      ],
+      "prompt_injection": []
     }
   },
   "declared": {
@@ -52,7 +53,7 @@
       "license": "MIT"
     }
   },
-  "scan_version": "skillproof-scan/0.1.4",
+  "scan_version": "skillproof-scan/0.1.5",
   "signer": {
     "iss": "",
     "sub": "",

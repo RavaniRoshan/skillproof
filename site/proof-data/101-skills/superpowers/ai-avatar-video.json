@@ -16,9 +16,9 @@
     "source": "skillproof"
   },
   "hash_match": true,
-  "install_count": 335785,
+  "install_count": 339648,
   "observed_at": "2026-09-22",
-  "scanner_version": "skillproof-scan/0.1.4",
+  "scanner_version": "skillproof-scan/0.1.5",
   "external_evidence": [
     {
       "provider": "Gen Agent Trust Hub",
@@ -99,7 +99,8 @@
           "https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)",
           "https://speech.mp3",
           "https://video.mp4"
-        ]
+        ],
+        "prompt_injection": []
       }
     },
     "declared": {
@@ -109,7 +110,7 @@
         "allowed-tools": "Bash(belt *)"
       }
     },
-    "scan_version": "skillproof-scan/0.1.4",
+    "scan_version": "skillproof-scan/0.1.5",
     "signer": {
       "iss": "",
       "sub": "",

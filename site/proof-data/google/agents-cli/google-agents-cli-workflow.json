@@ -16,9 +16,9 @@
     "source": "skillproof"
   },
   "hash_match": false,
-  "install_count": 303219,
+  "install_count": 304754,
   "observed_at": "2026-09-22",
-  "scanner_version": "skillproof-scan/0.1.4",
+  "scanner_version": "skillproof-scan/0.1.5",
   "external_evidence": [
     {
       "provider": "Gen Agent Trust Hub",
@@ -97,7 +97,8 @@
           "https://github.com/google/adk-go/tree/main/examples)",
           "https://github.com/google/adk-go/tree/main/examples).",
           "https://raw.githubusercontent.com/google/agents-cli/main/schemas/agents-cli-extension-v1alpha1.schema.json"
-        ]
+        ],
+        "prompt_injection": []
       }
     },
     "declared": {
@@ -106,7 +107,7 @@
         "description": ">"
       }
     },
-    "scan_version": "skillproof-scan/0.1.4",
+    "scan_version": "skillproof-scan/0.1.5",
     "signer": {
       "iss": "",
       "sub": "",

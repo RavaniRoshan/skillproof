@@ -7,47 +7,35 @@
   "source_url": "https://www.skills.sh/vercel-labs/skills/find-skills",
   "source_hash": {
     "algorithm": "sha256",
-    "value": "sha256:b146008599c31057cef1c145774cea5d5afb30e8f43fa802e47a4b461419aaaf",
+    "value": "sha256:468d9e87a5d26d9637dd6f013b25fa9563fbcebaae87ffee6f0f43719eaa03b4",
     "source": "skills.sh"
   },
   "skillproof_hash": {
     "algorithm": "sha256",
-    "value": "sha256:b146008599c31057cef1c145774cea5d5afb30e8f43fa802e47a4b461419aaaf",
+    "value": "sha256:468d9e87a5d26d9637dd6f013b25fa9563fbcebaae87ffee6f0f43719eaa03b4",
     "source": "skillproof"
   },
   "hash_match": true,
-  "install_count": 3510438,
+  "install_count": 24531,
   "observed_at": "2026-09-22",
-  "scanner_version": "skillproof-scan/0.1.4",
+  "scanner_version": "skillproof-scan/0.1.5",
   "external_evidence": [
     {
       "provider": "Gen Agent Trust Hub",
       "status": "pass",
-      "riskLevel": "SAFE",
-      "observed_at": "2026-09-15T08:00:05.922Z"
+      "riskLevel": "LOW",
+      "observed_at": "2026-04-15T12:00:00.000Z"
     },
     {
       "provider": "Socket",
       "status": "pass",
-      "observed_at": "2026-09-15T08:00:19.647Z"
+      "observed_at": "2026-04-15T12:05:00.000Z"
     },
     {
       "provider": "Snyk",
-      "status": "warn",
-      "riskLevel": "MEDIUM",
-      "observed_at": "2026-09-15T07:59:46.904821+00:00"
-    },
-    {
-      "provider": "Runlayer",
       "status": "pass",
-      "riskLevel": "NONE",
-      "observed_at": "2026-03-14T07:45:27.566Z"
-    },
-    {
-      "provider": "ZeroLeaks",
-      "status": "pass",
-      "riskLevel": "NONE",
-      "observed_at": "2026-04-16T07:47:59.444Z"
+      "riskLevel": "LOW",
+      "observed_at": "2026-04-15T12:03:00.000Z"
     }
   ],
   "manifest": {
@@ -56,20 +44,16 @@
       "name": "find-skills",
       "version": "0.0.0",
       "source": "https://www.skills.sh/vercel-labs/skills/find-skills",
-      "content_hash": "sha256:b146008599c31057cef1c145774cea5d5afb30e8f43fa802e47a4b461419aaaf"
+      "content_hash": "sha256:468d9e87a5d26d9637dd6f013b25fa9563fbcebaae87ffee6f0f43719eaa03b4"
     },
     "capabilities": {
       "network": {
-        "outbound_domains": [
-          "skills.sh"
-        ],
+        "outbound_domains": [],
         "via": []
       },
       "exec": {
-        "shell": true,
-        "interpreters": [
-          "bash"
-        ]
+        "shell": false,
+        "interpreters": []
       },
       "filesystem": {
         "reads": [],
@@ -87,20 +71,16 @@
       },
       "hygiene": {
         "unicode_issues": 0,
-        "external_urls": [
-          "https://skills.sh/",
-          "https://skills.sh/)",
-          "https://skills.sh/vercel-labs/agent-skills/react-best-practices"
-        ]
+        "external_urls": [],
+        "prompt_injection": []
       }
     },
     "declared": {
       "frontmatter": {
-        "name": "find-skills",
-        "description": "Helps users discover and install agent skills when they ask questions like \"how do I do X\", \"find a skill for X\", \"is there a skill that can...\", or express interest in extending capabilities. This skill should be used when the user is looking for functionality that might exist as an installable skill."
+        "name": "find-skills"
       }
     },
-    "scan_version": "skillproof-scan/0.1.4",
+    "scan_version": "skillproof-scan/0.1.5",
     "signer": {
       "iss": "",
       "sub": "",
@@ -108,5 +88,6 @@
       "commit": ""
     },
     "undeclared_findings": []
-  }
+  },
+  "_note": "Seed proof generated from a doc-derived skills.sh fixture (no live token). Re-run generate.mjs with a live snapshot to replace it."
 }

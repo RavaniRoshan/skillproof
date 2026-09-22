@@ -57,7 +57,8 @@
         "https://sleek.design/api/v1/spec.json",
         "https://sleek.design/dashboard/api-keys",
         "https://sleek.design/project/:projectId"
-      ]
+      ],
+      "prompt_injection": []
     }
   },
   "declared": {
@@ -67,7 +68,7 @@
       "compatibility": "Requires SLEEK_API_KEY environment variable. Network access limited to https://sleek.design only."
     }
   },
-  "scan_version": "skillproof-scan/0.1.4",
+  "scan_version": "skillproof-scan/0.1.5",
   "signer": {
     "iss": "",
     "sub": "",

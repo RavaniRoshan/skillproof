@@ -22,6 +22,21 @@ const URL_PATTERN =
 // Invisible Unicode Tag block U+E0000–U+E007F (UTF-16 surrogate range).
 const UNICODE_TAG_PATTERN = /[\uDB40][\uDC00-\uDC7F]/g;
 
+// Prompt-injection phrases: evidence to read in context, never a verdict.
+// Security documentation can legitimately contain these strings.
+const PROMPT_INJECTION_PHRASES = [
+  "ignore previous instructions",
+  "ignore all previous instructions",
+  "disregard previous instructions",
+  "disregard all previous instructions",
+  "forget previous instructions",
+  "ignore the above",
+  "new system prompt",
+  "reveal your system prompt",
+  "print your system prompt",
+  "disclose your system prompt",
+];
+
 interface Findings {
   network: { outbound_domains: string[]; via: string[] };
   exec: { shell: boolean; interpreters: string[] };
@@ -29,7 +44,11 @@ interface Findings {
   secrets: { env_vars: string[] };
   agents: { spawns_subagents: boolean; subagent_types: string[] };
   mcp: { servers: string[] };
-  hygiene: { unicode_issues: number; external_urls: string[] };
+  hygiene: {
+    unicode_issues: number;
+    external_urls: string[];
+    prompt_injection: string[];
+  };
 }
 
 function emptyFindings(): Findings {
@@ -40,7 +59,7 @@ function emptyFindings(): Findings {
     secrets: { env_vars: [] },
     agents: { spawns_subagents: false, subagent_types: [] },
     mcp: { servers: [] },
-    hygiene: { unicode_issues: 0, external_urls: [] },
+    hygiene: { unicode_issues: 0, external_urls: [], prompt_injection: [] },
   };
 }
 
@@ -155,6 +174,12 @@ function scanContent(content: string, findings: Findings): void {
   const tags = content.match(UNICODE_TAG_PATTERN);
   if (tags) findings.hygiene.unicode_issues += tags.length;
   for (const url of urls) pushUnique(findings.hygiene.external_urls, url);
+  const lowered = content.toLowerCase();
+  for (const phrase of PROMPT_INJECTION_PHRASES) {
+    if (lowered.includes(phrase)) {
+      pushUnique(findings.hygiene.prompt_injection, phrase);
+    }
+  }
 }
 
 function parseFrontmatter(content: string): Record<string, string> {

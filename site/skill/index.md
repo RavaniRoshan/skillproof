@@ -27,13 +27,13 @@ title: Skill proofs
 | [google/agents-cli/google-agents-cli-adk-code](/skill/google/agents-cli/google-agents-cli-adk-code) | no | 2026-09-22 |
 | [google/agents-cli/google-agents-cli-deploy](/skill/google/agents-cli/google-agents-cli-deploy) | no | 2026-09-22 |
 | [google/agents-cli/google-agents-cli-eval](/skill/google/agents-cli/google-agents-cli-eval) | no | 2026-09-22 |
+| [google/agents-cli/google-agents-cli-publish](/skill/google/agents-cli/google-agents-cli-publish) | yes | 2026-09-22 |
 | [google/agents-cli/google-agents-cli-scaffold](/skill/google/agents-cli/google-agents-cli-scaffold) | no | 2026-09-22 |
 | [google/agents-cli/google-agents-cli-workflow](/skill/google/agents-cli/google-agents-cli-workflow) | no | 2026-09-22 |
 | [qu-skills/superpowers/ai-avatar-video](/skill/qu-skills/superpowers/ai-avatar-video) | yes | 2026-09-22 |
 | [qu-skills/superpowers/ai-image-generation](/skill/qu-skills/superpowers/ai-image-generation) | yes | 2026-09-22 |
 | [qu-skills/superpowers/ai-video-generation](/skill/qu-skills/superpowers/ai-video-generation) | yes | 2026-09-22 |
 | [qu-skills/superpowers/twitter-automation](/skill/qu-skills/superpowers/twitter-automation) | yes | 2026-09-22 |
-| [typesafe-ai/skills/typesafe-ai](/skill/typesafe-ai/skills/typesafe-ai) | yes | 2026-09-22 |
 | [vercel-labs/skills/find-skills](/skill/vercel-labs/skills/find-skills) | yes | 2026-09-22 |
 
 ## Findings

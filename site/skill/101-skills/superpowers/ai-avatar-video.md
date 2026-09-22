@@ -25,7 +25,7 @@ head:
 | Content hash | `sha256:a623d475ddb5b055d3ea0f2d0c821cbe2e6c5d75816663241eb68f4c4fa9e777` |
 | Upstream hash | `sha256:a623d475ddb5b055d3ea0f2d0c821cbe2e6c5d75816663241eb68f4c4fa9e777` |
 | Hash match | yes |
-| Scanner | `skillproof-scan/0.1.4` |
+| Scanner | `skillproof-scan/0.1.5` |
 | Observed | 2026-09-22 |
 
 ## Capabilities

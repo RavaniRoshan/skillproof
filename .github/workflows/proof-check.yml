@@ -1,0 +1,69 @@
+name: proof-check
+
+# Validates checked-in proof records on every PR: schema conformance,
+# content-hash shape, and presence of the rendered page + raw JSON.
+# Sigstore bundle verification and snapshot-hash recomputation are not
+# part of this check (no signatures are produced yet; snapshots are
+# fetched live, not stored).
+on:
+  pull_request:
+    paths:
+      - "site/proof-data/**"
+      - "site/skill/**"
+      - "site/public/proof/**"
+      - "packages/schemas/**"
+      - "packages/cli/**"
+      - "packages/skills-sh/**"
+      - ".github/workflows/proof-check.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npx vitest run
+      - name: Validate proof records and rendered artifacts
+        run: node -e "
+          const fs = require('fs');
+          const path = require('path');
+          const { ManifestSchema, SkillproofSourceSchema } = require('./packages/schemas/dist/index.js');
+          const root = 'site/proof-data';
+          const walk = (d, out = []) => {
+            for (const e of fs.readdirSync(d, { withFileTypes: true })) {
+              const f = path.join(d, e.name);
+              if (e.isDirectory()) walk(f, out);
+              else if (e.name.endsWith('.json')) out.push(f);
+            }
+            return out;
+          };
+          if (!fs.existsSync(root)) { console.log('no proof records yet'); process.exit(0); }
+          let count = 0;
+          for (const file of walk(root)) {
+            const record = JSON.parse(fs.readFileSync(file, 'utf8'));
+            const { _note, ...rest } = record;
+            SkillproofSourceSchema.parse(rest);
+            ManifestSchema.parse(record.manifest);
+            if (!/^sha256:[0-9a-f]{64}$/.test(record.manifest.skill.content_hash)) {
+              throw new Error(file + ': bad content_hash');
+            }
+            const hex = record.manifest.skill.content_hash.slice(7);
+            for (const artifact of [
+              'site/skill/' + record.external_id + '.md',
+              'site/public/proof/' + hex + '.json',
+            ]) {
+              if (!fs.existsSync(artifact)) throw new Error(file + ': missing ' + artifact);
+            }
+            count++;
+          }
+          console.log('proof records valid:', count);
+        "

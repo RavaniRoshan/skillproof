@@ -53,7 +53,8 @@
         "https://www.runcomfy.com/models/bytedance/seedance-2.5/image-to-video?utm_source=skills.sh&utm_medium=skill&utm_campaign=seedance-2-5-image-to-video&utm_content=bytedance-seedance-2.5-image-to-video)",
         "https://www.runcomfy.com/models/bytedance/seedance-2.5/reference-to-video?utm_source=skills.sh&utm_medium=skill&utm_campaign=seedance-2-5-image-to-video&utm_content=bytedance-seedance-2.5-reference-to-video)",
         "https://www.runcomfy.com/models/bytedance/seedance-2.5/text-to-video?utm_source=skills.sh&utm_medium=skill&utm_campaign=seedance-2-5-image-to-video&utm_content=bytedance-seedance-2.5-text-to-video)"
-      ]
+      ],
+      "prompt_injection": []
     }
   },
   "declared": {
@@ -66,7 +67,7 @@
       "license": "MIT"
     }
   },
-  "scan_version": "skillproof-scan/0.1.4",
+  "scan_version": "skillproof-scan/0.1.5",
   "signer": {
     "iss": "",
     "sub": "",

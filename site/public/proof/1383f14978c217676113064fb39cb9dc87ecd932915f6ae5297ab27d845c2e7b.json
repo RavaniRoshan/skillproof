@@ -50,7 +50,8 @@
         "https://github.com/googleapis/python-aiplatform/blob/main/agentplatform/_genai/types/common.py).",
         "https://github.com/googleapis/python-aiplatform/blob/main/agentplatform/_genai/types/evals.py)",
         "https://my-agent.run.app"
-      ]
+      ],
+      "prompt_injection": []
     }
   },
   "declared": {
@@ -59,7 +60,7 @@
       "description": ">"
     }
   },
-  "scan_version": "skillproof-scan/0.1.4",
+  "scan_version": "skillproof-scan/0.1.5",
   "signer": {
     "iss": "",
     "sub": "",
