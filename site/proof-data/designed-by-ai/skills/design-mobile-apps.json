@@ -16,9 +16,9 @@
     "source": "skillproof"
   },
   "hash_match": true,
-  "install_count": 354697,
+  "install_count": 355105,
   "observed_at": "2026-09-22",
-  "scanner_version": "skillproof-scan/0.1.4",
+  "scanner_version": "skillproof-scan/0.1.5",
   "external_evidence": [
     {
       "provider": "Gen Agent Trust Hub",
@@ -97,7 +97,8 @@
           "https://sleek.design/api/v1/spec.json",
           "https://sleek.design/dashboard/api-keys",
           "https://sleek.design/project/:projectId"
-        ]
+        ],
+        "prompt_injection": []
       }
     },
     "declared": {
@@ -107,7 +108,7 @@
         "compatibility": "Requires SLEEK_API_KEY environment variable. Network access limited to https://sleek.design only."
       }
     },
-    "scan_version": "skillproof-scan/0.1.4",
+    "scan_version": "skillproof-scan/0.1.5",
     "signer": {
       "iss": "",
       "sub": "",

@@ -1,22 +1,22 @@
 {
   "schema": "skillproof-source/1",
   "source_registry": "skills.sh",
-  "external_id": "google/agents-cli/google-agents-cli-eval",
+  "external_id": "google/agents-cli/google-agents-cli-publish",
   "source_repository": "google/agents-cli",
-  "skill_slug": "google-agents-cli-eval",
-  "source_url": "https://www.skills.sh/google/agents-cli/google-agents-cli-eval",
+  "skill_slug": "google-agents-cli-publish",
+  "source_url": "https://www.skills.sh/google/agents-cli/google-agents-cli-publish",
   "source_hash": {
     "algorithm": "sha256",
-    "value": "sha256:2462241bbf1d6b392a38ca3e6727150387f406ffb8594584578cc5205762c1f8",
+    "value": "sha256:daf78c84db34690263be451c1858dfdc540e2aa520594f39830497e3fc8b758d",
     "source": "skills.sh"
   },
   "skillproof_hash": {
     "algorithm": "sha256",
-    "value": "sha256:1383f14978c217676113064fb39cb9dc87ecd932915f6ae5297ab27d845c2e7b",
+    "value": "sha256:daf78c84db34690263be451c1858dfdc540e2aa520594f39830497e3fc8b758d",
     "source": "skillproof"
   },
-  "hash_match": false,
-  "install_count": 303839,
+  "hash_match": true,
+  "install_count": 303612,
   "observed_at": "2026-09-22",
   "scanner_version": "skillproof-scan/0.1.5",
   "external_evidence": [
@@ -24,35 +24,33 @@
       "provider": "Gen Agent Trust Hub",
       "status": "pass",
       "riskLevel": "SAFE",
-      "observed_at": "2026-09-17T07:32:58.294Z"
+      "observed_at": "2026-09-17T07:32:47.575Z"
     },
     {
       "provider": "Socket",
       "status": "pass",
-      "observed_at": "2026-09-17T07:34:00.988Z"
+      "observed_at": "2026-09-17T07:33:30.397Z"
     },
     {
       "provider": "Snyk",
       "status": "pass",
       "riskLevel": "LOW",
-      "observed_at": "2026-09-17T07:32:26.152032+00:00"
+      "observed_at": "2026-09-17T07:32:26.254571+00:00"
     }
   ],
   "manifest": {
     "schema": "skillproof/1",
     "skill": {
-      "name": "google-agents-cli-eval",
+      "name": "google-agents-cli-publish",
       "version": "0.0.0",
-      "source": "https://www.skills.sh/google/agents-cli/google-agents-cli-eval",
-      "content_hash": "sha256:1383f14978c217676113064fb39cb9dc87ecd932915f6ae5297ab27d845c2e7b"
+      "source": "https://www.skills.sh/google/agents-cli/google-agents-cli-publish",
+      "content_hash": "sha256:daf78c84db34690263be451c1858dfdc540e2aa520594f39830497e3fc8b758d"
     },
     "capabilities": {
       "network": {
         "outbound_domains": [
-          "cloud.google.com",
-          "docs.astral.sh",
-          "github.com",
-          "my-agent.run.app"
+          "docs.cloud.google.com",
+          "my-service-abc123.us-east1.run.app"
         ],
         "via": []
       },
@@ -64,39 +62,38 @@
         ]
       },
       "filesystem": {
-        "reads": [
-          ".env"
-        ],
+        "reads": [],
         "writes": []
       },
       "secrets": {
-        "env_vars": [
-          "EXTERNAL_API_KEY",
-          "GEMINI_API_KEY"
-        ]
+        "env_vars": []
       },
       "agents": {
         "spawns_subagents": false,
         "subagent_types": []
       },
       "mcp": {
-        "servers": []
+        "servers": [
+          "mcp",
+          "mcp-server-spec-content",
+          "mcp-server-spec-type",
+          "mcp-servers",
+          "mcp_server_spec"
+        ]
       },
       "hygiene": {
         "unicode_issues": 0,
         "external_urls": [
-          "https://cloud.google.com/gemini-enterprise-agent-platform/optimize/evaluation/manage-metrics)",
-          "https://docs.astral.sh/uv/getting-started/installation/index.md)",
-          "https://github.com/googleapis/python-aiplatform/blob/main/agentplatform/_genai/types/common.py).",
-          "https://github.com/googleapis/python-aiplatform/blob/main/agentplatform/_genai/types/evals.py)",
-          "https://my-agent.run.app"
+          "https://docs.cloud.google.com/agent-registry/manage-agents",
+          "https://docs.cloud.google.com/agent-registry/register-mcp-servers",
+          "https://my-service-abc123.us-east1.run.app/a2a/app/.well-known/agent-card.json"
         ],
         "prompt_injection": []
       }
     },
     "declared": {
       "frontmatter": {
-        "name": "google-agents-cli-eval",
+        "name": "google-agents-cli-publish",
         "description": ">"
       }
     },

@@ -16,9 +16,9 @@
     "source": "skillproof"
   },
   "hash_match": true,
-  "install_count": 607953,
+  "install_count": 609366,
   "observed_at": "2026-09-22",
-  "scanner_version": "skillproof-scan/0.1.4",
+  "scanner_version": "skillproof-scan/0.1.5",
   "external_evidence": [
     {
       "provider": "Gen Agent Trust Hub",
@@ -129,7 +129,8 @@
           "https://www.skills.sh/agentspace-so/runcomfy-agent-skills/image-edit)",
           "https://www.skills.sh/agentspace-so/runcomfy-agent-skills/image-to-video)",
           "https://www.skills.sh/agentspace-so/runcomfy-agent-skills/runcomfy-cli)"
-        ]
+        ],
+        "prompt_injection": []
       }
     },
     "declared": {
@@ -142,7 +143,7 @@
         "license": "MIT"
       }
     },
-    "scan_version": "skillproof-scan/0.1.4",
+    "scan_version": "skillproof-scan/0.1.5",
     "signer": {
       "iss": "",
       "sub": "",

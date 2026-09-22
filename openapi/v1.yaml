@@ -159,9 +159,14 @@ components:
                   type: array
                   items:
                     type: string
+                prompt_injection:
+                  type: array
+                  items:
+                    type: string
               required:
                 - unicode_issues
                 - external_urls
+                - prompt_injection
               additionalProperties: false
           required:
             - network

@@ -1,15 +1,16 @@
 {
   "schema": "skillproof/1",
   "skill": {
-    "name": "google-agents-cli-scaffold",
+    "name": "google-agents-cli-publish",
     "version": "0.0.0",
-    "source": "https://www.skills.sh/google/agents-cli/google-agents-cli-scaffold",
-    "content_hash": "sha256:6f2a442fb2d29fb311fc3eaf8b2345d0efe4ae5a33f22ca31dda086f2b6cf4b4"
+    "source": "https://www.skills.sh/google/agents-cli/google-agents-cli-publish",
+    "content_hash": "sha256:daf78c84db34690263be451c1858dfdc540e2aa520594f39830497e3fc8b758d"
   },
   "capabilities": {
     "network": {
       "outbound_domains": [
-        "docs.astral.sh"
+        "docs.cloud.google.com",
+        "my-service-abc123.us-east1.run.app"
       ],
       "via": []
     },
@@ -21,34 +22,38 @@
       ]
     },
     "filesystem": {
-      "reads": [
-        ".env"
-      ],
+      "reads": [],
       "writes": []
     },
     "secrets": {
-      "env_vars": [
-        "GEMINI_API_KEY"
-      ]
+      "env_vars": []
     },
     "agents": {
       "spawns_subagents": false,
       "subagent_types": []
     },
     "mcp": {
-      "servers": []
+      "servers": [
+        "mcp",
+        "mcp-server-spec-content",
+        "mcp-server-spec-type",
+        "mcp-servers",
+        "mcp_server_spec"
+      ]
     },
     "hygiene": {
       "unicode_issues": 0,
       "external_urls": [
-        "https://docs.astral.sh/uv/getting-started/installation/index.md)"
+        "https://docs.cloud.google.com/agent-registry/manage-agents",
+        "https://docs.cloud.google.com/agent-registry/register-mcp-servers",
+        "https://my-service-abc123.us-east1.run.app/a2a/app/.well-known/agent-card.json"
       ],
       "prompt_injection": []
     }
   },
   "declared": {
     "frontmatter": {
-      "name": "google-agents-cli-scaffold",
+      "name": "google-agents-cli-publish",
       "description": ">"
     }
   },

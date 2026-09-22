@@ -63,7 +63,8 @@
         "https://speech.mp3",
         "https://your-image.jpg",
         "https://your-video.mp4"
-      ]
+      ],
+      "prompt_injection": []
     }
   },
   "declared": {
@@ -73,7 +74,7 @@
       "allowed-tools": "Bash(belt *)"
     }
   },
-  "scan_version": "skillproof-scan/0.1.4",
+  "scan_version": "skillproof-scan/0.1.5",
   "signer": {
     "iss": "",
     "sub": "",

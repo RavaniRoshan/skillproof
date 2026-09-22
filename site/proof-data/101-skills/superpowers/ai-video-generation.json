@@ -16,9 +16,9 @@
     "source": "skillproof"
   },
   "hash_match": true,
-  "install_count": 336393,
+  "install_count": 340256,
   "observed_at": "2026-09-22",
-  "scanner_version": "skillproof-scan/0.1.4",
+  "scanner_version": "skillproof-scan/0.1.5",
   "external_evidence": [
     {
       "provider": "Gen Agent Trust Hub",
@@ -103,7 +103,8 @@
           "https://speech.mp3",
           "https://your-image.jpg",
           "https://your-video.mp4"
-        ]
+        ],
+        "prompt_injection": []
       }
     },
     "declared": {
@@ -113,7 +114,7 @@
         "allowed-tools": "Bash(belt *)"
       }
     },
-    "scan_version": "skillproof-scan/0.1.4",
+    "scan_version": "skillproof-scan/0.1.5",
     "signer": {
       "iss": "",
       "sub": "",

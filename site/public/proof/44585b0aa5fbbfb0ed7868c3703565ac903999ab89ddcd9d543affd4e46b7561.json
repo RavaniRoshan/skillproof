@@ -59,7 +59,8 @@
         "https://www.skills.sh/agentspace-so/runcomfy-agent-skills/ai-video-generation)",
         "https://www.skills.sh/agentspace-so/runcomfy-agent-skills/elevenlabs-music-generation)",
         "https://www.skills.sh/agentspace-so/runcomfy-agent-skills/runcomfy-cli)"
-      ]
+      ],
+      "prompt_injection": []
     }
   },
   "declared": {
@@ -72,7 +73,7 @@
       "license": "MIT"
     }
   },
-  "scan_version": "skillproof-scan/0.1.4",
+  "scan_version": "skillproof-scan/0.1.5",
   "signer": {
     "iss": "",
     "sub": "",

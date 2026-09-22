@@ -35,6 +35,7 @@ export const ManifestSchema = z.object({
     hygiene: z.object({
       unicode_issues: z.number(),
       external_urls: z.array(z.string()),
+      prompt_injection: z.array(z.string()),
     }),
   }),
   declared: z.object({

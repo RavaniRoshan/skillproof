@@ -87,7 +87,8 @@
         "https://my-agent-abc123.run.app",
         "https://my-agent.run.app",
         "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/network_services_agent_gateway)"
-      ]
+      ],
+      "prompt_injection": []
     }
   },
   "declared": {
@@ -96,7 +97,7 @@
       "description": ">"
     }
   },
-  "scan_version": "skillproof-scan/0.1.4",
+  "scan_version": "skillproof-scan/0.1.5",
   "signer": {
     "iss": "",
     "sub": "",

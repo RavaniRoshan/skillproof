@@ -16,9 +16,9 @@
     "source": "skillproof"
   },
   "hash_match": true,
-  "install_count": 273988,
+  "install_count": 275334,
   "observed_at": "2026-09-22",
-  "scanner_version": "skillproof-scan/0.1.4",
+  "scanner_version": "skillproof-scan/0.1.5",
   "external_evidence": [
     {
       "provider": "Gen Agent Trust Hub",
@@ -102,7 +102,8 @@
           "https://www.skills.sh/genmedia-labs/skills/seedance-v2)",
           "https://www.skills.sh/genmedia-labs/skills/video-extend)",
           "https://www.skills.sh/genmedia-labs/skills/video-extend)."
-        ]
+        ],
+        "prompt_injection": []
       }
     },
     "declared": {
@@ -115,7 +116,7 @@
         "license": "MIT"
       }
     },
-    "scan_version": "skillproof-scan/0.1.4",
+    "scan_version": "skillproof-scan/0.1.5",
     "signer": {
       "iss": "",
       "sub": "",

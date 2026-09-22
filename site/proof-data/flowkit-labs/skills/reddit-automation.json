@@ -16,9 +16,9 @@
     "source": "skillproof"
   },
   "hash_match": true,
-  "install_count": 576771,
+  "install_count": 578176,
   "observed_at": "2026-09-22",
-  "scanner_version": "skillproof-scan/0.1.4",
+  "scanner_version": "skillproof-scan/0.1.5",
   "external_evidence": [
     {
       "provider": "Gen Agent Trust Hub",
@@ -79,7 +79,8 @@
           "https://doany.ai/?utm_source=skills.sh&utm_medium=skill&utm_campaign=reddit-automation)",
           "https://doany.ai/?utm_source=skills.sh&utm_medium=skill&utm_campaign=reddit-automation).",
           "https://github.com/doany-skills/skills)"
-        ]
+        ],
+        "prompt_injection": []
       }
     },
     "declared": {
@@ -92,7 +93,7 @@
         "license": "MIT"
       }
     },
-    "scan_version": "skillproof-scan/0.1.4",
+    "scan_version": "skillproof-scan/0.1.5",
     "signer": {
       "iss": "",
       "sub": "",

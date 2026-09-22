@@ -56,7 +56,8 @@
         "https://www.skills.sh/genmedia-labs/skills/runcomfy-cli)",
         "https://www.skills.sh/genmedia-labs/skills/seedance-v2)",
         "https://www.skills.sh/genmedia-labs/skills/wan-2-7)"
-      ]
+      ],
+      "prompt_injection": []
     }
   },
   "declared": {
@@ -69,7 +70,7 @@
       "license": "MIT"
     }
   },
-  "scan_version": "skillproof-scan/0.1.4",
+  "scan_version": "skillproof-scan/0.1.5",
   "signer": {
     "iss": "",
     "sub": "",

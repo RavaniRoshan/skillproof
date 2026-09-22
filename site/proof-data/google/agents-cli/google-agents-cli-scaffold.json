@@ -18,7 +18,7 @@
   "hash_match": false,
   "install_count": 303777,
   "observed_at": "2026-09-22",
-  "scanner_version": "skillproof-scan/0.1.4",
+  "scanner_version": "skillproof-scan/0.1.5",
   "external_evidence": [
     {
       "provider": "Gen Agent Trust Hub",
@@ -82,7 +82,8 @@
         "unicode_issues": 0,
         "external_urls": [
           "https://docs.astral.sh/uv/getting-started/installation/index.md)"
-        ]
+        ],
+        "prompt_injection": []
       }
     },
     "declared": {
@@ -91,7 +92,7 @@
         "description": ">"
       }
     },
-    "scan_version": "skillproof-scan/0.1.4",
+    "scan_version": "skillproof-scan/0.1.5",
     "signer": {
       "iss": "",
       "sub": "",

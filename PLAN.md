@@ -138,9 +138,9 @@ skillproof/
   PLAN.md  # this file
 ```
 
-- [ ] Scaffold npm workspaces: `packages/cli`, `packages/schemas`
-- [ ] Zod schemas → JSON Schema export for ledger validation
-- [ ] TS strict, ESM, Node 20 engine pin
+- [x] Scaffold npm workspaces: `packages/cli`, `packages/schemas`, `packages/skills-sh`
+- [x] Zod schemas → JSON Schema export for ledger validation
+- [x] TS strict, ESM, Node 20 engine pin
 
 ---
 
@@ -171,15 +171,15 @@ Manifest `skillproof/1`:
 
 Eval record `skillproof-eval/1`: `skill{hash,version}`, `matrix[]{model,baseline,with_skill,uplift}`, `verdict`, `cost_usd,runs,tasks`, `cache_key=(hash,task,model,judge,n)`, `task_provenance: author|generated`, `judge_agreement_rate`, `trace_ref`.
 
-- [ ] Freeze `skillproof/1` fields (every field must appear in a check/report)
-- [ ] Freeze `skillproof-eval/1` fields + verdict enum `OK|SKILL_DEGRADED_ON_NEWER_MODEL|IMPROVED|INCONCLUSIVE`
+- [x] Freeze `skillproof/1` fields (every field must appear in a check/report)
+- [x] Freeze `skillproof-eval/1` fields + verdict enum `OK|SKILL_DEGRADED_ON_NEWER_MODEL|IMPROVED|INCONCLUSIVE`
 
 ---
 
 ## 5. CLI spec (Commander)
 
-- [ ] `scan ./skill --out base.json` — heuristic table below + frontmatter cross-check → `undeclared_findings`
-- [ ] `diff base.json head.json` — exit 2 on added capability; `+ NEW` vs `unchanged`; removed = improvement, never fails
+- [x] `scan ./skill --out base.json` — heuristic table below + frontmatter cross-check → `undeclared_findings`
+- [x] `diff base.json head.json` — exit 2 on added/changed capability; `+ NEW` vs `unchanged`; removed = improvement, never fails
 - [ ] `attest base.json` — Sigstore keyless sign, append JSONL to `ledger/attestations/YYYY/MM/`
 - [ ] `verify github:org/repo@sha256:…` — fetch, verify sig + hash, print; works without permission
 - [ ] `eval --agent claude --models m1,m2 --tasks evals/*.md --runs 3 --budget-usd 10 --judge <id>` — baseline vs treated, cache, hard-stop
@@ -196,8 +196,8 @@ Scanner heuristics v0.1 (boring, documented limits in `docs/limitations.md`):
 | mcp | `mcp.*server|mcp\.json` |
 | hygiene | Unicode Tag range U+E0000–U+E007F → high finding; external URL without pin → warn |
 
-- [ ] Implement `scan` + fixtures (clean + evil `curl evil.example.com` + unicode-tagged)
-- [ ] Implement `diff` exit codes + human output
+- [x] Implement `scan` + fixtures (clean + evil `curl evil.example.com` + unicode-tagged)
+- [x] Implement `diff` exit codes + human output
 - [ ] Implement `attest/verify` via `sigstore` npm, OIDC from GHA
 - [ ] `docs/limitations.md`: what scanner misses, versioned
 
@@ -372,14 +372,14 @@ References:
 
 ### Integration principles
 
-- [ ] Treat skills.sh as an external source, not a dependency required to run SkillProof.
-- [ ] Use the stable skills.sh skill ID, source/slug, as the external identity.
-- [ ] Keep SkillProof's normalized content_hash as the authoritative proof identity.
-- [ ] Reconcile the skills.sh hash with the SkillProof hash and record both when they differ.
-- [ ] Never represent an automated scan or attestation as a safety guarantee.
-- [ ] Store proof metadata, manifests, hashes, signatures, and references. Do not mirror entire third-party skill repositories into the ledger.
-- [ ] Respect skills.sh API rate limits, caching headers, terms, and authentication requirements.
-- [ ] Build the integration so it still works if skills.sh changes ranking, UI, or distribution behavior.
+- [x] Treat skills.sh as an external source, not a dependency required to run SkillProof.
+- [x] Use the stable skills.sh skill ID, source/slug, as the external identity.
+- [x] Keep SkillProof's normalized content_hash as the authoritative proof identity.
+- [x] Reconcile the skills.sh hash with the SkillProof hash and record both when they differ.
+- [x] Never represent an automated scan or attestation as a safety guarantee.
+- [x] Store proof metadata, manifests, hashes, signatures, and references. Do not mirror entire third-party skill repositories into the ledger.
+- [x] Respect skills.sh API rate limits, caching headers, terms, and authentication requirements.
+- [x] Build the integration so it still works if skills.sh changes ranking, UI, or distribution behavior.
 
 ---
 
@@ -401,16 +401,16 @@ Suggested structure:
 
 ### API client
 
-- [ ] Implement GET /api/v1/skills.
-- [ ] Implement GET /api/v1/skills/search.
-- [ ] Implement GET /api/v1/skills/curated.
-- [ ] Implement GET /api/v1/skills/{source}/{skill}.
-- [ ] Implement GET /api/v1/skills/audit/{source}/{skill} when authentication and access are available.
-- [ ] Respect Cache-Control and Retry-After.
-- [ ] Add bounded retries with exponential backoff.
-- [ ] Add local cache to prevent unnecessary repeated fetches.
-- [ ] Add an explicit user-agent such as skillproof/<version>.
-- [ ] Add contract tests from captured API fixtures.
+- [x] Implement GET /api/v1/skills.
+- [x] Implement GET /api/v1/skills/search.
+- [x] Implement GET /api/v1/skills/curated.
+- [x] Implement GET /api/v1/skills/{source}/{skill}.
+- [x] Implement GET /api/v1/skills/audit/{source}/{skill} when authentication and access are available.
+- [x] Respect Cache-Control and Retry-After.
+- [x] Add bounded retries with exponential backoff.
+- [x] Add local cache to prevent unnecessary repeated fetches.
+- [x] Add an explicit user-agent such as skillproof/<version>.
+- [x] Add contract tests from captured API fixtures.
 
 ### Normalization
 
@@ -427,10 +427,10 @@ Map a skills.sh skill into a SkillProof source record:
       "source_url": "https://www.skills.sh/owner/repo/skill"
     }
 
-- [ ] Define this schema separately from the attestation schema.
-- [ ] Preserve upstream metadata without allowing it to overwrite signed proof fields.
-- [ ] Record first_seen, last_seen, and observed_at.
-- [ ] Track duplicate/fork indicators when provided by skills.sh.
+- [x] Define this schema separately from the attestation schema.
+- [x] Preserve upstream metadata without allowing it to overwrite signed proof fields.
+- [x] Record first_seen, last_seen, and observed_at.
+- [x] Track duplicate/fork indicators when provided by skills.sh.
 
 ---
 
@@ -473,14 +473,14 @@ Map a skills.sh skill into a SkillProof source record:
 
 ### Required behavior
 
-- [ ] First observation creates a discovered record.
-- [ ] First successful scan creates a scanned record.
+- [x] First observation creates a discovered record.
+- [x] First successful scan creates a scanned record.
 - [ ] CI-backed or trusted-signing workflows create attested records.
-- [ ] A changed hash automatically triggers a re-scan.
-- [ ] Added capabilities create a visible diff.
-- [ ] Removed capabilities are recorded as changes but do not fail verification by default.
+- [x] A changed hash automatically triggers a re-scan.
+- [x] Added capabilities create a visible diff.
+- [x] Removed capabilities are recorded as changes but do not fail verification by default.
 - [ ] A proof page clearly distinguishes scanned, attested, and evaluated.
-- [ ] Never imply that a skills.sh partner audit and a SkillProof attestation are the same evidence type.
+- [x] Never imply that a skills.sh partner audit and a SkillProof attestation are the same evidence type.
 
 ### Hash reconciliation
 
@@ -491,10 +491,10 @@ Map a skills.sh skill into a SkillProof source record:
           └── different                 ──> investigate normalization
                                               and record both hashes
 
-- [ ] Add deterministic normalization tests.
-- [ ] Verify whether the skills.sh hash can be reproduced from its documented file snapshot.
-- [ ] Do not silently substitute one hash for another.
-- [ ] Add a hash_source field to the integration record.
+- [x] Add deterministic normalization tests.
+- [x] Verify whether the skills.sh hash can be reproduced from its documented file snapshot.
+- [x] Do not silently substitute one hash for another.
+- [x] Add a hash_source field to the integration record.
 
 ---
 
@@ -703,12 +703,12 @@ Avoid framing the pitch as a critique of existing security providers.
 
 skills.sh already exposes partner audit results from multiple providers. SkillProof should consume those results as external evidence, not replace them.
 
-- [ ] Define external_evidence[].
-- [ ] Record provider, status, risk level, audit timestamp, and source URL.
-- [ ] Preserve provider identity.
-- [ ] Never collapse different scanner verdicts into one SkillProof score.
-- [ ] Show disagreements explicitly.
-- [ ] Keep SkillProof's own capability manifest separate from third-party security findings.
+- [x] Define external_evidence[].
+- [x] Record provider, status, risk level, audit timestamp, and source URL.
+- [x] Preserve provider identity.
+- [x] Never collapse different scanner verdicts into one SkillProof score.
+- [x] Show disagreements explicitly.
+- [x] Keep SkillProof's own capability manifest separate from third-party security findings.
 
 Example:
 
@@ -817,11 +817,11 @@ Do not optimize for GitHub stars as the primary product metric. Stars are a dist
 - [x] Display proof locally.
 
 ### M2 — Public proof
-- [ ] Public proof pages.
-- [ ] Raw proof API.
-- [ ] GitHub badges.
-- [ ] Verification command.
-- [ ] First 25 indexed skills.
+- [x] Public proof pages.
+- [x] Raw proof API.
+- [x] GitHub badges.
+- [x] Verification command.
+- [x] First 25 indexed skills.
 
 ### M3 — Distribution loop
 - [x] Scheduled hot and trending ingestion.
@@ -881,17 +881,17 @@ Keep the generic SkillProof protocol even if the skills.sh channel is abandoned.
 
 Execute in this order:
 
-- [ ] Create packages/skills-sh adapter.
-- [ ] Add API fixtures for list, search, detail, and audit responses.
-- [ ] Implement skills-sh inspect.
-- [ ] Implement skills-sh proof.
+- [x] Create packages/skills-sh adapter.
+- [x] Add API fixtures for list, search, detail, and audit responses.
+- [x] Implement skills-sh inspect.
+- [x] Implement skills-sh proof.
 - [x] Prove hash reconciliation on 5 real skills.
 - [x] Build first public proof page.
 - [x] Index 25 skills from trending, hot, and curated views.
-- [ ] Add SkillProof badge generator.
-- [ ] Add scheduled synchronization.
+- [x] Add SkillProof badge generator.
+- [x] Add scheduled synchronization.
 - [ ] Publish the first capability-diff case study.
-- [ ] Build the GitHub Action.
+- [x] Build the GitHub Action.
 - [ ] Onboard the first 5 external repositories.
 - [ ] Prepare the skills.sh maintainer proposal only after the above evidence exists.
 

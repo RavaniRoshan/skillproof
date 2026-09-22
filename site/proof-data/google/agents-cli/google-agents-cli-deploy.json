@@ -16,9 +16,9 @@
     "source": "skillproof"
   },
   "hash_match": false,
-  "install_count": 303132,
+  "install_count": 304667,
   "observed_at": "2026-09-22",
-  "scanner_version": "skillproof-scan/0.1.4",
+  "scanner_version": "skillproof-scan/0.1.5",
   "external_evidence": [
     {
       "provider": "Gen Agent Trust Hub",
@@ -127,7 +127,8 @@
           "https://my-agent-abc123.run.app",
           "https://my-agent.run.app",
           "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/network_services_agent_gateway)"
-        ]
+        ],
+        "prompt_injection": []
       }
     },
     "declared": {
@@ -136,7 +137,7 @@
         "description": ">"
       }
     },
-    "scan_version": "skillproof-scan/0.1.4",
+    "scan_version": "skillproof-scan/0.1.5",
     "signer": {
       "iss": "",
       "sub": "",

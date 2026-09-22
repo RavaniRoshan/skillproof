@@ -16,9 +16,9 @@
     "source": "skillproof"
   },
   "hash_match": false,
-  "install_count": 302725,
+  "install_count": 304265,
   "observed_at": "2026-09-22",
-  "scanner_version": "skillproof-scan/0.1.4",
+  "scanner_version": "skillproof-scan/0.1.5",
   "external_evidence": [
     {
       "provider": "Gen Agent Trust Hub",
@@ -146,7 +146,8 @@
           "https://my-mcp-server.example.com/mcp",
           "https://pkg.go.dev/google.golang.org/adk/v2/workflow)",
           "https://www.googleapis.com/auth/cloud-platform"
-        ]
+        ],
+        "prompt_injection": []
       }
     },
     "declared": {
@@ -155,7 +156,7 @@
         "description": ">"
       }
     },
-    "scan_version": "skillproof-scan/0.1.4",
+    "scan_version": "skillproof-scan/0.1.5",
     "signer": {
       "iss": "",
       "sub": "",
