@@ -52,7 +52,7 @@ npm run lint               # eslint + prettier
 npx vitest run             # test suite — must stay green
 
 npm run docs:dev           # VitePress dev server, hot reload
-npm run docs:build         # SSG build → site/.vitepress/dist
+npm run docs:build         # SSG build → dist/ (VitePress outDir)
 npm run docs:preview       # serve the built dist
 
 npm run generate -w skillproof-schemas   # regen *.schema.json + openapi/v1.yaml
@@ -185,6 +185,6 @@ unpublished, use `node packages/cli/dist/index.js <command>` after
 3. Verify with real commands: `npx vitest run` for CLI changes,
    `npm run docs:build` for site changes. Do not claim a build passed unless
    you ran it.
-4. `site/.vitepress/dist/` and `site/.vitepress/cache/` are generated. Never
+4. `dist/` and `site/.vitepress/cache/` are generated. Never
    commit them, never hand-edit files inside them.
 5. Never commit or push unless explicitly asked.

@@ -178,7 +178,7 @@ Pages on every `main` push that touches them:
 
 ```bash
 npm run docs:dev      # local preview with hot reload
-npm run docs:build    # production build to site/.vitepress/dist
+npm run docs:build    # production build to dist/
 ```
 
 Public URL (after enabling Pages in repo settings):

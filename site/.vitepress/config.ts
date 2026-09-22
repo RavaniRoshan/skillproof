@@ -1,14 +1,20 @@
 import { defineConfig } from "vitepress";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
 // GitHub Project Pages serves from /skillproof/, Vercel serves from /.
 // Vercel sets VERCEL=1 automatically, so keep one config for both hosts.
 const base = process.env.VERCEL ? "/" : "/skillproof/";
+// Emit to the repo-root dist/ so the output matches the hosting default
+// on both GitHub Pages and Vercel without per-host overrides.
+const outDir = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..", "dist");
 
 export default defineConfig({
   title: "SkillProof",
   description:
     "An open registry of proof for agent skills — what a skill does, and whether it still works.",
   base,
+  outDir,
   head: [
     ["link", { rel: "icon", type: "image/svg+xml", href: `${base}logo.svg`, media: "(prefers-color-scheme: light)" }],
     ["link", { rel: "icon", type: "image/svg+xml", href: `${base}logo-dark.svg`, media: "(prefers-color-scheme: dark)" }],
