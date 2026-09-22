@@ -1,4 +1,12 @@
-# Manifesto
+---
+title: Manifesto
+---
+
+<DocHero
+  eyebrow="Explanation"
+  title="The neutral verification layer"
+  sub="Skills became packaged software, and a software supply chain needs three answers before anyone trusts it: who signed the package, what it is allowed to do, and whether it still works after the model changes. This page is why we think an open body should give all three."
+/>
 
 Agent skills became packaged software: versioned, scripted, installed from
 third parties, running inside your agent's privileged context. A software
@@ -30,3 +38,10 @@ doesn't.
 
 Core is MIT, forever. The ledger is public, forever. Everything here is
 falsifiable — including the decision to build it.
+
+## Where this stands today
+
+This page describes the position, not the release. The commands exist, the
+schemas exist, and the ledger they are meant to feed does not; signing and the
+distributed eval harness are still ahead. [The roadmap](/roadmap) separates
+what is built from what is argued for.

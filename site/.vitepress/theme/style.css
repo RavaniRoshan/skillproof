@@ -1,149 +1,937 @@
-/* SkillProof brand layer on top of the VitePress default theme. */
+/* SkillProof × TaskShell design system.
+   Monochrome base, light + dark toggle, TaskShell layout rhythm. */
 
 :root {
-  --sp-ink: #0a0f1e;
-  --sp-paper: #f7f8fc;
-  --sp-indigo: #5b5bd6;
-  --sp-indigo-soft: #ececfb;
-  --sp-teal: #14b8a6;
-  --sp-gold: #f5a524;
-  --sp-red: #e5484d;
-  --sp-green: #2f9e44;
+  --sp-bg: #fafafa;
+  --sp-surface: #ffffff;
+  --sp-surface-2: #f4f4f5;
+  --sp-border: #e4e4e7;
+  --sp-text: #09090b;
+  --sp-muted: #52525b;
+  --sp-faint: #71717a;
+  --sp-cta-bg: #09090b;
+  --sp-cta-text: #fafafa;
+  --sp-glow: rgba(9, 9, 11, 0.06);
+  --sp-danger: #dc2626;
+  --sp-ok: #16a34a;
+  --sp-warn: #d97706;
 
-  --vp-c-brand-1: var(--sp-indigo);
-  --vp-c-brand-2: #4a4ac2;
-  --vp-c-brand-3: #3d3da8;
-  --vp-c-brand-soft: var(--sp-indigo-soft);
+  --vp-c-bg: var(--sp-bg);
+  --vp-c-bg-soft: var(--sp-surface-2);
+  --vp-c-bg-alt: var(--sp-surface);
+  --vp-c-divider: var(--sp-border);
+  --vp-c-border: var(--sp-border);
+  --vp-c-text-1: var(--sp-text);
+  --vp-c-text-2: var(--sp-muted);
+  --vp-c-brand-1: var(--sp-text);
+  --vp-c-brand-2: var(--sp-muted);
+  --vp-c-brand-3: var(--sp-faint);
+  --vp-c-brand-soft: var(--sp-surface-2);
 
   --vp-font-family-base: "Inter", ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, sans-serif;
   --vp-font-family-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo,
     Consolas, monospace;
+
+  --ts-radius: 14px;
+  --ts-max: 1280px;
 }
 
 .dark {
-  --vp-c-brand-1: #8b8bf5;
-  --vp-c-brand-2: #a3a3f7;
-  --vp-c-brand-3: #bcbcf9;
-  --vp-c-brand-soft: rgba(91, 91, 214, 0.16);
+  --sp-bg: #09090b;
+  --sp-surface: #131316;
+  --sp-surface-2: #17171b;
+  --sp-border: #26262b;
+  --sp-text: #fafafa;
+  --sp-muted: #a1a1aa;
+  --sp-faint: #71717a;
+  --sp-cta-bg: #fafafa;
+  --sp-cta-text: #09090b;
+  --sp-glow: rgba(255, 255, 255, 0.04);
+  --sp-danger: #f87171;
+  --sp-ok: #4ade80;
+  --sp-warn: #fbbf24;
+
+  --vp-c-bg: var(--sp-bg);
+  --vp-c-bg-soft: var(--sp-surface);
+  --vp-c-bg-alt: var(--sp-surface-2);
+  --vp-c-divider: var(--sp-border);
+  --vp-c-border: var(--sp-border);
+  --vp-c-text-1: var(--sp-text);
+  --vp-c-text-2: var(--sp-muted);
+  --vp-c-brand-1: var(--sp-text);
+  --vp-c-brand-2: var(--sp-muted);
+  --vp-c-brand-3: var(--sp-faint);
+  --vp-c-brand-soft: var(--sp-surface-2);
 }
 
-/* Hero wordmark gradient */
-.VPHero .name {
-  background: linear-gradient(100deg, var(--sp-indigo) 10%, var(--sp-teal) 90%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+/* ---- Base ---- */
+body {
+  background: var(--sp-bg);
+  color: var(--sp-text);
 }
 
-.dark .VPHero .name {
-  background: linear-gradient(100deg, #a3a3f7 10%, #5eead4 90%);
-  -webkit-background-clip: text;
-  background-clip: text;
+.VPNavBar {
+  background: var(--sp-bg) !important;
+  border-bottom: 1px solid var(--sp-border) !important;
 }
 
-/* Feature cards: icon chip + lift on hover */
-.VPFeatures .VPFeature {
+/* TaskShell navbar: wordmark left, quiet links right, last link = pill CTA */
+.VPNavBar .container {
+  max-width: var(--ts-max);
+  margin: 0 auto;
+}
+
+.VPNavBar .VPNavBarTitle .title {
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+}
+
+.VPNavBar .VPNavBarMenu .VPNavBarMenuLink,
+.VPNavBar .menu .VPNavBarMenuLink {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--sp-muted);
+}
+
+.VPNavBar .VPNavBarMenu .VPNavBarMenuLink:hover,
+.VPNavBar .VPNavBarMenu .VPNavBarMenuLink.active,
+.VPNavBar .menu .VPNavBarMenuLink:hover,
+.VPNavBar .menu .VPNavBarMenuLink.active {
+  color: var(--sp-text);
+}
+
+/* Last nav item renders as the "Get started" pill (see config.ts).
+   Beats VPNavBarMenuLink.vue's scoped styles via .VPNav + .VPNavBar depth. */
+.VPNav .VPNavBar .VPNavBarMenu > .VPNavBarMenuLink:last-child {
+  color: var(--sp-cta-text);
+  background: var(--sp-cta-bg);
+  border: 1px solid var(--sp-cta-bg);
+  border-radius: 999px;
+  padding: 7px 16px;
+  margin-left: 12px;
+  line-height: 1.4;
+  align-self: center;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.VPNav .VPNavBar .VPNavBarMenu > .VPNavBarMenuLink:last-child:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+  color: var(--sp-cta-text);
+}
+
+.VPNavBar .VPNavBarAppearance,
+.VPNavBar .VPSocialLinks {
+  margin-left: 8px;
+}
+
+@media (max-width: 768px) {
+  .VPNavBarMenu > *:last-child .VPNavBarMenuLink,
+  .VPNavBarMenuLink:last-child {
+    margin-left: 0;
+  }
+}
+
+/* ---- Scroll reveal: dependency-free motion (see theme/reveal.ts).
+   GSAP / framer-motion deliberately avoided: fades + slides are native CSS,
+   zero runtime cost, no hydration risk on VitePress SSG. ---- */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
   transition:
-    transform 0.18s ease,
-    box-shadow 0.18s ease;
+    opacity 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+[data-reveal="left"] { transform: translateX(-22px); }
+[data-reveal="right"] { transform: translateX(22px); }
+[data-reveal="scale"] { transform: translateY(10px) scale(0.98); }
+[data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---- TaskShell section rhythm: whitespace only, no hairline separators ---- */
+.ts-page {
+  max-width: var(--ts-max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.ts-section {
+  padding: 64px 0;
+}
+
+@media (min-width: 640px) {
+  .ts-section { padding: 80px 0; }
+}
+
+.ts-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--sp-muted);
+  border: 1px solid var(--sp-border);
+  background: var(--sp-surface-2);
+  border-radius: 8px;
+  padding: 4px 12px;
+  margin-bottom: 12px;
+  box-shadow: inset 0 6px 16px var(--sp-glow);
+}
+
+.ts-h1 {
+  font-size: clamp(44px, 6vw, 72px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-weight: 600;
+  margin: 0 0 16px;
+}
+
+.ts-h2 {
+  font-size: clamp(28px, 3.4vw, 36px);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  font-weight: 500;
+  margin: 0 0 12px;
+  max-width: 560px;
+}
+
+.ts-sub {
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: var(--sp-muted);
+  max-width: 620px;
+  margin: 0 0 28px;
+}
+
+.ts-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 28px;
+}
+
+.ts-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 12px 16px;
+  border: 1px solid transparent;
+  text-decoration: none !important;
+  transition: background 0.15s ease, transform 0.15s ease, opacity 0.15s ease;
+  position: relative;
+}
+
+.ts-btn:hover { transform: none; }
+
+.ts-btn-primary {
+  background: var(--sp-cta-bg);
+  color: var(--sp-cta-text) !important;
+  border-color: var(--sp-cta-bg);
+}
+
+.ts-btn-primary:hover { opacity: 0.85; }
+
+.ts-btn-ghost {
+  border-color: transparent;
+  color: var(--sp-muted) !important;
+  background: transparent;
+  padding: 12px 16px;
+}
+
+.ts-btn-ghost:hover { color: var(--sp-text) !important; }
+
+/* Ripple CTA: dual expanding borders on hover (TaskShell card-ripple) */
+.ts-ripple { position: relative; display: inline-flex; }
+.ts-ripple::before,
+.ts-ripple::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  border: 1px solid var(--sp-faint);
+  opacity: 0;
+  pointer-events: none;
+}
+.ts-ripple:hover::before { animation: ts-ripple 0.5s ease-out; }
+.ts-ripple:hover::after { animation: ts-ripple 0.5s ease-out 0.11s; }
+@keyframes ts-ripple {
+  0% { opacity: 0.9; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.12); }
+}
+.ts-arrow { display: inline-block; overflow: hidden; max-width: 0; transition: max-width 0.3s ease-out; }
+.ts-ripple:hover .ts-arrow, .ts-btn:hover .ts-arrow { max-width: 40px; }
+.ts-arrow svg { opacity: 0; transform: translateX(-8px); transition: opacity 0.3s ease-out, transform 0.3s ease-out; }
+.ts-ripple:hover .ts-arrow svg, .ts-btn:hover .ts-arrow svg { opacity: 1; transform: none; }
+
+/* ---- Hero ---- */
+.ts-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 40px 0 64px;
+}
+@media (min-width: 640px) {
+  .ts-hero { padding: 64px 0; }
+}
+
+.ts-hero-inner {
+  position: relative;
+  z-index: 10;
+  max-width: 720px;
+  color: var(--sp-text);
+}
+
+/* GridPulse: interactive canvas grid backdrop (Vue port of grid-pulse.tsx) */
+.grid-pulse {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  color: var(--sp-text);
+  --grid-pulse-line: color-mix(in srgb, var(--sp-text) 7%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, #000 92%, transparent);
+  mask-image: linear-gradient(to bottom, #000 92%, transparent);
+  background-image:
+    linear-gradient(to right, var(--grid-pulse-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-pulse-line) 1px, transparent 1px);
+  background-size: var(--grid-pulse-cell, 24px) var(--grid-pulse-cell, 24px);
+}
+
+.grid-pulse-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ts-hero [data-grid-avoid] {
+  text-shadow:
+    0 0 6px var(--sp-bg), 0 0 14px var(--sp-bg),
+    0 0 30px var(--sp-bg), 0 0 52px var(--sp-bg);
+}
+
+.ts-icon-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  padding: 8px 16px;
+}
+
+.ts-mini-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: var(--sp-muted);
+  position: relative;
+}
+
+.ts-mini-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.ts-mini-icon .ts-tip {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 6px;
+  white-space: nowrap;
+  border-radius: 6px;
+  background: var(--sp-surface-2);
+  border: 1px solid var(--sp-border);
+  padding: 4px 8px;
+  font-size: 12px;
+  color: var(--sp-text);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.24);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease;
+  z-index: 50;
+  pointer-events: none;
+}
+
+.ts-mini-icon:hover .ts-tip { opacity: 1; visibility: visible; }
+
+@media (max-width: 860px) {
+  .ts-section { padding: 52px 0; }
+}
+
+/* ---- Showcase band: own SVG ridgeline backdrop (no stock photo, no copy-paste).
+   Layered night ridges drawn for SkillProof; TUI window floats on top. ---- */
+.ts-showcase {
+  position: relative;
+  z-index: 10;
+  border: none;
+  border-radius: 6px;
+  background-color: #0c0f14;
+  /* Image set inline by Showcase.vue (withBase-aware). Remove bg here so a
+     missing prop can never paint a broken-image icon over the SVG. */
+  background-image: none;
+  background-size: cover;
+  background-position: center;
+  padding: clamp(12px, 2vw, 16px);
+  margin: 0 0 8px;
+  overflow: hidden;
+}
+.ts-showcase::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 90% at 50% 110%, rgba(12, 15, 20, 0.55), transparent 60%);
+  pointer-events: none;
+}
+.ts-showcase > * { position: relative; z-index: 1; }
+@media (min-width: 640px) {
+  .ts-showcase { padding: 16px; }
+}
+@media (min-width: 1024px) {
+  .ts-showcase { padding: 64px 48px; }
+}
+
+/* ---- Manifest app mock (TaskShell 3-pane web-app analog) ---- */
+.ts-app {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--sp-border);
+  overflow: hidden;
+  background: var(--sp-bg);
+  font-size: 12px;
+}
+.ts-app-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--sp-border);
+  font-size: 11px;
+  color: var(--sp-muted);
+}
+.ts-app-cols { display: grid; grid-template-columns: 176px 1fr 280px; min-height: 420px; }
+@media (max-width: 900px) { .ts-app-cols { grid-template-columns: 1fr; } }
+.ts-app-side { border-right: 1px solid var(--sp-border); padding: 12px; background: var(--sp-surface); }
+.ts-app-main { padding: 12px; }
+.ts-app-detail { border-left: 1px solid var(--sp-border); padding: 12px; background: var(--sp-surface); }
+.ts-app-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border: 1px solid var(--sp-border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin-bottom: 8px;
+  background: var(--sp-bg);
+}
+.ts-pill { font-size: 10px; border-radius: 999px; padding: 2px 8px; border: 1px solid var(--sp-border); color: var(--sp-muted); white-space: nowrap; }
+.ts-pill.high { color: #f87171; border-color: #f8717144; }
+.ts-pill.medium { color: #fbbf24; border-color: #fbbf2444; }
+.ts-pill.low { color: var(--sp-muted); }
+.ts-pill.done { color: #4ade80; border-color: #4ade8044; }
+
+/* ---- Cards: TaskShell double-border (outer p-1 + inner card) ---- */
+.ts-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 48px;
+}
+
+.ts-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 48px;
+}
+
+@media (max-width: 900px) {
+  .ts-grid-3 { grid-template-columns: 1fr; }
+  .ts-grid-4 { grid-template-columns: 1fr; }
+}
+@media (min-width: 901px) and (max-width: 1100px) {
+  .ts-grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+.ts-card-outer {
+  padding: 4px;
+  border: 1px solid var(--sp-border);
+  border-radius: 16px;
+  background: var(--sp-surface);
+}
+
+.ts-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--sp-border);
+  border-radius: 12px;
+  background: var(--sp-surface-2);
+  padding: 8px;
+  transition: border-color 0.16s ease;
+}
+
+.ts-card:hover {
+  transform: none;
+  border-color: var(--sp-faint);
+}
+
+.ts-card-head {
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  padding: 16px 16px 8px;
+  margin: 0;
+  color: var(--sp-text);
+}
+
+.ts-card-head .dim { opacity: 0.6; }
+
+.ts-card h3 {
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+}
+
+.ts-card > p {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--sp-muted);
+  margin: 0;
+  padding: 0 16px;
+}
+
+.ts-card .ts-chat {
+  margin: 24px 0 0;
+  flex: 1;
+  position: relative;
+  border: 1px solid var(--sp-border);
+  border-radius: 16px;
+  background: var(--sp-bg);
+  box-shadow: inset 0 6px 16px var(--sp-glow);
+  padding: 20px;
+  font-family: var(--vp-font-family-mono);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--sp-muted);
+  min-height: 400px;
+  overflow: hidden;
+}
+
+.ts-card .ts-chat b { color: var(--sp-text); font-weight: 600; }
+
+.ts-chat-think { font-size: 11px; color: var(--sp-faint); }
+.ts-chat-cursor { display: inline-block; width: 8px; height: 16px; background: var(--sp-faint); vertical-align: middle; margin-left: 2px; animation: ts-blink 1s steps(2) infinite; }
+@keyframes ts-blink { 50% { opacity: 0; } }
+.ts-chat-foot {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 16px 8px;
+  font-size: 10px;
+  color: var(--sp-faint);
+  background: linear-gradient(to top, var(--sp-bg) 30%, transparent);
+}
+.ts-chat-foot b { color: var(--sp-text); font-weight: 500; }
+
+.ts-card.hl {
+  border-color: var(--sp-faint);
+  box-shadow: inset 0 6px 16px var(--sp-glow), 0 24px 60px -32px var(--sp-glow);
+}
+
+/* ---- Agent grid: corner pixel deco + sync link ---- */
+.ts-agent {
+  position: relative;
+  overflow: hidden;
+}
+.ts-agent-icon { width: 20px; height: 20px; color: var(--sp-text); margin: 16px 0 0 16px; }
+.ts-agent-icon svg { width: 20px; height: 20px; }
+.ts-agent-name { font-size: 15px; font-weight: 500; color: var(--sp-text); margin: 8px 16px 0; }
+.ts-agent-link { font-size: 11px; color: var(--sp-faint); margin: 6px 16px 16px; }
+.ts-agent-pixels {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  width: 120px;
+  height: 60px;
+  opacity: 0.12;
+  background-image:
+    linear-gradient(var(--sp-text) 100%, transparent 100%);
+  background-size: 12px 12px;
+  mask-image: linear-gradient(200deg, #000 20%, transparent 70%);
+  -webkit-mask-image: linear-gradient(200deg, #000 20%, transparent 70%);
+  pointer-events: none;
+}
+.ts-note { margin-top: 16px; font-size: 12.5px; color: var(--sp-faint); }
+
+/* ---- Compare ---- */
+.ts-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 48px;
+}
+
+@media (max-width: 860px) { .ts-compare { grid-template-columns: 1fr; } }
+
+.ts-compare .ts-card { padding: 24px; }
+.ts-compare .ts-card h3 { font-size: 20px; font-weight: 400; margin: 0; }
+.ts-compare .dim { opacity: 0.82; }
+.ts-compare .dim .ts-card { background: transparent; }
+
+.ts-kv { margin-top: 20px; }
+.ts-kv + .ts-kv { border-top: 1px solid var(--sp-border); padding-top: 16px; }
+.ts-kv h4 {
+  font-size: 13px;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 500;
+  color: var(--sp-faint);
+  margin: 0 0 6px;
+}
+.ts-kv p { font-size: 13.5px; line-height: 1.65; color: var(--sp-muted); margin: 0; }
+.hl .ts-kv p { color: var(--sp-text); }
+
+/* ---- Checklist: single boxed 3-col grid, plain items + footer note ---- */
+.ts-feature-box {
+  border: 1px solid var(--sp-border);
+  border-radius: 12px;
+  background: var(--sp-surface-2);
+  padding: 32px;
+  margin-top: 48px;
+}
+.ts-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px 32px;
+}
+@media (max-width: 860px) { .ts-feature-grid { grid-template-columns: 1fr; } }
+.ts-feature-grid span { font-size: 14px; color: var(--sp-text); }
+.ts-feature-foot { margin: 24px 0 0; font-size: 12.5px; color: var(--sp-faint); }
+
+.ts-check {
+  border: 1px solid var(--sp-border);
+  border-radius: var(--ts-radius);
+  background: var(--sp-surface);
+  padding: 28px;
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px 28px;
+}
+
+@media (max-width: 860px) { .ts-check { grid-template-columns: 1fr; } }
+
+.ts-check li {
+  list-style: none;
+  font-size: 14px;
+  padding: 8px 0 8px 28px;
+  position: relative;
+  color: var(--sp-text);
+}
+
+.ts-check li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid var(--sp-border);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: var(--sp-muted);
+}
+
+/* ---- CTA + footer ---- */
+.ts-final {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 48px 0;
+  margin-bottom: 48px;
+}
+
+.ts-final-cta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.ts-foot {
+  border-top: 1px solid var(--sp-border);
+  padding: 28px 0 48px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--sp-faint);
+  font-size: 13px;
+}
+
+/* ---- Back-compat: existing components ---- */
+.VPHero .name,
+.sp-stat-num {
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  color: var(--sp-text) !important;
+}
+
+.VPFeatures .VPFeature {
+  background: var(--sp-surface) !important;
+  border: 1px solid var(--sp-border) !important;
+  border-radius: var(--ts-radius) !important;
 }
 
 .VPFeatures .VPFeature:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 32px -12px rgba(91, 91, 214, 0.35);
+  box-shadow: none !important;
+  border-color: var(--sp-faint) !important;
 }
 
-/* ---- SkillProof terminal window ---- */
-.sp-terminal {
-  border: 1px solid var(--vp-c-divider);
+/* ---- Live demo: TUI window over the mountain showcase ---- */
+.tui-stage {
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 960px;
+  background: transparent;
+}
+
+.tui-window {
+  max-width: 960px;
+  margin: 0 auto;
   border-radius: 12px;
   overflow: hidden;
-  margin: 24px 0;
-  background: var(--sp-ink);
-  box-shadow: 0 24px 64px -24px rgba(10, 15, 30, 0.55);
+  background: #161616;
+  border: 1px solid #2e2e32;
+  box-shadow: 0 32px 80px -32px rgba(0, 0, 0, 0.65);
+  font-family: var(--vp-font-family-mono);
+  position: relative;
 }
 
-.sp-terminal-bar {
+.tui-chrome {
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 10px 14px;
-  background: rgba(255, 255, 255, 0.04);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid #2e2e32;
 }
 
-.sp-dot {
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-}
-
-.sp-dot.r { background: #ff5f57; }
-.sp-dot.y { background: #febc2e; }
-.sp-dot.g { background: #28c840; }
-
-.sp-terminal-title {
-  margin-left: 6px;
-  font-family: var(--vp-font-family-mono);
+.tui-chrome-title {
+  margin: 0 auto;
   font-size: 12px;
-  color: #9aa3b2;
+  color: #d4d4d8;
 }
 
-.sp-terminal-body {
-  padding: 16px 18px 20px;
-  font-family: var(--vp-font-family-mono);
-  font-size: 13.5px;
-  line-height: 1.75;
-  color: #d6dbe4;
-  min-height: 190px;
-  white-space: pre-wrap;
-  word-break: break-word;
+.tui-chrome-step {
+  font-size: 12px;
+  color: #d4d4d8;
 }
 
-.sp-line-prompt { color: #8b8bf5; }
-.sp-line-add { color: #ff8589; }
-.sp-line-same { color: #8b93a5; }
-.sp-line-exit-new { color: var(--sp-gold); }
-.sp-line-exit-ok { color: #5eead4; }
+.sp-dot { width: 11px; height: 11px; border-radius: 50%; }
+.sp-dot.r { background: #fb605b; }
+.sp-dot.y { background: #febc2f; }
+.sp-dot.g { background: #27c840; }
 
-.sp-cursor {
-  display: inline-block;
-  width: 8px;
-  height: 16px;
-  vertical-align: -3px;
-  background: #8b8bf5;
-  animation: sp-blink 1s steps(1) infinite;
-}
-
-@keyframes sp-blink {
-  50% { opacity: 0; }
-}
-
-.sp-terminal-foot {
+.tui-head {
   display: flex;
-  justify-content: flex-end;
-  padding: 0 14px 12px;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px 18px 0;
 }
 
-.sp-replay {
+.tui-icon { width: 34px; height: 34px; flex: none; }
+.tui-title { font-size: 14px; font-weight: 700; color: #a1a1aa; }
+.tui-ver { color: #71717a; font-weight: 400; }
+.tui-meta { font-size: 11.5px; color: #71717a; }
+
+.tui-prompt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0 0;
+  padding: 10px 18px;
+  border-top: 1px solid #2e2e32;
+  border-bottom: 1px solid #2e2e32;
+  font-size: 13.5px;
+  color: #a1a1aa;
+}
+
+.tui-prompt.hl { background: #27272a; }
+.tui-chev { color: #a1a1aa; font-weight: 700; }
+.tui-cmd { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tui-block { width: 9px; height: 16px; background: #a1a1aa; flex: none; }
+
+.tui-status {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 18px;
+  font-size: 11.5px;
+  color: #71717a;
+  border-bottom: 1px solid #2e2e32;
+}
+
+.tui-branch { color: #71717a; }
+.tui-paren { color: #71717a; }
+.tui-status-right { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.tui-body {
+  position: relative;
+  padding: 12px 18px 16px;
+  min-height: 252px;
+  font-size: 12.5px;
+  line-height: 1.75;
+}
+
+.tui-row { display: flex; gap: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tui-mark { width: 14px; flex: none; text-align: center; }
+/* Monochrome TUI: bright rows pop, dim rows recede. Red/green kept only for fail/pass. */
+.tui-bold { color: #fafafa; font-weight: 700; }
+.tui-bold .tui-mark { color: #a1a1aa; }
+.tui-ok { color: #fafafa; }
+.tui-ok .tui-mark { color: #4ade80; }
+.tui-dim { color: #71717a; }
+.tui-dim .tui-mark { color: #71717a; }
+.tui-thought { color: #71717a; }
+.tui-thought .tui-mark { color: #71717a; }
+.tui-run { color: #fafafa; font-weight: 700; }
+.tui-run .tui-mark { color: #a1a1aa; }
+.tui-runsub { color: #71717a; }
+.tui-runsub .tui-mark { color: #71717a; }
+.tui-err { color: #f87171; font-weight: 700; }
+.tui-err .tui-mark { color: #f87171; }
+.tui-errsub { color: #f87171; }
+.tui-errsub .tui-mark { color: #f87171; }
+
+.tui-pill {
+  position: absolute;
+  left: 50%;
+  bottom: 56px;
+  transform: translateX(-50%);
+  background: #27272a;
+  color: #fff;
+  font-size: 22px;
+  border-radius: 24px;
+  padding: 14px 40px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+.tui-foot { border-top: 1px solid #2e2e32; }
+.tui-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  font-size: 13px;
+}
+
+.tui-branchbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 14px 10px 18px;
+  font-size: 11.5px;
+}
+
+.tui-replay {
   font-family: var(--vp-font-family-mono);
   font-size: 12px;
-  color: #9aa3b2;
+  color: #a1a1aa;
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1px solid #3f3f46;
   border-radius: 8px;
   padding: 4px 12px;
   cursor: pointer;
 }
 
-.sp-replay:hover {
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.4);
+.tui-replay:hover:not(:disabled) { color: #fff; border-color: #a1a1aa; }
+.tui-replay:disabled { opacity: 0.45; cursor: default; }
+
+/* Looping demo GIF: fills the same TUI window frame, keeps radius + border. */
+.tui-gif {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: inherit;
+}
+
+.tui-loop {
+  font-family: var(--vp-font-family-mono);
+  font-size: 12px;
+  color: #a1a1aa;
+}
+
+@media (max-width: 640px) {
+  .tui-body { font-size: 11px; min-height: 230px; }
+  .tui-cmd { font-size: 12px; }
+  .tui-status-right { display: none; }
+}
+
+/* ---- Micro-motion: buttons, cards, pills lift on hover; active presses down.
+   Minimal on purpose — one easing curve, transform/opacity only (GPU-cheap). ---- */
+.ts-btn {
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
+}
+.ts-btn:hover { transform: translateY(-1px); }
+.ts-btn:active { transform: translateY(0) scale(0.99); }
+
+.sp-cap,
+.ts-app-row,
+.ts-card-outer {
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+.sp-cap:hover,
+.ts-app-row:hover {
+  transform: translateY(-2px);
+}
+.ts-card-outer:hover { transform: translateY(-2px); }
+.ts-card-outer:hover .ts-card { border-color: var(--sp-faint); }
+
+.ts-agent-link { transition: color 0.18s ease; }
+.ts-card-outer:hover .ts-agent-link { color: var(--sp-text); }
+
+.ts-mini-icon,
+.ts-pill,
+.ts-eyebrow {
+  transition: transform 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+.ts-mini-icon:hover { transform: translateY(-2px); }
+
+.VPNavBar .VPNavBarMenu .VPNavBarMenuLink {
+  transition: color 0.15s ease;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sp-cursor { animation: none; }
+  .ts-btn, .sp-cap, .ts-app-row, .ts-card-outer, .ts-mini-icon { transition: none; }
+  .ts-btn:hover, .sp-cap:hover, .ts-app-row:hover, .ts-card-outer:hover, .ts-mini-icon:hover { transform: none; }
 }
 
 /* ---- Capability grid ---- */
@@ -155,18 +943,16 @@
 }
 
 .sp-cap {
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 12px;
-  padding: 14px 16px;
-  background: var(--vp-c-bg-soft);
-  transition:
-    transform 0.18s ease,
-    border-color 0.18s ease;
+  border: 1px solid var(--sp-border);
+  border-radius: var(--ts-radius);
+  padding: 16px;
+  background: var(--sp-surface);
+  transition: transform 0.16s ease, border-color 0.16s ease;
 }
 
 .sp-cap:hover {
   transform: translateY(-2px);
-  border-color: var(--vp-c-brand-1);
+  border-color: var(--sp-faint);
 }
 
 .sp-cap-head {
@@ -183,44 +969,37 @@
   width: 30px;
   height: 30px;
   border-radius: 8px;
-  background: linear-gradient(135deg, var(--sp-indigo), var(--sp-teal));
-  color: #fff;
+  border: 1px solid var(--sp-border);
+  background: var(--sp-bg);
+  color: var(--sp-text);
   flex: none;
 }
 
-.sp-cap-icon svg {
-  width: 16px;
-  height: 16px;
-}
+.sp-cap-icon svg { width: 16px; height: 16px; }
 
 .sp-cap p {
   margin: 8px 0 0;
   font-size: 13.5px;
-  color: var(--vp-c-text-2);
+  color: var(--sp-muted);
 }
 
-.sp-cap code {
-  font-size: 12px;
-}
+.sp-cap code { font-size: 12px; }
 
 /* ---- Proof band (stats) ---- */
 .sp-band {
-  border: 1px solid var(--vp-c-divider);
+  border: 1px solid var(--sp-border);
   border-radius: 16px;
   padding: 24px 28px;
   margin: 32px 0;
-  background:
-    radial-gradient(120% 160% at 0% 0%, rgba(91, 91, 214, 0.14), transparent 55%),
-    radial-gradient(120% 160% at 100% 100%, rgba(20, 184, 166, 0.14), transparent 55%),
-    var(--vp-c-bg-soft);
+  background: var(--sp-surface);
 }
 
 .sp-band h3 {
   margin-top: 0;
-  font-size: 15px;
+  font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--vp-c-text-2);
+  color: var(--sp-faint);
 }
 
 .sp-stats {
@@ -234,18 +1013,327 @@
   font-size: 30px;
   font-weight: 800;
   letter-spacing: -0.02em;
-  background: linear-gradient(100deg, var(--sp-indigo), var(--sp-teal));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
 }
 
 .sp-stat-label {
   font-size: 13px;
-  color: var(--vp-c-text-2);
+  color: var(--sp-muted);
   margin-top: 2px;
 }
 
-.sp-stat-label a {
-  font-weight: 600;
+.sp-stat-label a { font-weight: 600; }
+
+/* ---- Docs polish ---- */
+.vp-doc table {
+  border: 1px solid var(--sp-border);
+  border-radius: 12px;
+  overflow: hidden;
 }
+
+.vp-doc div[class*="language-"] {
+  border: 1px solid var(--sp-border);
+  border-radius: 12px;
+}
+
+.vp-doc a { text-underline-offset: 3px; }
+
+/* ---- Docs page furniture: DocHero, feature cards, FAQ ------------------
+   Reuses the landing page's tokens and card anatomy (.ts-card-outer >
+   .ts-card) so the guide and the marketing page read as one product.
+   Sections are separated by whitespace only — no hairlines, matching the
+   TaskShell rhythm in .ts-section. ---- */
+
+.sp-doc-hero {
+  max-width: 720px;
+  padding: 8px 0 28px;
+}
+
+.sp-doc-hero .ts-eyebrow { margin-bottom: 16px; }
+
+.sp-doc-h1 {
+  font-size: clamp(30px, 4.2vw, 42px);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+  margin: 0 0 16px;
+  color: var(--sp-text);
+}
+
+.sp-doc-hero .ts-sub { margin: 0; }
+
+/* ---- Feature cards ---- */
+.sp-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(248px, 1fr));
+  gap: 8px;
+  margin: 24px 0 8px;
+}
+
+.sp-card {
+  display: block;
+  text-decoration: none !important;
+}
+
+.sp-card .ts-card { padding: 18px; }
+
+/* Beats .ts-card > p (which pads 0 16px for landing-page copy). */
+.sp-card .ts-card > p { padding: 0; }
+
+.sp-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid var(--sp-border);
+  background: var(--sp-bg);
+  color: var(--sp-text);
+  flex: none;
+}
+
+.sp-card-icon svg { width: 16px; height: 16px; }
+
+.sp-card-title {
+  font-size: 15.5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  color: var(--sp-text);
+  margin: 14px 0 0;
+}
+
+.sp-card-body {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--sp-muted);
+  margin: 8px 0 0;
+}
+
+.sp-card-meta {
+  display: block;
+  margin-top: 14px;
+  font-family: var(--vp-font-family-mono);
+  font-size: 11.5px;
+  color: var(--sp-faint);
+}
+
+/* ---- FAQ: rail label + accordion rows (parallel.ai-style section) ---- */
+.sp-faq {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 0 32px;
+  margin: 56px 0 8px;
+}
+
+@media (max-width: 860px) {
+  .sp-faq { grid-template-columns: 1fr; gap: 16px; }
+}
+
+/* Scoped under .sp-faq so these beat .vp-doc h2 / h3 defaults. */
+.sp-faq .sp-faq-label {
+  margin: 0;
+  padding: 0;
+  border-top: 0;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--sp-faint);
+}
+
+.sp-faq-list { border-top: 1px solid var(--sp-border); }
+
+.sp-faq-row { border-bottom: 1px solid var(--sp-border); }
+
+.sp-faq .sp-faq-qh {
+  margin: 0;
+  padding: 0;
+  border-top: 0;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.sp-faq-q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  text-align: left;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 18px 0;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: var(--sp-text);
+}
+
+.sp-faq-q:focus-visible {
+  outline: 2px solid var(--sp-text);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.sp-faq-chev {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  flex: none;
+}
+
+.sp-faq-chev::before,
+.sp-faq-chev::after {
+  content: "";
+  position: absolute;
+  background: var(--sp-faint);
+  transition: transform 0.22s ease, background-color 0.18s ease;
+}
+
+.sp-faq-chev::before { top: 6px; left: 0; width: 14px; height: 1.5px; }
+.sp-faq-chev::after { top: 0; left: 6px; width: 1.5px; height: 14px; }
+
+.sp-faq-row:hover .sp-faq-chev::before,
+.sp-faq-row:hover .sp-faq-chev::after { background: var(--sp-text); }
+
+.sp-faq-row.is-open .sp-faq-chev::after { transform: scaleY(0); }
+
+/* Height animates without JS measurement; grid 0fr → 1fr is the trick. */
+.sp-faq-a {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.28s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.sp-faq-row.is-open .sp-faq-a { grid-template-rows: 1fr; }
+
+.sp-faq-a-inner { overflow: hidden; }
+
+.sp-faq .sp-faq-a-inner p {
+  margin: 0;
+  padding: 0 0 20px;
+  max-width: 68ch;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--sp-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sp-faq-a { transition: none; }
+  .sp-faq-chev::before,
+  .sp-faq-chev::after { transition: none; }
+}
+
+/* ---- Onboard your agent: boxed panel with a copyable setup prompt ----
+   Pattern borrowed from Parallel's end CTA: one prompt, a copy button, and
+   deep links into an agent. Panel reads as part of the docs, not an ad. ---- */
+.sp-agent {
+  border: 1px solid var(--sp-border);
+  border-radius: var(--ts-radius);
+  background: var(--sp-surface);
+  padding: 24px;
+  margin: 40px 0 8px;
+}
+
+.sp-agent-eyebrow {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--sp-faint);
+}
+
+.sp-agent-title {
+  margin: 8px 0 0;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--sp-text);
+}
+
+.sp-agent-sub {
+  margin: 6px 0 0;
+  max-width: 68ch;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--sp-muted);
+}
+
+.sp-agent-prompt {
+  margin-top: 16px;
+  border: 1px solid var(--sp-border);
+  border-radius: 10px;
+  background: var(--sp-bg);
+  box-shadow: inset 0 6px 16px var(--sp-glow);
+  padding: 14px 16px;
+  overflow-x: auto;
+}
+
+.sp-agent-prompt pre { margin: 0; }
+
+/* Overrides VitePress inline-code chrome, which would otherwise tint the block. */
+.sp-agent .sp-agent-prompt code {
+  display: block;
+  background: transparent;
+  padding: 0;
+  border: 0;
+  font-family: var(--vp-font-family-mono);
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--sp-muted);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.sp-agent-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.sp-agent-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid var(--sp-border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: var(--sp-muted) !important;
+  background: var(--sp-bg);
+  text-decoration: none !important;
+  transition: color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+
+.sp-agent-link:hover {
+  color: var(--sp-text) !important;
+  border-color: var(--sp-faint);
+  transform: translateY(-1px);
+}
+
+.sp-agent-copy {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sp-agent-link { transition: none; }
+  .sp-agent-link:hover { transform: none; }
+}
+
+/* ---- Decision table (Parallel's "API | Shape | Use when" pattern) ----
+   .vp-doc tables already carry the border + radius; this only tightens the
+   first column so command names read as a list of options. ---- */
+.sp-decide td:first-child,
+.sp-decide th:first-child { white-space: nowrap; }
+
+.sp-decide code { font-size: 12.5px; }
+

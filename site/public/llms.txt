@@ -1,0 +1,41 @@
+# SkillProof
+
+> An open registry of proof for agent skills: what a skill touches, how that changed between two versions, and whether it still works after a model bump.
+
+SkillProof is a pre-launch v0.1 project. This index exists so an agent can find its way around without crawling the site.
+
+## Read this first
+
+- [AGENTS.md](https://github.com/RavaniRoshan/skillproof/blob/main/AGENTS.md): build and test commands, repository conventions, the two invariants, and a section that names every v0.1 stub alongside the file that causes it.
+
+## Status of v0.1, stated plainly
+
+Do not describe these as working. They are not:
+
+- `scan` reads markdown only and records placeholder values on a substring match.
+- `attest` performs no Sigstore signing; it writes a local JSONL record.
+- `verify` returns success without checking a signature.
+- `content_hash` is not a digest yet, so records are not content-addressed.
+- `ledger/`, `actions/capability-diff/` and `evals/` are not in the repository.
+- `eval` parses its flags and echoes them; the harness is v0.2 work.
+
+## Documentation
+
+- [Guide](https://ravaniroshan.github.io/skillproof/guide/): overview and orientation.
+- [Getting started](https://ravaniroshan.github.io/skillproof/guide/getting-started): build the CLI, scan a directory, diff two manifests.
+- [Core concepts](https://ravaniroshan.github.io/skillproof/guide/concepts): why the diff matters more than the manifest, and why records are keyed by content hash.
+- [CLI reference](https://ravaniroshan.github.io/skillproof/guide/cli): every command, argument and exit code.
+- [Evaluations](https://ravaniroshan.github.io/skillproof/guide/evaluations): the planned model-bump regression harness.
+- [Ledger](https://ravaniroshan.github.io/skillproof/guide/ledger): the append-only, content-addressed log.
+- [Read API](https://ravaniroshan.github.io/skillproof/api/): the two read endpoints.
+- [Manifesto](https://ravaniroshan.github.io/skillproof/manifesto) and [Roadmap](https://ravaniroshan.github.io/skillproof/roadmap): the position, and what would stop the project.
+
+## Machine-readable contracts
+
+- [openapi/v1.yaml](https://github.com/RavaniRoshan/skillproof/blob/main/openapi/v1.yaml): read API contract, generated from the Zod schemas.
+- [manifest.schema.json](https://github.com/RavaniRoshan/skillproof/blob/main/packages/schemas/manifest.schema.json): capability manifest.
+- [eval.schema.json](https://github.com/RavaniRoshan/skillproof/blob/main/packages/schemas/eval.schema.json): eval delta record.
+
+## Source of truth
+
+The site sources are markdown under `site/` in the repository, which is also where this file lives. Documentation and code move together; when a claim here and the code disagree, the code wins and the docs are the bug.

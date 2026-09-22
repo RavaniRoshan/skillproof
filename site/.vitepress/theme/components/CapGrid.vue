@@ -41,7 +41,7 @@ const caps = [
 
 <template>
   <div class="sp-capgrid">
-    <div v-for="cap in caps" :key="cap.name" class="sp-cap">
+    <div v-for="(cap, i) in caps" :key="cap.name" class="sp-cap" data-reveal="scale" :style="{ '--reveal-delay': `${(i % 3) * 70}ms` }">
       <div class="sp-cap-head">
         <span class="sp-cap-icon">
           <svg

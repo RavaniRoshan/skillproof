@@ -10,8 +10,9 @@ export default defineConfig({
     "An open registry of proof for agent skills — what a skill does, and whether it still works.",
   base,
   head: [
-    ["link", { rel: "icon", type: "image/svg+xml", href: `${base}logo.svg` }],
-    ["meta", { name: "theme-color", content: "#0a0f1e" }],
+    ["link", { rel: "icon", type: "image/svg+xml", href: `${base}logo.svg`, media: "(prefers-color-scheme: light)" }],
+    ["link", { rel: "icon", type: "image/svg+xml", href: `${base}logo-dark.svg`, media: "(prefers-color-scheme: dark)" }],
+    ["meta", { name: "theme-color", content: "#09090b" }],
     ["meta", { property: "og:title", content: "SkillProof — Proof for agent skills" }],
     [
       "meta",
@@ -33,37 +34,36 @@ export default defineConfig({
     ],
   ],
   themeConfig: {
-    logo: "/logo.svg",
+    logo: { light: "/logo.svg", dark: "/logo-dark.svg", alt: "SkillProof logo" },
     siteTitle: "SkillProof",
     nav: [
-      { text: "Guide", link: "/guide/getting-started" },
+      { text: "Guide", link: "/guide/" },
       { text: "API", link: "/api/" },
       { text: "Manifesto", link: "/manifesto" },
       { text: "Roadmap", link: "/roadmap" },
+      { text: "Get started →", link: "/guide/getting-started" },
     ],
-    sidebar: [
-      {
-        text: "Guide",
-        items: [
-          { text: "Getting started", link: "/guide/getting-started" },
-          { text: "Core concepts", link: "/guide/concepts" },
-          { text: "CLI reference", link: "/guide/cli" },
-          { text: "Evaluations", link: "/guide/evaluations" },
-          { text: "Ledger", link: "/guide/ledger" },
-        ],
-      },
-      {
-        text: "Reference",
-        items: [{ text: "Read API", link: "/api/" }],
-      },
-      {
-        text: "Project",
-        items: [
-          { text: "Manifesto", link: "/manifesto" },
-          { text: "Roadmap", link: "/roadmap" },
-        ],
-      },
-    ],
+    sidebar: {
+      "/guide/": [
+        {
+          text: "Guide",
+          items: [
+            { text: "Overview", link: "/guide/" },
+            { text: "Getting started", link: "/guide/getting-started" },
+            { text: "Core concepts", link: "/guide/concepts" },
+            { text: "CLI reference", link: "/guide/cli" },
+            { text: "Evaluations", link: "/guide/evaluations" },
+            { text: "Ledger", link: "/guide/ledger" },
+          ],
+        },
+      ],
+      "/api/": [
+        {
+          text: "Reference",
+          items: [{ text: "Read API", link: "/api/" }],
+        },
+      ],
+    },
     socialLinks: [
       {
         icon: "github",
@@ -71,8 +71,8 @@ export default defineConfig({
       },
     ],
     footer: {
-      message: "MIT licensed. The ledger is public, forever.",
-      copyright: "SkillProof contributors",
+      message: "Proof-first skill management for agent-first workflows",
+      copyright: "© 2026 SkillProof. All rights reserved. · Privacy · Terms",
     },
   },
 });
