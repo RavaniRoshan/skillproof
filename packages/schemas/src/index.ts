@@ -32,6 +32,10 @@ export const ManifestSchema = z.object({
     mcp: z.object({
       servers: z.array(z.string()),
     }),
+    hygiene: z.object({
+      unicode_issues: z.number(),
+      external_urls: z.array(z.string()),
+    }),
   }),
   declared: z.object({
     frontmatter: z.record(z.unknown()),
@@ -90,6 +94,47 @@ export const EvalSchema = z.object({
 });
 
 export type Eval = z.infer<typeof EvalSchema>;
+
+// skills.sh integration (M0): source-observation record. Transient upstream
+// metadata only — never mixed into the signed Manifest above. install_count
+// drives discovery priority, observed_at drives freshness, the hash pair
+// drives re-scan decisions, scanner_version drives re-scan on scanner bumps.
+export const HashRefSchema = z.object({
+  algorithm: z.literal("sha256"),
+  value: z.string(),
+  source: z.string(),
+});
+
+export const SkillproofSourceSchema = z.object({
+  schema: z.literal("skillproof-source/1"),
+  source_registry: z.literal("skills.sh"),
+  external_id: z.string(),
+  source_repository: z.string(),
+  skill_slug: z.string(),
+  source_url: z.string(),
+  source_hash: HashRefSchema,
+  skillproof_hash: HashRefSchema,
+  hash_match: z.boolean(),
+  install_count: z.number(),
+  observed_at: z.string(),
+  scanner_version: z.string(),
+});
+
+export type SkillproofSource = z.infer<typeof SkillproofSourceSchema>;
+
+// skills.sh partner audits as external evidence. Kept separate from
+// SkillProof's own capability manifest; never collapsed into one score.
+export const ExternalEvidenceSchema = z.object({
+  provider: z.string(),
+  slug: z.string().optional(),
+  status: z.enum(["pass", "warn", "fail"]),
+  summary: z.string().optional(),
+  riskLevel: z.enum(["NONE", "LOW", "MEDIUM", "HIGH", "CRITICAL"]).optional(),
+  auditedAt: z.string().optional(),
+  categories: z.array(z.string()).optional(),
+});
+
+export type ExternalEvidence = z.infer<typeof ExternalEvidenceSchema>;
 
 // Pinned to a non-generic signature: the library's generic overloads exceed
 // this repo's TypeScript instantiation depth on large schemas.
