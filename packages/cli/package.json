@@ -1,6 +1,7 @@
 {
   "name": "skillproof-cli",
   "version": "0.1.0",
+  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": ["dist/"],
@@ -11,5 +12,8 @@
   "devDependencies": {
     "typescript": "^5.3.3",
     "@types/node": "^20.10.5"
+  },
+  "dependencies": {
+    "skillproof-skills-sh": "0.1.0"
   }
 }

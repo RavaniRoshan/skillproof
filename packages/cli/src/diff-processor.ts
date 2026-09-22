@@ -43,6 +43,7 @@ export class DiffProcessor {
             capability: key,
             value: headCaps[key],
           });
+          result.exitCode = 2;
         } else {
           result.capabilities.unchanged.push({
             capability: key,

@@ -2,10 +2,26 @@
 import { Command } from "commander";
 import chalk from "chalk";
 import fs from "fs";
-import { Scanner } from "./scanner";
-import { DiffProcessor } from "./diff-processor";
-import { Ledger } from "./ledger";
-import { Verifier } from "./verifier";
+import { buildManifest } from "./manifest.js";
+import { DiffProcessor } from "./diff-processor.js";
+import { Ledger } from "./ledger.js";
+import { Verifier } from "./verifier.js";
+import {
+  buildProofRecord,
+  formatAuthHint,
+  formatInspect,
+  formatProof,
+  formatSync,
+  inspectSkill,
+  parseSkillRef,
+  proofSkill,
+  proofUrl,
+  PROOF_URL_BASE,
+  resolveClient,
+  searchSkills,
+  syncSkills,
+  verifySkillsSh,
+} from "./skills-sh.js";
 
 const program = new Command();
 
@@ -23,23 +39,7 @@ program
     try {
       console.log(chalk.blue(`Scanning skill at ${skillPath}...`));
 
-      const manifest = await Scanner.scan(skillPath);
-      manifest.schema = "skillproof/1";
-      manifest.skill = {
-        name: "example-skill",
-        version: "1.0.0",
-        source: skillPath,
-        content_hash: `sha256:${Scanner.computeHash(skillPath)}`,
-      };
-      manifest.declared = { frontmatter: {} };
-      manifest.scan_version = "skillproof-scan/0.1.3";
-      manifest.signer = {
-        iss: "",
-        sub: "",
-        workflow: "",
-        commit: "",
-      };
-      manifest.undeclared_findings = [];
+      const manifest = await buildManifest(skillPath);
 
       fs.writeFileSync(outputPath, JSON.stringify(manifest, null, 2));
 
@@ -146,12 +146,22 @@ program
 program
   .command("verify")
   .description("Verify a skill attestation")
-  .argument("<reference>", "Attestation reference (github:org/repo@sha256:...)")
-  .action(async (reference: string) => {
+  .argument(
+    "<reference>",
+    "Attestation reference (github:org/repo@sha256:... or skills-sh:<source>/<skill>)",
+  )
+  .option("--token <token>", "Vercel OIDC token for the skills.sh API")
+  .option("--base-url <url>", "Override the skills.sh API base URL")
+  .action(async (reference: string, options) => {
     try {
       console.log(chalk.blue(`Verifying ${reference}...`));
 
-      const verification = await Verifier.verify(reference);
+      const verification = reference.startsWith("skills-sh:")
+        ? await verifySkillsSh(
+            resolveClient(options),
+            reference.slice("skills-sh:".length),
+          )
+        : await Verifier.verify(reference);
 
       if (verification.verified) {
         console.log(
@@ -163,8 +173,24 @@ program
       }
     } catch (error) {
       console.error(
+        chalk.red(`Error verifying attestation: ${formatAuthHint(error)}`),
+      );
+      process.exit(1);
+    }
+  });
+
+program
+  .command("proof-url")
+  .description("Print the shareable proof page URL for a skills.sh skill")
+  .argument("<ref>", "Skill reference (<source>/<skill>)")
+  .option("--base <url>", "Site base URL", PROOF_URL_BASE)
+  .action((ref: string, options) => {
+    try {
+      console.log(proofUrl(ref, options.base));
+    } catch (error) {
+      console.error(
         chalk.red(
-          `Error verifying attestation: ${error instanceof Error ? error.message : String(error)}`,
+          `Error building proof URL: ${error instanceof Error ? error.message : String(error)}`,
         ),
       );
       process.exit(1);
@@ -204,6 +230,114 @@ program
           `Error running evaluation: ${error instanceof Error ? error.message : String(error)}`,
         ),
       );
+      process.exit(1);
+    }
+  });
+
+const skillsSh = program
+  .command("skills-sh")
+  .description("Read-only skills.sh integration (needs SKILLS_SH_TOKEN)");
+
+skillsSh
+  .command("search <query>")
+  .description("Search skills on skills.sh")
+  .option("--token <token>", "Vercel OIDC token for the skills.sh API")
+  .option("--base-url <url>", "Override the skills.sh API base URL")
+  .option("--limit <n>", "Maximum results", "50")
+  .action(async (query: string, options) => {
+    try {
+      const output = await searchSkills(
+        resolveClient(options),
+        query,
+        Number(options.limit),
+      );
+      console.log(output);
+    } catch (error) {
+      console.error(chalk.red(`Search failed: ${formatAuthHint(error)}`));
+      process.exit(1);
+    }
+  });
+
+skillsSh
+  .command("inspect <ref>")
+  .description(
+    "Show upstream metadata for a skills.sh skill (<source>/<skill>)",
+  )
+  .option("--token <token>", "Vercel OIDC token for the skills.sh API")
+  .option("--base-url <url>", "Override the skills.sh API base URL")
+  .option("--json", "Print the raw source observation as JSON")
+  .action(async (ref: string, options) => {
+    try {
+      const result = await inspectSkill(resolveClient(options), ref);
+      console.log(
+        options.json
+          ? JSON.stringify(result.observation, null, 2)
+          : formatInspect(result),
+      );
+    } catch (error) {
+      console.error(chalk.red(`Inspect failed: ${formatAuthHint(error)}`));
+      process.exit(1);
+    }
+  });
+
+skillsSh
+  .command("proof <ref>")
+  .description("Scan a skills.sh skill snapshot and show the local proof")
+  .option("--token <token>", "Vercel OIDC token for the skills.sh API")
+  .option("--base-url <url>", "Override the skills.sh API base URL")
+  .option("--json", "Print the capability manifest as JSON")
+  .option("--record", "Print the full proof record as JSON")
+  .action(async (ref: string, options) => {
+    try {
+      const client = resolveClient(options);
+      const result = await proofSkill(client, ref);
+      if (options.record) {
+        const { source, skill } = parseSkillRef(ref);
+        const detail = await client.getSkill(source, skill);
+        console.log(JSON.stringify(buildProofRecord(detail, result), null, 2));
+      } else {
+        console.log(
+          options.json
+            ? JSON.stringify(result.manifest, null, 2)
+            : formatProof(result),
+        );
+      }
+      if (result.reconciliation && !result.reconciliation.hash_match) {
+        process.exit(2);
+      }
+    } catch (error) {
+      console.error(chalk.red(`Proof failed: ${formatAuthHint(error)}`));
+      process.exit(1);
+    }
+  });
+
+skillsSh
+  .command("sync")
+  .description("Check a bounded set of skills for hash changes")
+  .option("--token <token>", "Vercel OIDC token for the skills.sh API")
+  .option("--base-url <url>", "Override the skills.sh API base URL")
+  .option(
+    "--view <view>",
+    "Leaderboard view (all-time, trending, hot)",
+    "trending",
+  )
+  .option("--limit <n>", "Maximum skills to check", "10")
+  .option("--json", "Print entries as JSON")
+  .action(async (options) => {
+    try {
+      const entries = await syncSkills(
+        resolveClient(options),
+        options.view,
+        Number(options.limit),
+      );
+      console.log(
+        options.json ? JSON.stringify(entries, null, 2) : formatSync(entries),
+      );
+      if (entries.some((entry) => entry.status === "mismatch")) {
+        process.exit(2);
+      }
+    } catch (error) {
+      console.error(chalk.red(`Sync failed: ${formatAuthHint(error)}`));
       process.exit(1);
     }
   });

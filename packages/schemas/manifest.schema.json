@@ -145,6 +145,25 @@
             "servers"
           ],
           "additionalProperties": false
+        },
+        "hygiene": {
+          "type": "object",
+          "properties": {
+            "unicode_issues": {
+              "type": "number"
+            },
+            "external_urls": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "unicode_issues",
+            "external_urls"
+          ],
+          "additionalProperties": false
         }
       },
       "required": [
@@ -153,7 +172,8 @@
         "filesystem",
         "secrets",
         "agents",
-        "mcp"
+        "mcp",
+        "hygiene"
       ],
       "additionalProperties": false
     },

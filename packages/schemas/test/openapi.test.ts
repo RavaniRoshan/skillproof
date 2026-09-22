@@ -76,6 +76,7 @@ test("minimal records satisfy the Zod schemas behind the components", () => {
         secrets: { env_vars: [] },
         agents: { spawns_subagents: false, subagent_types: [] },
         mcp: { servers: [] },
+        hygiene: { unicode_issues: 0, external_urls: [] },
       },
       declared: { frontmatter: {} },
       scan_version: "test",
