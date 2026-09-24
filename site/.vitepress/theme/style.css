@@ -413,7 +413,7 @@ body {
   background: var(--sp-bg);
   font-size: 12px;
 }
-.ts-app-top {
+.ts-app-top { flex-wrap: wrap;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -424,7 +424,7 @@ body {
   color: var(--sp-muted);
 }
 .ts-app-cols { display: grid; grid-template-columns: 176px 1fr 280px; min-height: 420px; }
-@media (max-width: 900px) { .ts-app-cols { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .ts-app-cols { grid-template-columns: 1fr; } .ts-app-side { border-right: none; border-bottom: 1px solid var(--sp-border); } .ts-app-detail { border-left: none; border-top: 1px solid var(--sp-border); } }
 .ts-app-side { border-right: 1px solid var(--sp-border); padding: 12px; background: var(--sp-surface); }
 .ts-app-main { padding: 12px; }
 .ts-app-detail { border-left: 1px solid var(--sp-border); padding: 12px; background: var(--sp-surface); }
@@ -1337,3 +1337,47 @@ body {
 
 .sp-decide code { font-size: 12.5px; }
 
+
+@media (max-width: 640px) {
+  .sp-band {
+    padding: 16px 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .ts-cta-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .ts-compare .ts-card {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .ts-feature-box {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .sp-agent {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .ts-h1 {
+    font-size: clamp(36px, 10vw, 44px);
+  }
+}
+
+@media (max-width: 640px) {
+  .tui-body {
+    min-height: 200px;
+  }
+}
