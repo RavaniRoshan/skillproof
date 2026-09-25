@@ -22,7 +22,7 @@ const agents = [
   <section class="ts-hero">
     <GridPulse />
     <div class="ts-hero-inner">
-      <span class="ts-eyebrow" data-reveal>All-new SkillProof attestations as a first-class proof layer</span>
+      <span class="ts-eyebrow" data-reveal>Signed proof for every skill you install.</span>
       <h1 class="ts-h1" data-grid-avoid data-reveal>Proof for agent skills.</h1>
       <p class="ts-sub" data-grid-avoid data-reveal style="--reveal-delay: 90ms">
         No more blind installs to keep up with your agents. Your skills now carry
