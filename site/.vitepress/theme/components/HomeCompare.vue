@@ -19,11 +19,11 @@
       <div class="ts-card-outer" data-reveal="right" style="--reveal-delay: 120ms">
         <div class="ts-card hl">
           <h3>Proof-first verification</h3>
-          <div class="ts-kv"><h4>Reading code</h4><p>Describe nothing — the scanner builds the manifest with capabilities and declarations.</p></div>
+          <div class="ts-kv"><h4>Reading code</h4><p>Read nothing by hand — the scanner derives the manifest from the skill itself.</p></div>
           <div class="ts-kv"><h4>Tracking changes</h4><p>Ask the diff what changed. It reorders, highlights, and fails CI on new privileges.</p></div>
           <div class="ts-kv"><h4>Trusting authors</h4><p>Fetch the Sigstore attestation — who signed it, and which scanner version checked it.</p></div>
           <div class="ts-kv"><h4>Surviving model bumps</h4><p>Publish the eval delta once. Know which of your 40 skills degraded last Tuesday.</p></div>
-          <div class="ts-kv"><h4>Managing skills</h4><p>Your ledger keeps the proof and gates any and multiple installs in bulk with one single check.</p></div>
+          <div class="ts-kv"><h4>Managing skills</h4><p>Gate every install in one bulk check.</p></div>
         </div>
       </div>
     </div>

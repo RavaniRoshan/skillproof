@@ -28,27 +28,27 @@ const latest = CHANGELOG.slice(0, 3).map((entry) => ({
 <HomeProof />
 
 <section class="ts-section">
-<h2 class="ts-h2">Fully synced manifest access whenever needed</h2>
-<p class="ts-sub">Need to check something in a more traditional intuitive interface? The manifest viewer is always synced and ready for any capability you need to take.</p>
+<h2 class="ts-h2">The manifest viewer</h2>
+<p class="ts-sub">A preview of the manifest viewer — one pane per capability, signed and synced.</p>
 <Showcase>
 <div class="ts-app">
-<div class="ts-app-top"><span>◈ SkillProof · 6 open manifests</span><span>Search manifests… ⌘K · View proof · Report a flaw · Account</span></div>
+<div class="ts-app-top"><span>◈ SkillProof</span><span>6 open manifests</span></div>
 <div class="ts-app-cols">
 <div class="ts-app-side">
-<div class="ts-app-row"><span>◈ stripe-refunds</span><span class="ts-pill high">high</span></div>
-<div class="ts-app-row"><span>◑ pdf-extract</span><span class="ts-pill medium">medium</span></div>
+<div class="ts-app-row"><span>◈ stripe-refunds</span><span class="ts-pill high" aria-label="risk: high"><span class="ts-pill-glyph" aria-hidden="true">▲</span>high</span></div>
+<div class="ts-app-row"><span>◑ pdf-extract</span><span class="ts-pill medium" aria-label="risk: medium"><span class="ts-pill-glyph" aria-hidden="true">●</span>medium</span></div>
 <div class="ts-app-row"><span>◒ web-search</span><span class="ts-pill low">low</span></div>
-<div class="ts-app-row"><span>✓ reviewed</span><span class="ts-pill done">done</span></div>
+<div class="ts-app-row"><span>✓ reviewed</span><span class="ts-pill done" aria-label="risk: done"><span class="ts-pill-glyph" aria-hidden="true">✓</span>done</span></div>
 </div>
 <div class="ts-app-main">
 <div class="ts-app-row"><span>network.outbound_domains — api.stripe.com</span><span class="ts-pill">ID 4821</span></div>
-<div class="ts-app-row"><span>exec.shell — python3 scripts/refund.py</span><span class="ts-pill medium">todo</span></div>
+<div class="ts-app-row"><span>exec.shell — python3 scripts/refund.py</span><span class="ts-pill medium" aria-label="risk: medium"><span class="ts-pill-glyph" aria-hidden="true">●</span>todo</span></div>
 <div class="ts-app-row"><span>filesystem.writes — ./reports/**</span><span class="ts-pill">ID 9056</span></div>
-<div class="ts-app-row"><span>secrets — STRIPE_SECRET in reach</span><span class="ts-pill high">new</span></div>
-<div class="ts-app-row"><span>eval delta — claude-4.6 → 4.7 · 12/12 pass</span><span class="ts-pill done">signed</span></div>
+<div class="ts-app-row"><span>secrets — STRIPE_SECRET in reach</span><span class="ts-pill high" aria-label="risk: high"><span class="ts-pill-glyph" aria-hidden="true">▲</span>new</span></div>
+<div class="ts-app-row"><span>eval delta — claude-4.6 → 4.7 · 12/12 pass</span><span class="ts-pill done" aria-label="risk: done"><span class="ts-pill-glyph" aria-hidden="true">✓</span>signed</span></div>
 </div>
 <div class="ts-app-detail">
-<div class="ts-app-row"><span>Manifest Details</span><span class="ts-pill done">signed</span></div>
+<div class="ts-app-row"><span>Manifest Details</span><span class="ts-pill done" aria-label="risk: done"><span class="ts-pill-glyph" aria-hidden="true">✓</span>signed</span></div>
 <div class="ts-app-row"><span>Status · attested</span><span class="ts-pill">sigstore</span></div>
 <div class="ts-app-row"><span>Content hash · sha256:9f…</span><span class="ts-pill">ledger</span></div>
 <div class="ts-app-row"><span>Subtasks · 1/3 complete</span><span class="ts-pill">+ check</span></div>
