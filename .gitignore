@@ -8,3 +8,6 @@ Thumbs.db
 .env*
 !.env.example
 .vercel
+
+# VitePress cache
+site/.vitepress/cache/
