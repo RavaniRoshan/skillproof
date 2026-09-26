@@ -39,6 +39,11 @@ const agents = [
           </span>
         </div>
       </div>
+      <div data-reveal style="--reveal-delay: 200ms; margin-top: 2rem; display: flex; justify-content: center;">
+        <a href="https://launchstag.com" target="_blank" rel="noopener">
+          <img src="https://launchstag.com/badge-light.svg" alt="Featured on Launchstag" width="198" height="62" />
+        </a>
+      </div>
     </div>
   </section>
 </template>
